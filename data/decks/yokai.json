@@ -1,0 +1,716 @@
+{
+  "id": "yokai",
+  "name": "Yōkai Tarot",
+  "subtitle": "The Deck of Japanese Folklore",
+  "theme": "yokai",
+  "available": true,
+  "credits": {
+    "art": "Marga Biazzi",
+    "text": "Paolo Bertazzo",
+    "manual": "Alejandra Carrillo"
+  },
+  "cards": [
+    {
+      "arcana_id": "the-fool",
+      "image": null,
+      "yokai_name": "Kappa",
+      "yokai_kanji": "河童",
+      "deck_story": "The kappa (河童, literally: \"river child\"), a water yōkai living at the bottom of ponds and rivers, is one of the most popular creatures of Japanese folklore. Upon its head is a depression called sara (dish) filled with water, and it is believed that if the liquid is spilled, the kappa loses all its energies. So, in order to keep the water in, the kappa must always walk with its head held high: this allows it to have great vision, but prevents it from seeing what is below its very feet. As you can see, adventure can be both liberating and perilous, so enjoy it with caution!",
+      "deck_resumen": "Caminar con la cabeza en alto te permite tener una buena visión del horizonte, pero te impide notar lo que hay bajo tus pies. La aventura es a la vez liberadora y peligrosa: ¡disfrútala con precaución!",
+      "deck_sombra": "Invertida, el kappa derrama el agua de su cabeza: la espontaneidad se vuelve imprudencia. Saltas sin mirar, confías de más y te expones a engaños o a riesgos evitables."
+    },
+    {
+      "arcana_id": "the-magician",
+      "image": null,
+      "yokai_name": "Bake-danuki",
+      "yokai_kanji": "化け狸",
+      "deck_story": "One of the most iconic yōkai, the bake-danuki (化け狸, literally: \"changed raccoon\") is a supernatural being with the looks of a Japanese raccoon dog and incredible shapeshifting powers, which it employs to fool travelers for the sake of a good laugh. This spirit's tricks and disguises represent great skill and versatility, as well as mastery over the emotional, intellectual, material, and creative realms, symbolized by the four Suits depicted in the artwork. Pursue your projects and perfect your many talents, but remember to eventually settle on a form, or you will lose track of who you truly are.",
+      "deck_resumen": "Dedícate a tus proyectos y perfecciona tus múltiples talentos, pero luego asegúrate de tomar una dirección definitiva y de no dar vueltas en vano.",
+      "deck_sombra": "El tanuki se pierde entre sus propios disfraces: el talento se usa para manipular o se dispersa en mil proyectos. Riesgo de engaño, inseguridad o promesas vacías."
+    },
+    {
+      "arcana_id": "the-high-priestess",
+      "image": null,
+      "yokai_name": "Yuki-onna",
+      "yokai_kanji": "雪女",
+      "deck_story": "Yuki-onna (雪女, literally: \"snow woman\") is a spirit of ice and cold, manifested under the guise of a young and beautiful lady. She is said to appear during heavy snowstorms, preying on lost wanderers. She often leaves the traveler frozen in the snow; however, some instances have been recorded of her helping men with information on how to get out of the blizzard. The ways in which the yuki-onna dispenses her wisdom are ambiguous and cryptic. Accept them as they come, trusting that forces are at work to direct your path. Exercise your intuition to detect the signs.",
+      "deck_resumen": "Confía en la certeza de que fuerzas superiores a ti están trabajando para dirigir tu camino. Agudiza tu intuición para identificar las señales más crípticas y confusas.",
+      "deck_sombra": "La sabiduría se enfría en secreto y aislamiento. Ignoras tu intuición o la usas para juzgar con dureza; los signos se vuelven confusos por no querer escuchar."
+    },
+    {
+      "arcana_id": "the-empress",
+      "image": null,
+      "yokai_name": "Kaguya-hime",
+      "yokai_kanji": "かぐや姫",
+      "deck_story": "The story of Kaguya-hime (かぐや姫, \"princess Kaguya\"), the girl from the moon who was discovered by a bamboo cutter inside a shining stalk, is one of the oldest of Japanese folklore. Before returning to her home in the sky, she made the finder rich and gave an elixir of immortality to the emperor of Japan, but the sovereign destroyed it, for he did not wish to live for eternity without her. That of Kaguya-hime is a tale of love, purity, and a great sense of belonging —all the qualities of the Empress. It represents plentitude and fecundity, but also the nobility of spirit to give all of that away to others' benefit.",
+      "deck_resumen": "El amor y la pertenencia son las cualidades a encarnar: te conducirán a la riqueza y a la fecundidad, pero también a la nobleza del alma, tan necesaria para poner todo en beneficio de los demás.",
+      "deck_sombra": "La abundancia se tuerce en posesividad o dependencia. Cuidas tanto que asfixias, o te entregas hasta vaciarte. Belleza y confort vividos como vanidad."
+    },
+    {
+      "arcana_id": "the-emperor",
+      "image": null,
+      "yokai_name": "Ryūjin",
+      "yokai_kanji": "龍神",
+      "deck_story": "Ryūjin (龍神, literally: \"dragon god\"), king of the sea and patron of Japan, dwells in Ryūgū, the underwater palace built into a coral reef. From the rooms of this mansion, the dragon god reigns over his fish servants, bringing storms and thunders to the world above the surface, and controlling the tides with the magical jewels in his possession. His appearance urges you to assert yourself: take the situation into your hands, and control it; establish some boundaries, and defend them. However, make sure to be respected rather than feared —severity and cruelty are two very different things.",
+      "deck_resumen": "Hazte cargo de la situación y contrólala; establece los límites y defiéndelos. Sin embargo, asegúrate de que te respeten en lugar de que te teman: la severidad y la crueldad son dos cosas muy diferentes.",
+      "deck_sombra": "La autoridad se vuelve tiranía o rigidez. Controlas por miedo y no por respeto; o pierdes el mando por inseguridad. Severidad confundida con crueldad."
+    },
+    {
+      "arcana_id": "the-hierophant",
+      "image": null,
+      "yokai_name": "Bakeneko",
+      "yokai_kanji": "化け猫",
+      "deck_story": "Turned into a man by its shapeshifting powers, this bakeneko (化け猫, literally: \"changed cat\") has devoured a monk to take his place as the keeper of the temple. Don't misinterpret this act as a mere trick or a joke, because this feline spirit acts with a purpose —whether it is to manipulate and control, or to guide and conform, is for you to discover. Look deep into the situation, because there might be more than meets the eye. It is not wrong to follow the tradition and find a place into society, but make sure not to lose your true identity when trying to blend in.",
+      "deck_resumen": "Analiza a fondo la situación, porque podría ser distinta de lo que parece. Sigue las tradiciones e intégrate en la sociedad, pero no te pierdas por completo al hacerlo.",
+      "deck_sombra": "La tradición devora tu identidad. Sigues reglas o figuras sin cuestionarlas, o alguien te guía para manipularte. Dogmatismo y conformismo vacío."
+    },
+    {
+      "arcana_id": "the-lovers",
+      "image": null,
+      "yokai_name": "Orihime · Hikoboshi",
+      "yokai_kanji": "織姫",
+      "deck_story": "When the goddess Orihime (織姫, literally: \"weaving princess\") fell in love with Hikoboshi (彦星, literally: \"star boy\"), her father Tentei forbade her to cross the Milky Way to meet him, as he worried that she would abandon her duties for him. Moved by his daughter's tears, Tentei subsequently allowed them to meet, but only once each year, on the seventh day of the seventh month, when a flock of magpies would make a bridge with their wings to reunite the couple. This episode speaks of unbridled desire, a longing for the other, but it also refers to the sacrifices that must be made to establish a meaningful connection. When making a choice, go with the heart, and even the heaviest of burdens will be worth bearing.",
+      "deck_resumen": "A veces son necesarios algunos sacrificios para establecer un vínculo significativo. Si se hace una elección desde el corazón, incluso la carga más pesada valdrá la pena.",
+      "deck_sombra": "El deseo choca con el deber; el vínculo se rompe por distancia, indecisión o sacrificios mal hechos. Elecciones tomadas desde el miedo, no desde el corazón."
+    },
+    {
+      "arcana_id": "the-chariot",
+      "image": null,
+      "yokai_name": "Katasharin",
+      "yokai_kanji": "片車輪",
+      "deck_story": "A creaking sound anticipated the arrival of the katasharin (片車輪, literally: \"single wheel\") from the thick night fog. To a woman who peeked out at it, the hag on the chariot said: \"Instead of looking at me, have a look at your own child!\" When she did, the baby was gone. The woman cursed her negligence and nailed an apologetic letter on her door; when the katasharin read it, it decided to return the baby to his mother. This ought to teach you to address things directly instead of prying from the sidelines. Approach your projects, issues, and fears with determination and accept your responsibilities, and you will certainly be rewarded.",
+      "deck_resumen": "Afronta las cosas directamente. Aborda tus proyectos, tus problemas y tus miedos con determinación y acepta tus responsabilidades: seguramente serás recompensado.",
+      "deck_sombra": "Avanzas sin rumbo o te paralizas. Fuerzas la situación en vez de afrontarla de frente; evades responsabilidades y la energía se dispersa."
+    },
+    {
+      "arcana_id": "strength",
+      "image": null,
+      "yokai_name": "Kintarō",
+      "yokai_kanji": "金太郎",
+      "deck_story": "Kintarō (金太郎, literally: \"golden boy\") was a child with superhuman strength, raised by a witch upon Mount Ashigara. His battle against a giant koi fish is a recurring subject in Japanese folklore and tattoo culture, which employs it as a symbol of fortitude and good luck. This Arcanum reminds you that equating strength with mere physical force is a mistake. By taming the fish with calm and composure, Kintarō shows how attitude can overcome obstacles of any size. True power resides in an indomitable spirit, and a good stance always wins over a simple thrashing around. Strength of character is what you truly need to handle \"slippery\" situations.",
+      "deck_resumen": "La verdadera fuerza reside en un espíritu indomable; una buena postura siempre le gana a una apariencia desgarbada. El carácter es lo que realmente necesitas para manejar las situaciones «resbaladizas».",
+      "deck_sombra": "La fuerza interior flaquea: pierdes la calma, reaccionas con violencia o dudas de ti. La situación «resbaladiza» te domina por falta de temple."
+    },
+    {
+      "arcana_id": "the-hermit",
+      "image": null,
+      "yokai_name": "Daitengu",
+      "yokai_kanji": "大天狗",
+      "deck_story": "As a wandering spirit of the Japanese mountains, the daitengu (大天狗, literally: \"great divine dog\") is closely associated with the ascetic practice of Shugendō, the withdrawal from civil society to achieve spiritual realization. This winged yōkai wears the same garments of the monks who worship him as a venerable sage of the mountains. Take inspiration to do the same: withdraw into your intimacy and meditate to achieve enlightenment. Look into yourself for guidance and advance with prudence to find the right path across the steep mountain range you are now facing.",
+      "deck_resumen": "Reclúyete en tu intimidad para meditar y alcanzar la iluminación; busca dentro de ti la orientación que necesitas y avanza con prudencia para encontrar un paso entre las montañas.",
+      "deck_sombra": "El retiro se vuelve aislamiento o huida. Te encierras de más, rechazas toda guía, o te niegas a mirar hacia adentro. Soledad sin sabiduría."
+    },
+    {
+      "arcana_id": "the-wheel",
+      "image": null,
+      "yokai_name": "Kodama",
+      "yokai_kanji": "木霊",
+      "deck_story": "Nimble and elusive, the entities known as kodama (木霊, literally: \"tree spirit\") inhabit lush Japanese forests, nesting in tree trunks and hiding within the foliage of the thick canopy. While meeting them is considered a sign of good luck, cutting down one of their homes is an omen of misfortune, and that is why many ancient trees are still protected by shimenawa ropes. The moral of this legend is to not interfere with natural cycles. Don't cry over rotting branches, and avoid cutting down healthy roots. Things will change according to their own momentum; accepting and following the flow is the best way to avoid being crushed by the Wheel's never-ending spin.",
+      "deck_resumen": "No interfieras con los ciclos naturales: las cosas cambian a su propio ritmo, aceptarlo y seguir el flujo es la mejor manera de evitar ser aplastado por el infinito giro de la Rueda.",
+      "deck_sombra": "Te resistes al cambio o intentas forzar el ciclo. La mala racha se vive como condena; interferir con lo natural solo trae más desgracia."
+    },
+    {
+      "arcana_id": "justice",
+      "image": null,
+      "yokai_name": "Zenko",
+      "yokai_kanji": "善狐",
+      "deck_story": "Zenko (善狐, literally: \"good fox\") is the name to describe a benevolent type of kitsune, the famous fox-like spirits of Japanese folklore who employ their shapeshifting powers for good. The greater the number of tails, the older and wiser the zenko. It is believed that, once the ninth tail is obtained, the kitsune becomes able to see and hear anything happening in the world, thus achieving infinite wisdom. Always act with the certainty that an impartial observer watches over you, passing judgment on your actions. The means always come before the ends —that's why acting rightfully, regardless of the outcome, is always a priority.",
+      "deck_resumen": "Actúa siempre como si un observador imparcial te estuviera vigilando, examinando tus acciones. Lo justo es siempre una prioridad, independientemente de los resultados.",
+      "deck_sombra": "El juicio se nubla: parcialidad, decisiones injustas o frías. Evitas la responsabilidad de tus actos o aplicas la lógica sin una pizca de compasión."
+    },
+    {
+      "arcana_id": "the-hanged-one",
+      "image": null,
+      "yokai_name": "Jorōgumo",
+      "yokai_kanji": "絡新婦",
+      "deck_story": "Often disguised as a young and beautiful lady, the jorogumo (絡新婦, literally: \"entangling bride\") exposes her true nature once the prey is too close to escape, dragging him into her spidery clasp to devour his essence. Beware of the traps along the path and refrain from charging head-on into situations, because sometimes perils are not easily at sight. Looking at the road ahead from a different angle might reveal the spiderwebs glittering in the sunlight. Sometimes it might even be necessary to reverse your entire perspective in order to find the epiphany you have long been waiting for.",
+      "deck_resumen": "Ten cuidado con las trampas en el camino y no te lances de cabeza a las situaciones. Es posible que necesites revertir tu perspectiva actual para llegar a la solución.",
+      "deck_sombra": "Te niegas a cambiar de perspectiva y caes en la trampa. Sacrificio inútil, estancamiento; ves la telaraña demasiado tarde."
+    },
+    {
+      "arcana_id": "death",
+      "image": null,
+      "yokai_name": "Izanami",
+      "yokai_kanji": "イザナミ",
+      "deck_story": "When the goddess Izanami (イザナミ) died, her brother and husband Izanagi decided to venture into the underworld to retrieve her. However, frightened by the horrid and rotting body of what once was his beautiful companion, the god fled, chased by the curses and minions of Izanami. As he performed ritualistic cleansing, Izanagi gave birth to the deities known as the Three Precious Children. This story shows the hardships of loss, but facing and processing the irreversible is the only way to overcome it. Don't let the past torment you. Death is but a passage that leaves place for the new.",
+      "deck_resumen": "Enfrentar y procesar lo irreversible es la única manera de superar algunas cosas. No dejes que el pasado te atormente: el final es sólo la transición hacia un nuevo comienzo.",
+      "deck_sombra": "Te aferras a lo que ya terminó. El miedo al cambio prolonga el dolor; el pasado, como Izanami, te persigue por no soltarlo."
+    },
+    {
+      "arcana_id": "temperance",
+      "image": null,
+      "yokai_name": "Ningyo",
+      "yokai_kanji": "人魚",
+      "deck_story": "The mermaid-like creature known as ningyo (人魚, literally: \"human fish\") is thought to populate the waters of Japan since times immemorial. Sights of this yōkai fill the stories of the sailors, and the notion that eating its flesh would impart longevity is tied to the legend of Yao Bikuni, an 800-year-old priestess. This elegant creature represents the quality of moderation, of harmony between the parts —human and fish, water and earth. Practice inner balance by mediating your impulses and by carefully blending the opposing forces within you. Feeding off this Arcanum will set off the healing process you need to undergo at this moment.",
+      "deck_resumen": "Practica el equilibrio interior mediando los impulsos y combinando cuidadosamente las fuerzas opuestas dentro de ti. La mezcla iniciará el proceso de curación que necesitas ahora.",
+      "deck_sombra": "El equilibrio se pierde en exceso o impaciencia. Mezclas mal las fuerzas opuestas; la falta de armonía retrasa la sanación."
+    },
+    {
+      "arcana_id": "the-devil",
+      "image": null,
+      "yokai_name": "Hannya",
+      "yokai_kanji": "般若",
+      "deck_story": "In Japanese Noh theater plays, the mask of the hannya (般若, meaning \"Buddha's wisdom\") represents the spirit of a woman who has become a demon due to obsession or jealousy. Her face, once beautiful and kind, is long lost behind a cover of sorrow and resentment. This is the destiny of all people eroded by harsh sentiments, so make sure to resist the call of these impulses. Don't be afraid to indulge in your passions, and never refrain from the arts and pleasures that make life worth living, but beware of excesses, for they may consume your identity and tarnish your soul for good.",
+      "deck_resumen": "No tengas miedo de satisfacer tus pasiones y nunca te abstengas de los placeres de la vida. En cambio, ten cuidado con los excesos, ya que corren el riesgo de arruinar el disfrute en sí.",
+      "deck_sombra": "La pasión se vuelve obsesión, celos o adicción. Como la hannya, el resentimiento deforma tu rostro; los excesos consumen tu identidad."
+    },
+    {
+      "arcana_id": "the-tower",
+      "image": null,
+      "yokai_name": "Ashinaga · Tenaga",
+      "yokai_kanji": "足長手長",
+      "deck_story": "Ashinaga and tenaga (足長 and 手長, literally: \"long legs\" and \"long arms\" respectively) are a couple of yōkai with unusually stretched limbs. They always work together to catch fish along the seashore: the ashinaga stays above water thanks to his legs, while the tenaga, who sits on his back, uses his long arms to grab the prey with great reach and precision. It may seem like a perfect strategy, but a simple wave is enough to throw them off balance and lose all the fish caught so far. This ought to teach you how even the best structures can fall due to unforeseen events. The crash might be painful, but the lesson will be crucial to build back a stronger and more efficient system.",
+      "deck_resumen": "Incluso las mejores estructuras pueden caer debido a acontecimientos inesperados. El colapso es doloroso, pero las lecciones serán fundamentales para reconstruir un sistema más fuerte y eficiente.",
+      "deck_sombra": "El derrumbe te toma por sorpresa y te resistes a aprender de él. Te aferras a una estructura que ya cayó; el caos se vive como castigo."
+    },
+    {
+      "arcana_id": "the-star",
+      "image": null,
+      "yokai_name": "Baku",
+      "yokai_kanji": "獏",
+      "deck_story": "According to the legends, once the gods had finished shaping the animals, all remaining pieces were put together to form a new tapir-like creature: the baku (獏). This bizarre yōkai feeds on bad dreams and is considered an amulet and a helper that kids can call at night when they need to fend off nightmares. This beast —just like this Arcanum— appears when the time is darkest to shed light upon the road ahead. It is a symbol of hope, the living proof that all spare pieces will fall into the right place at the end. Keep this feeling close to your heart as protection as you pursue the luminous dream that shines in the black of the night.",
+      "deck_resumen": "Ten fe: todas las piezas encajarán en el lugar correcto. Mantén este sentimiento cerca de tu corazón como protección mientras persigues el claro sueño que brilla en la oscuridad de la noche.",
+      "deck_sombra": "La esperanza se apaga: desánimo, pesimismo, sensación de estar perdido. No confías en que las piezas encajarán y abandonas el sueño."
+    },
+    {
+      "arcana_id": "the-moon",
+      "image": null,
+      "yokai_name": "Moon Hare",
+      "yokai_kanji": "月の兎",
+      "deck_story": "Look at the full moon, and in the dark markings on its surface you will see the shape of a rabbit, working with a mortar and pestle. Ask about it, and the Japanese will tell you of the mythical Moon Hare, pounding ingredients for Tsukimi, the Mid-Autumn Festival. The legend of this lunar character is as oneiric and romantic as the moon itself, and equally mysterious. What is the rabbit preparing? Is it food, medicine, or something else? Some things can only be inferred, so use your intuition instead of your rationality to draw your conclusions. The subconscious can be deceiving sometimes, but reason cannot open all doors on its own.",
+      "deck_resumen": "Este es el momento de utilizar la intuición en lugar de la simple racionalidad. El subconsciente a veces puede engañar, pero la razón por sí sola no puede abrir todas las puertas.",
+      "deck_sombra": "La ilusión engaña: miedos, autoengaño, confusión. Confundes la intuición con la fantasía; secretos y ansiedad nublan el camino."
+    },
+    {
+      "arcana_id": "the-sun",
+      "image": null,
+      "yokai_name": "Amaterasu",
+      "yokai_kanji": "天照",
+      "deck_story": "Amaterasu (天照, literally: \"heaven's light\"), goddess of the sun, chief deity of the Shinto pantheon, rules over the heavenly realms with glory and wisdom. According to legend, her descendant became the first emperor of Japan, founding a lineage that persists to this day. The bright rays of Amaterasu warm every corner of the world, and bring all secrets to the light of day. It is a time for honesty, growth, and celebration. Invest new energies with enthusiasm; bask in the light of the day, but never stop and stare directly at it, because the sun blinds those who face it with arrogance.",
+      "deck_resumen": "Invierte nuevas energías con entusiasmo. Disfruta de la luz del sol, pero nunca te detengas a mirarlo directamente, ya que ciega a quienes lo miran con arrogancia.",
+      "deck_sombra": "La luz se vela: arrogancia, vanidad o alegría forzada. Brillas para los demás pero por dentro hay vacío; mirar al sol con soberbia ciega."
+    },
+    {
+      "arcana_id": "judgement",
+      "image": null,
+      "yokai_name": "Kiyohime",
+      "yokai_kanji": "清姫",
+      "deck_story": "Rejected by the monk she so desperately loved, a young girl named Kiyohime (清姫, \"princess Kiyo\") transformed into a snake and followed him around Japan. The poor man tried to hide inside the bell of a temple, but Kiyohime found him and coiled around the iron cage, burning the monk inside it with her fiery breath. This is a wake-up call to remind you that judgment cannot be escaped, no matter how far you can run or how well you can hide. Change is on the way; revelation will bring revolution. Listen for the bell in the distance —it is tolling for you!",
+      "deck_resumen": "No importa qué tan lejos corras o qué tan bien te puedas esconder, no podrás escapar del juicio. El cambio está en camino; la revelación traerá la revolución.",
+      "deck_sombra": "Ignoras el llamado al cambio y huyes de él. Autocrítica excesiva o miedo a ser juzgado; como el monje, te escondes y el fuego te alcanza igual."
+    },
+    {
+      "arcana_id": "the-world",
+      "image": null,
+      "yokai_name": "Ōnamazu",
+      "yokai_kanji": "大鯰",
+      "deck_story": "All of Japan lies on the back of the great Ōnamazu (大鯰, literally: \"giant catfish\"), who dwells deep within the Earth. Whenever the guardian-god Takemikazuchi gets distracted, Onamazu thrashes, and earthquakes shake the Land of the Rising Sun. This enormous, legendary beast represents accomplishments of massive stature. A little movement is crucial if you don't want to stagnate in this privileged position, but make sure to have a Takemikazuchi around to keep sentiments like arrogance or exuberance at bay, or the world that now lies on your shoulders will crumble down upon you.",
+      "deck_resumen": "Un poco de movimiento es fundamental para no estancarse en una posición privilegiada, pero mantén a raya la arrogancia y la exuberancia, o el mundo que ahora descansa sobre tus hombros se derrumbará sobre ti.",
+      "deck_sombra": "La culminación se estanca o se siente incompleta. Arrogancia o exceso que amenaza lo logrado; te duermes en los laureles y todo tiembla."
+    },
+    {
+      "arcana_id": "ace-of-cups",
+      "image": null,
+      "yokai_name": "Amabie",
+      "yokai_kanji": "アマビエ",
+      "deck_story": "Good news and prosperity await those who witness the amabie (アマビエ), the legendary three-tailed mermaid with a bird-like beak. Her emerging from the depths of the ocean is considered a positive omen, and sketches of her are still used to fend off illness and bad luck. Her appearance in your Spread will bring the same benefits: an outpouring of serenity, joy, nourishment, and abundance into your life.",
+      "deck_resumen": "Un augurio positivo aleja las enfermedades y la mala suerte. Hay una explosión de serenidad, alegría, nutrición y abundancia en tu vida.",
+      "deck_sombra": "El corazón se cierra. Emociones bloqueadas, frialdad o vacío afectivo; rechazas el amor que se te ofrece o reprimes lo que sientes."
+    },
+    {
+      "arcana_id": "2-of-cups",
+      "image": null,
+      "yokai_name": "Kaijin",
+      "yokai_kanji": "海人",
+      "deck_story": "The kaijin (海人, literally: \"sea human\") are underwater creatures with piscine features. They have a reputation for being ill-tempered and obnoxious, and the fact that even they can come to terms is proof that love can be stronger than any division. This might serve you as a reminder to reunite with a partner, or finally overcome your shyness and express your feeling to your loved one. If a dispute is currently in place, it might be time to put it to rest.",
+      "deck_resumen": "Reencuéntrate con tu pareja o supera por fin la timidez para poder expresarle tus sentimientos a la persona que amas. Si hay una disputa, puede que sea el momento de resolverla.",
+      "deck_sombra": "El vínculo se quiebra: desencuentro, ruptura o relación desequilibrada. Orgullo que impide reconciliarse; atracción que no es recíproca."
+    },
+    {
+      "arcana_id": "3-of-cups",
+      "image": null,
+      "yokai_name": "Ningyo",
+      "yokai_kanji": "人魚",
+      "deck_story": "When the ningyo (人魚, literally: \"human fish\") come together to celebrate above the surface, then it really must be time to rejoice. These yōkai are coy and elusive creatures, so to see three of them dancing is an occasion of rare beauty. Consider this a sign of positive outcomes waiting around the corner, conflict resolution, and good friendship. Enjoy these blissful days —just don't overdo with the celebrations!",
+      "deck_resumen": "Los resultados positivos están a la vuelta de la esquina: es hora de poner fin a los conflictos y de entablar nuevas amistades. ¡Disfruta de estos días felices, pero no te excedas con las celebraciones!",
+      "deck_sombra": "La celebración se vuelve exceso o frivolidad. Amistades superficiales, chismes, distracción; festejas para no mirar lo que duele."
+    },
+    {
+      "arcana_id": "4-of-cups",
+      "image": null,
+      "yokai_name": "Kawauso",
+      "yokai_kanji": "川獺",
+      "deck_story": "Kawauso (川獺, literally: \"river otter\") are funny-looking creatures who like to drink, laugh, and play tricks on humans. Some even disguise themselves as beggars just to sneak into the villages and steal some alcohol. If this kawauso is refusing sake, it means something must be really off. You might be too distracted to notice an opportunity, or maybe you have just had enough of it all —either way, action is necessary to restore a healthy thirst for life.",
+      "deck_resumen": "Algo no funciona. Es posible que estés demasiado distraído para darte cuenta de una oportunidad, o tal vez simplemente estés aburrido. Es necesario tomar medidas para restablecer una sed saludable de vida.",
+      "deck_sombra": "La apatía gana: rechazas oportunidades por aburrimiento o desidia. Encerrado en ti mismo, no ves lo que la vida te ofrece."
+    },
+    {
+      "arcana_id": "5-of-cups",
+      "image": null,
+      "yokai_name": "Garappa",
+      "yokai_kanji": "ガラッパ",
+      "deck_story": "Just like the more common kappa, the garappa (ガラッパ) populate the streams and ponds of Japan, where they like to pull pranks on unsuspecting swimmers and sailors. However, all joy seems to have vanished for this solitary garappa, who mourns the passing of its cups. Not all hope is lost, of course: two cups are still there, but it is hard to notice the light at the end of the tunnel when you are turning your back on new opportunities. What is missing should not ruin what is still there.",
+      "deck_resumen": "No todas las esperanzas están perdidas, pero es difícil poder ver la luz al final del túnel si le das la espalda a las nuevas oportunidades. Lo que falta no debería arruinar lo que todavía está allí.",
+      "deck_sombra": "Te hundes en la pérdida y le das la espalda a lo que aún queda. El duelo se vuelve amargura; el lamento que paraliza."
+    },
+    {
+      "arcana_id": "6-of-cups",
+      "image": null,
+      "yokai_name": "Amefurikozō",
+      "yokai_kanji": "雨降小僧",
+      "deck_story": "Amefurikozō (雨降小僧, literally: \"rainfall priest boy\") and ameonna (雨女, literally: \"rain woman\") are servants of Ushi, the god of rain. Their childlike appearance evokes a deep sense of nostalgia that persists throughout time, following you like drizzle does with these little yōkai. The umbrella on the amefurikozō is a suggestion to use this feeling as a shelter, a safe and intimate space to rely on when bad weather comes. Make use of this tool and extend it to others, but never bask in the rain for too long, or you will forget the need for a new, sunny day.",
+      "deck_resumen": "Encuentra un refugio, un espacio seguro e íntimo donde puedas resguardarte cuando llegue el mal tiempo. Utiliza esta protección y extiéndela a otros mientras esperas un nuevo día soleado.",
+      "deck_sombra": "La nostalgia se vuelve cárcel. Vives en el pasado e idealizas lo que fue; el refugio se convierte en escondite."
+    },
+    {
+      "arcana_id": "7-of-cups",
+      "image": null,
+      "yokai_name": "Umibōzu",
+      "yokai_kanji": "海坊主",
+      "deck_story": "The black giant umibōzu (海坊主, literally: \"sea priest\") emerges from the ocean and always demands a barrel from the sailors, so he can use it to scoop up water on the deck and sink their ship. The only way to avoid this fate is to give the umibōzu a bottomless cask and escape as it foolishly attempts to fill it up. As you can see, selection is fundamental to achieve your goals, so evaluate all options carefully. Dream big, but temper your wishes —a bottomless appetite will bog you down.",
+      "deck_resumen": "La selección es un aspecto fundamental, así que considera todas las opciones cuidadosamente. Sueña, pero con humildad: un apetito sin fondo te puede empantanar.",
+      "deck_sombra": "Te pierdes entre fantasías o deseos sin fondo. Indecisión, ilusiones vacías, envidia; elegir mal por querer tenerlo todo."
+    },
+    {
+      "arcana_id": "8-of-cups",
+      "image": null,
+      "yokai_name": "Sazae-oni",
+      "yokai_kanji": "栄螺鬼",
+      "deck_story": "When a turban snail reaches 30 years of age, it may transform into the creature known as sazae-oni (栄螺鬼, literally: \"turban shell demon\"). The dance of this mollusk demon below the night sky to celebrate the long-awaited transition is an exhortation to abandon your comfort zone and search for more. The journey may be long, hard, or lonely, but winning over fears and shyness is the only way to emerge from your hideout to finally explore the land.",
+      "deck_resumen": "Sal de tu zona de confort. El viaje puede ser largo, difícil o solitario, pero superar los miedos y la timidez es la única manera de descubrir novedades maravillosas.",
+      "deck_sombra": "Te quedas en la zona de confort por miedo. Huyes de lo importante o abandonas justo antes de transformarte."
+    },
+    {
+      "arcana_id": "9-of-cups",
+      "image": null,
+      "yokai_name": "Kawaguma",
+      "yokai_kanji": "川熊",
+      "deck_story": "The kawaguma (川熊, literally: \"river bear\") is a feral yōkai that lives at the bottom of deep rivers, away from human eyes, and is said to collect the objects that fall from ferryboats and bridges. Of course, this creature communicates a sense of profound satisfaction, but the wealth accumulated can prove damaging in the long run. You might need to let go of some ballast to emerge and see the sunlight again.",
+      "deck_resumen": "La satisfacción es grande, pero a la larga la riqueza acumulada puede resultar perjudicial. Es posible que necesites soltar algunas trabas para resurgir y respirar.",
+      "deck_sombra": "La satisfacción se vuelve complacencia o exceso. Acumular por acumular; un placer que no llena, la soberbia del que ya «tiene todo»."
+    },
+    {
+      "arcana_id": "10-of-cups",
+      "image": null,
+      "yokai_name": "Fuchizaru",
+      "yokai_kanji": "淵猿",
+      "deck_story": "A family of fuchizaru (淵猿, literally: \"abyss monkey\") rest happily before a waterfall. Rain has just come to an end, and a beautiful rainbow glistens in the sunlight. This is an encouraging omen, a sign that a troublesome situation is coming to a happy end. The positive resolution arrives with gifts from the heavens to you and those you hold dearest, be they friends, family, or lovers. Enjoy these moments.",
+      "deck_resumen": "Una situación problemática está a punto de resolverse y el resultado positivo llega con regalos para ti y para las personas que más amas. Disfruta estos momentos.",
+      "deck_sombra": "La armonía familiar se agrieta: tensiones en casa, expectativas rotas, una felicidad aparente que esconde distancia."
+    },
+    {
+      "arcana_id": "page-of-cups",
+      "image": null,
+      "yokai_name": "Nure-onna",
+      "yokai_kanji": "濡女",
+      "deck_story": "The nure-onna (濡女, literally: \"wet woman\") is a reptilian yōkai with the looks of a beautiful girl. According to legends, it usually appears along the seashores with a baby in her hands, asking travelers to hold it for a moment. If the traveler tries to leave it when the creature is gone, the bundle becomes heavy, blocking the holder for the nure-onna to come back and devour him. This cautionary tale is not just about caring for a baby: it is a metaphor to show how qualities like kindness and grace can benefit you, regardless of the person they are directed to.",
+      "deck_resumen": "Cualidades como la bondad y la gracia siempre pueden resultar útiles, independientemente de los méritos de la persona a quien van dirigidas.",
+      "deck_sombra": "La dulzura se vuelve ingenuidad o manipulación emocional. Te cargan pesos ajenos; bondad mal dirigida que termina por atraparte."
+    },
+    {
+      "arcana_id": "knight-of-cups",
+      "image": null,
+      "yokai_name": "Ichimoku-nyūdō",
+      "yokai_kanji": "一目入道",
+      "deck_story": "Ichimoku nyudo (一目入道, literally: \"one-eyed priest\") is the guardian of Lake Kamo, on the island of Sado, in Niigata Prefecture. This water creature is said to resurface once every year to wander on land, driven by curiosity and revenge toward the human that once stole its magic fish hook. It represents advancement and attitude, but also the allure of mysterious and forbidden places. Pursue with courage the path set by your heart.",
+      "deck_resumen": "Avanza sin miedo hacia lugares fascinantes, misteriosos y prohibidos. Sigue con valentía el camino trazado por tu corazón.",
+      "deck_sombra": "La seducción se vuelve engaño o capricho. Persigues lo prohibido sin medir consecuencias; encanto vacío y promesas que no cumples."
+    },
+    {
+      "arcana_id": "queen-of-cups",
+      "image": null,
+      "yokai_name": "Kawahime",
+      "yokai_kanji": "川姫",
+      "deck_story": "Kawahime (川姫, literally: \"river princess\") is a spirit of the streams who lives underneath bridges or near watermills along the riversides. There she waits for travelers to come by, attracting them with her beauty only to drain their vital energy. To avoid this fate, one must lower his head, avoid eye contact, and carry on. Similarly, life might sometimes urge you to tolerate, forgive, and even forget a person or a situation in order to pass by without getting hurt.",
+      "deck_resumen": "Baja la cabeza, evita el contacto visual y sigue adelante. A veces es necesario tolerar, perdonar e incluso olvidar a una persona o una situación para evitar ser herido.",
+      "deck_sombra": "La sensibilidad se vuelve dependencia o desgaste emocional. Toleras de más y te dejas absorber; el perdón se convierte en sometimiento."
+    },
+    {
+      "arcana_id": "king-of-cups",
+      "image": null,
+      "yokai_name": "Oshōuo",
+      "yokai_kanji": "和尚魚",
+      "deck_story": "The Sea of Japan hides great and powerful creatures, and one of these is the oshōuo (和尚魚, literally: \"high priest fish\"). This turtle-bodied yōkai with a monk's head is calm and placid: if it gets caught in a sailor's nets, it will simply ask the man to free it. If the human refuses, however, he will incur a terrible curse. It is important to approach everyone with a composed and helping attitude, but it is just as crucial to respond adequately to abuse.",
+      "deck_resumen": "Es importante acercarse a los demás con una actitud amistosa, pero es igualmente esencial responder adecuadamente a los atropellos.",
+      "deck_sombra": "La calma se vuelve frialdad o pasividad. Reprimes lo que sientes, o no respondes ante el abuso; serenidad que en realidad es evasión."
+    },
+    {
+      "arcana_id": "ace-of-coins",
+      "image": null,
+      "yokai_name": "Kirin",
+      "yokai_kanji": "麒麟",
+      "deck_story": "The body of a deer, the scales of a dragon, the tail of an ox, and a glowing, golden mane —the kirin (麒麟) is one of the rarest, noblest, and most beautiful creatures in all of East Asia. It is a beast of pure goodness, and its hooves do not trample any insect or blade of grass, so as to not lose a single living thing. This means gain and prosperity are the only things on the horizon, because fortune and peace will bless the lucky witness of the holy kirin.",
+      "deck_resumen": "Ganancias y prosperidad es todo lo que se vislumbra en el horizonte. La suerte y la paz bendecirán tu camino.",
+      "deck_sombra": "La fortuna se trunca: oportunidad desperdiciada, apego al dinero, comienzos en falso. El materialismo opaca lo verdaderamente valioso."
+    },
+    {
+      "arcana_id": "2-of-coins",
+      "image": null,
+      "yokai_name": "Yamaotoko",
+      "yokai_kanji": "山男",
+      "deck_story": "Yamaotoko (山男, literally: \"mountain man\") is a rugged but gentle giant who lives hidden in the Japanese forests. He appears in the famous story of a man who had to rush down the mountains to call a doctor for an ill relative: such was the hurry that he slipped and broke his leg, but was later rescued by yamaotoko. Both the man and his friend's lives were saved in the end, but beware: if you can't handle multiple things at once, quit before you hurt yourself.",
+      "deck_resumen": "La prisa es mala consejera. Si no puedes manejar varias cosas a la vez, abandona alguna de ellas antes de lastimarte.",
+      "deck_sombra": "El malabar se cae: sobrecarga, prisa, inconstancia. Quieres con todo a la vez y terminas lastimándote."
+    },
+    {
+      "arcana_id": "3-of-coins",
+      "image": null,
+      "yokai_name": "Ippondatara",
+      "yokai_kanji": "一本踏鞴",
+      "deck_story": "The origin of the ippondatara (一本踏鞴, literally: \"one-legged bellows\") is shrouded in mystery. Some say it used to be a woodsman who had to cut off one of his legs in penance for a crime. Others claim it was actually a blacksmith, who lost an eye after staring at the intense flames of the furnace for too long. Either way, it is a tale of craft and dedication to the arts. Pursue your projects with passion, but plan them out carefully, unless you want to end up scarred like the ippondatara.",
+      "deck_resumen": "Lleva adelante tus proyectos con pasión, pero planifícalos con cuidado si no quieres correr el riesgo de salir lastimado en el proceso.",
+      "deck_sombra": "El talento se desperdicia por falta de plan o por exceso de ego. Trabajo descuidado, colaboración rota, una obra sin alma."
+    },
+    {
+      "arcana_id": "4-of-coins",
+      "image": null,
+      "yokai_name": "Sarugami",
+      "yokai_kanji": "猿神",
+      "deck_story": "Sarugami (猿神, literally: \"monkey god\") are ape-like creatures that populate the mountains of Japan. Once revered as spirits dear to the sun, they gradually lost ground to the expanding civilization and are now confined to the forests, from which they raid villages to steal crops, food, money, and even children. Their stance to protect their home is inspiring, but their possessive behavior and avarice are attitudes you must definitely stay away from.",
+      "deck_resumen": "Proteger los propios espacios es legítimo, pero el control posesivo y la codicia son actitudes de las que debes mantenerte alejado.",
+      "deck_sombra": "La avaricia domina: aferrarse, controlar, acumular por miedo. Posesividad que aísla y cierra la puerta a compartir."
+    },
+    {
+      "arcana_id": "5-of-coins",
+      "image": null,
+      "yokai_name": "Binbōgami",
+      "yokai_kanji": "貧乏神",
+      "deck_story": "The binbōgami (貧乏神, literally: \"god of poverty\") is a spirit that brings misery and struggle to the house it is haunting. According to the stories, if the binbōgami is shown hospitality and respect, then it will leave the home and bless it with a streak of good fortune. The appearance of this yōkai foreshadows hard times, but proves that virtues like generosity and kindness in moments of difficulty can get you back up on your feet, and even stronger than before.",
+      "deck_resumen": "En tiempos difíciles, virtudes como la generosidad y el respeto pueden ayudarte a recuperarte y hacerte aún más fuerte que antes.",
+      "deck_sombra": "La carencia se vive como derrota. Pobreza interior o exterior; orgullo que impide pedir o aceptar ayuda."
+    },
+    {
+      "arcana_id": "6-of-coins",
+      "image": null,
+      "yokai_name": "Kitsune",
+      "yokai_kanji": "狐",
+      "deck_story": "To save its kin from further killings, a silver kitsune (狐, literally: \"fox\") once disguised itself as a famous monk named Hakuzōsu and bought all the snares from a cruel trapper. It had to maintain this shape for over fifty years to ensure the safety of the foxes, and when death finally exposed it, even humans built a shrine in its honor. As you can see, even though altruism requires sacrifice, the rewards and the glory are much greater.",
+      "deck_resumen": "El altruismo requiere sacrificio, pero las recompensas son siempre mayores que cualquier cosa a la que hayas tenido que renunciar.",
+      "deck_sombra": "La generosidad se desequilibra: das esperando algo a cambio, o recibes creando dependencia. Caridad con condiciones."
+    },
+    {
+      "arcana_id": "7-of-coins",
+      "image": null,
+      "yokai_name": "Ta-no-kami",
+      "yokai_kanji": "田の神",
+      "deck_story": "Ta-no-kami (田の神, literally: \"god of the rice paddies\") is the spirit that watches over the harvest. It is invoked to bring good fruits in the next season, but its relevance spans over the mere agricultural scope: it is a symbol of patience and pacing. Most importantly, it proves something that may sound counterintuitive to most: the idea that waiting can be the most productive act there is. Apply this concept and allow your situations to bloom.",
+      "deck_resumen": "Puede parecer contradictorio, pero la espera puede ser el acto más productivo que exista. No te preocupes y deja que las situaciones den sus frutos.",
+      "deck_sombra": "La impaciencia arruina la cosecha. Abandonas justo antes de florecer, o esperas sin actuar; el esfuerzo está mal medido."
+    },
+    {
+      "arcana_id": "8-of-coins",
+      "image": null,
+      "yokai_name": "Tsuchigumo",
+      "yokai_kanji": "土蜘蛛",
+      "deck_story": "In the accounts of the legendary warrior Minamoto no Yorimitsu appears an ominous creature known as tsuchigumo (土蜘蛛, literally: \"earth spider\"). This giant, shapeshifting arachnid always devises cunning strategies to trick and devour Yorimitsu, but never succeeds. Despite the cruel nature of the yōkai, its titanic dedication to an impossible goal is a quality to admire. Apply yourself and refine your craft as the tsuchigumo does with his plans and spiderwebs.",
+      "deck_resumen": "La dedicación a una meta es una cualidad admirable: aplícate a tu profesión o a tu pasión para sacar el máximo provecho y así evitar arrepentimientos futuros.",
+      "deck_sombra": "El trabajo se vuelve obsesión estéril o rutina sin alma. Te empeñas en lo imposible; perfeccionismo que nunca avanza."
+    },
+    {
+      "arcana_id": "9-of-coins",
+      "image": null,
+      "yokai_name": "Futakuchi-onna",
+      "yokai_kanji": "二口女",
+      "deck_story": "One of many different versions of the origin of futakuchi-onna (二口女, literally: \"two-mouthed woman\") involves a miser who never let his wife eat. This led to the opening of a second mouth on the woman's nape, which started to feed itself using the hair as hands to bring food to its gnarling jaws. This is a story of emancipation and independence. Problematic situations will resolve as you develop secondary skills to take better care of them.",
+      "deck_resumen": "La emancipación y la independencia son los lineamientos guías. Las situaciones problemáticas se resolverán solas a medida que desarrolles habilidades secundarias para poder manejarlas.",
+      "deck_sombra": "La independencia se tuerce: aislamiento, autosuficiencia rígida o necesidades reprimidas que estallan. Lujo que no llena."
+    },
+    {
+      "arcana_id": "10-of-coins",
+      "image": null,
+      "yokai_name": "Bake-ichō",
+      "yokai_kanji": "化け銀杏",
+      "deck_story": "The strange bake ichō no sei (化け銀杏の精, literally: \"changed ginkgo spirit\") is said to appear near old ginkgo trees to strike its mallet on a gong and make itself heard. The ginkgo tree, a species that first appeared over 290 million years ago, is a symbol of the resilience that this yōkai brings attention to. The sound of its gong reminds you of the importance of heritage and tradition, and announces the passing on of physical as well as immaterial wealth.",
+      "deck_resumen": "Sé resiliente. La herencia, las tradiciones y todas las transmisiones de riquezas físicas o inmateriales son síntoma de una sana continuidad.",
+      "deck_sombra": "La herencia pesa: conflictos por dinero o tradición, apego al legado, raíces que atan en vez de sostener."
+    },
+    {
+      "arcana_id": "page-of-coins",
+      "image": null,
+      "yokai_name": "Rokurokubi",
+      "yokai_kanji": "ろくろ首",
+      "deck_story": "A strange curse is said to affect certain women at night, making their neck stretch and their heads roam around freely. These yōkai are called rokurokubi (ろくろ首, literally: \"pulley neck\"), and they are a popular appearance among Japanese folk tales. This spirit can be seen as a representation of unbridled curiosity —after all, a wandering head is a wondering mind. It is a positive thing, of course —just make sure not to get carried away by curiosity or stretch yourself too thin with study.",
+      "deck_resumen": "La curiosidad es positiva, pero debes asegurarte de no dejarte llevar demasiado y de no esforzarte excesivamente en tus estudios o trabajo.",
+      "deck_sombra": "La curiosidad se dispersa o se vuelve chisme. Estudias sin método y te estiras de más; ideas que nunca aterrizan."
+    },
+    {
+      "arcana_id": "knight-of-coins",
+      "image": null,
+      "yokai_name": "Kinoko",
+      "yokai_kanji": "木の子",
+      "deck_story": "On a giant toad stands a kinoko (木の子, literally: \"child of the tree\"), a boy-like spirit of the forest, usually dressed in leaves and branches. This yōkai is a common encounter for Japanese woodcutters, who often see their lunch boxes stolen by this mischievous spirit at the first moment of distraction. The presence of a kinoko requires you to focus and carry on your task with diligence —unless you want to see everything acquired so far disappear in the blink of an eye.",
+      "deck_resumen": "Concéntrate y realiza tu tarea con diligencia para no ver desaparecer en un abrir y cerrar de ojos todo lo que has conseguido hasta ahora.",
+      "deck_sombra": "La constancia se rompe por descuido o pereza. Te distraes y pierdes lo logrado; el pragmatismo se vuelve terquedad."
+    },
+    {
+      "arcana_id": "queen-of-coins",
+      "image": null,
+      "yokai_name": "Yamahime",
+      "yokai_kanji": "山姫",
+      "deck_story": "The yamahime (山姫, literally: \"mountain princess\") are female spirits who live deep in the woods of Japanese mountains. Usually, they are solitary and quiet, but can become aggressive and brutal with those who invade their spaces or disrespect the vegetation or animals of the forest. Sometimes harsh measures are necessary to preserve what is important. Take special care of things and people dear to you.",
+      "deck_resumen": "A veces son necesarias medidas severas para preservar lo que es importante. Cuida especialmente las cosas y a las personas que amas.",
+      "deck_sombra": "El cuidado se vuelve control o sobreprotección. Defiendes tu espacio con dureza; nutrir que termina por asfixiar."
+    },
+    {
+      "arcana_id": "king-of-coins",
+      "image": null,
+      "yokai_name": "Inozasaō",
+      "yokai_kanji": "猪笹王",
+      "deck_story": "The undisputed king of Japanese forests is the mighty Inozasaō (猪笹王, literally: \"boar bamboo king\"), a wild, hog-like creature with leaves and vines growing on its back. Its presence protects the nature around Nara, and its shapeshifting powers give life to encounters that are now part of the local folklore. Take inspiration from Inozasaō's authority and responsibility in pursuing your enterprises, and soon you too will bear the succulent fruits of success.",
+      "deck_resumen": "Asume una mayor autoridad y responsabilidad en la realización de tus proyectos y pronto podrás acceder a los suculentos frutos del éxito.",
+      "deck_sombra": "La autoridad material se vuelve ambición ciega o avaricia. El éxito se convierte en un fin en sí mismo; poder sin responsabilidad."
+    },
+    {
+      "arcana_id": "ace-of-wands",
+      "image": null,
+      "yokai_name": "Abura-bō",
+      "yokai_kanji": "油坊",
+      "deck_story": "Tales of a strange floating fire in the Shiga and Kyoto Prefectures gave rise to the legend of the abura-bō (油坊, literally: \"oil priest\"), a wandering fire spirit born out of the soul of a monk who had stolen oil from a lamp. It is a story of thievery and impulse, a sudden burst of initiative that changes life for good. Be it positive or negative, this is the spark that sets off a new adventure, the sacred flame that reveals a new path, fueled by the oil of creation.",
+      "deck_resumen": "Ya sea positiva o negativa, esta es la chispa que inicia una nueva aventura, la llama sagrada alimentada por el poder de la creación.",
+      "deck_sombra": "La chispa se apaga o se vuelve impulso destructivo. Falta de iniciativa, creatividad bloqueada, o energía que arde sin rumbo."
+    },
+    {
+      "arcana_id": "2-of-wands",
+      "image": null,
+      "yokai_name": "Gotoku-neko",
+      "yokai_kanji": "五徳猫",
+      "deck_story": "Gotoku neko (五徳猫, literally: \"cat of the five virtues\") is a two-tailed yōkai that hangs around fires and stokes the flames by blowing through pipes of bamboo. This gesture has the power to revive hidden embers below the ashes, preparing a new fire to cook the upcoming course. Your projects will benefit from this careful preparation, just make sure to not blow too eagerly on the flame —arrogance always backfires.",
+      "deck_resumen": "Tus proyectos se benefician de una preparación cuidadosa, pero ten cuidado de no generar demasiadas expectativas: la arrogancia siempre resulta contraproducente.",
+      "deck_sombra": "El plan se enfría por dudas o se incendia por arrogancia. Expectativas infladas; soplar de más y quemar el proyecto."
+    },
+    {
+      "arcana_id": "3-of-wands",
+      "image": null,
+      "yokai_name": "Kazenbō",
+      "yokai_kanji": "火前坊",
+      "deck_story": "Toward the end of the tenth century, several monks burned themselves alive in ritual fire to get rid of their worldly attachments and achieve enlightenment. Those who could not fully give up the material realm are now called kazenbō (火前坊, literally: \"monk before the flames\") and are cursed to haunt the place of their death. They serve as a reminder of the damage eagerness can do in the pursuit of a goal. Things are in motion; wait for the best time to act.",
+      "deck_resumen": "La prisa por perseguir un objetivo puede causar grandes daños. Las cosas ya están en marcha: espera el mejor momento para actuar.",
+      "deck_sombra": "La prisa quema: actúas antes de tiempo y te consumes. O esperas tanto que la oportunidad pasa. Visión demasiado corta."
+    },
+    {
+      "arcana_id": "4-of-wands",
+      "image": null,
+      "yokai_name": "Kitsunebi",
+      "yokai_kanji": "狐火",
+      "deck_story": "At night, chains of hundreds or thousands of floating lights might appear in the most secluded places. As lanterns carried by invisible bearers, these lights dance in a sacred procession. They are called kitsunebi (狐火, literally: \"fox fires\"), and they signal a yōkai parade, wedding, or meeting. Their appearance foretells the arrival of a joyous occasion, a time to rejoice with friends and family, or simply a gathering to ensure stability.",
+      "deck_resumen": "Se prenuncia la llegada de una ocasión alegre, un momento para regocijarse con amigos y familiares o simplemente una reunión para restablecer la estabilidad.",
+      "deck_sombra": "La estabilidad se siente frágil o forzada. Celebración vacía, armonía aparente; cimientos que aún no terminan de asentar."
+    },
+    {
+      "arcana_id": "5-of-wands",
+      "image": null,
+      "yokai_name": "Kijimunā",
+      "yokai_kanji": "キジムナー",
+      "deck_story": "The islands of Okinawa are home to many unique yōkai, and one of these is the extravagant kijimunā (キジムナー), a little elf-like creature that dwells on banyan trees. Kijimunā are particularly spiteful and belligerent; they play tricks on humans and have very peculiar prejudices against cooking pots, octopuses, and chickens. Their competitive behavior is certainly a feature to be inspired by, but make sure to know what is worth fighting for.",
+      "deck_resumen": "Una sana competitividad es ciertamente un rasgo positivo, pero asegúrate de saber bien por cuáles cosas vale la pena luchar.",
+      "deck_sombra": "La competencia se vuelve conflicto inútil. Peleas por todo e imitas sin sentido; rivalidad que solo desgasta."
+    },
+    {
+      "arcana_id": "6-of-wands",
+      "image": null,
+      "yokai_name": "Yagyō-san",
+      "yokai_kanji": "夜行さん",
+      "deck_story": "For one night each year, a parade of one hundred oni and yōkai fills the streets of many towns in Japan. A one-eyed spirit known as Yagyō San (夜行さん, literally: \"the man of the night parade\") leads the procession on his headless horse, trampling any mortal who dares to interrupt. Apply the same principle in your successes: celebrate the triumph, and don't let anyone spoil the celebration —just avoid being excessively zealous.",
+      "deck_resumen": "Celebra tu triunfo y no dejes que nadie arruine la celebración, pero evita ser demasiado celoso.",
+      "deck_sombra": "El triunfo se vuelve vanidad o se te escapa. Buscas un reconocimiento que no llega; celebrar de más invita a la caída."
+    },
+    {
+      "arcana_id": "7-of-wands",
+      "image": null,
+      "yokai_name": "Aoandon",
+      "yokai_kanji": "青行燈",
+      "deck_story": "A popular group activity of the Edo period consisted of lighting up a hundred lanterns and telling each other progressively scarier ghost stories. After each story, one lantern would be snuffed out. At the hundredth tale, a dark spirit was said to appear from the darkness to scare and attack the guests: the aoandon (青行燈, literally: \"blue lantern\"). This yōkai is an omen of battle. Feel free to make your voice heard, but get ready to back up your words.",
+      "deck_resumen": "La batalla está sobre nosotros. Siéntete libre de hacer oír tu voz, pero prepárate para respaldar tus afirmaciones con hechos.",
+      "deck_sombra": "Defiendes una postura sin sustento o te rindes ante la presión. Batalla mal elegida; terquedad o cobardía."
+    },
+    {
+      "arcana_id": "8-of-wands",
+      "image": null,
+      "yokai_name": "Onibi",
+      "yokai_kanji": "鬼火",
+      "deck_story": "Pale blue lights often appear in the Japanese countryside, hovering softly above ground and water as orbs of burning air. These mysterious flames are called onibi (鬼火, literally: \"demon fire\"), and they are said to be the souls of humans and animals who cannot go on to the afterlife. The onibi is an example of the pain produced by lingering, of the sadness created by stagnation. Be inspired by this to pursue your endeavors with energy and swiftness.",
+      "deck_resumen": "Persistir crea dolor; el estancamiento genera tristeza. Ten este pensamiento en mente para continuar persiguiendo tus proyectos con energía y velocidad.",
+      "deck_sombra": "El estancamiento duele: planes detenidos, mensajes que no llegan, energía atrapada. Apresurarte solo enreda más las cosas."
+    },
+    {
+      "arcana_id": "9-of-wands",
+      "image": null,
+      "yokai_name": "Abura-akago",
+      "yokai_kanji": "油赤子",
+      "deck_story": "The legend of the abura-akago (油赤子, literally: \"oil red baby\") tells of a spirit intruding in homes at night, disguised as a baby, to lick all the oil out of the lanterns. Despite mentioning a theft, this story bears much larger implications about thresholds and their protection. It foreshadows a threat to your personal space, which you need to guard attentively. Beware, because menaces often come in deceivingly harmless shapes.",
+      "deck_resumen": "Algo amenaza tu espacio personal, que debes proteger con precaución. Ten cuidado, porque los peligros a menudo se presentan en formas engañosamente inofensivas.",
+      "deck_sombra": "Bajas la guardia, o la subes de más. Paranoia o ingenuidad ante una amenaza disfrazada; el agotamiento de tanto vigilar."
+    },
+    {
+      "arcana_id": "10-of-wands",
+      "image": null,
+      "yokai_name": "Kasha",
+      "yokai_kanji": "火車",
+      "deck_story": "A terrible, flaming feline spirit, the kasha (火車, literally: \"fire cart\") appears during funeral services, leaping down from rooftops to snatch bodies out of their coffins in order to eat them or use them as puppets. Because of them, priests started celebrating a fake burial to bait the kasha before the official ceremony. This story literally mentions a \"dead weight\" you should let off your shoulders. Stop running: the time to rest has come.",
+      "deck_resumen": "Hay un «peso muerto» que debes quitarte de tus espaldas. Deja de correr: es hora de descansar.",
+      "deck_sombra": "Cargas un peso que no es tuyo. Agotamiento, sobrecarga, incapacidad de soltar; correr hasta el colapso."
+    },
+    {
+      "arcana_id": "page-of-wands",
+      "image": null,
+      "yokai_name": "Basan",
+      "yokai_kanji": "波山",
+      "deck_story": "Deep in the bamboo groves of the island of Shikoku hides the fire bird called basan (波山, from the sound of its flapping wings). This legendary beast breathes ghost-fire, a cold flame that does not burn or light up, and is told to disappear as soon as it is sighted. This yōkai represents a young and playful soul looking for adventure. Be careful, though: that fire is unripe, and a sterile defense against the perils you may find along the way.",
+      "deck_resumen": "No hay nada más saludable que un alma juguetona en busca de aventuras. Pero ten cuidado: tu fuego aún es inmaduro y representa una defensa estéril contra los peligros del viaje.",
+      "deck_sombra": "El entusiasmo es puro fuego frío: mucha chispa, poca sustancia. Riesgo sin preparación; el juego que se vuelve imprudencia."
+    },
+    {
+      "arcana_id": "knight-of-wands",
+      "image": null,
+      "yokai_name": "Bake-danuki",
+      "yokai_kanji": "化け狸",
+      "deck_story": "A bake-danuki (化け狸, literally: \"changed raccoon\") rides on the back of a wild boar. Its body is cloaked by a blue flame, but the yōkai shows no fear —its gaze is calm, and its expression determined. This scene represents sheer drive, the willingness to go through fire in order to achieve your goals. If the object of your desire is out of reach, don't be afraid to ask for the help necessary to speed up the process. Don't let your wish run away.",
+      "deck_resumen": "Avanza con impulso; llénate de entusiasmo y pasión para lograr tus objetivos. Si aquello que deseas está fuera de tu alcance, no temas pedir ayuda para acelerar el proceso.",
+      "deck_sombra": "El impulso se vuelve temeridad. Avanzas sin medir, idealismo ciego; quemas etapas y a quienes te rodean."
+    },
+    {
+      "arcana_id": "queen-of-wands",
+      "image": null,
+      "yokai_name": "Nekomusume",
+      "yokai_kanji": "猫娘",
+      "deck_story": "The spirit known as nekomusume (猫娘, literally: \"cat girl\") is a recurring yōkai in Japanese folk tales. This feline woman with an aristocratic bearing is here accompanied by a nekomata (猫又, literally: \"forked cat\"), a split-tailed beast famous for being particularly malicious and short-tempered. These two figures represent a combination of delicate and aggressive features —the pillars of a charismatic and multifaceted personality you must embody.",
+      "deck_resumen": "Adopta una combinación de delicadeza y espíritu combativo: los pilares de la personalidad carismática y multifacética que debes encarnar.",
+      "deck_sombra": "El carisma se vuelve manipulación o vanidad. Encanto que esconde mal carácter; sensualidad usada como arma."
+    },
+    {
+      "arcana_id": "king-of-wands",
+      "image": null,
+      "yokai_name": "Sōgen-bi",
+      "yokai_kanji": "籔原火",
+      "deck_story": "A long time ago, at the temple of Mibu-dera, there lived a wicked monk named Sōgen who stole money from the offering box and oil from the lamps. When he died, he was damned to wander around under the guise of a floating, flaming head known as Sōgen-bi (籔原火, literally: \"Sogen's fire\"). This ominous yōkai is \"living\" proof of the risks presumption and haughtiness can subject you to. Accept your responsibilities —after all, that's what a true leader does.",
+      "deck_resumen": "La presunción y el orgullo pueden someterte a grandes riesgos. Acepta tus responsabilidades; después de todo, esto es lo que hace un verdadero líder.",
+      "deck_sombra": "El liderazgo se corrompe en presunción y abuso. Mandas por ego y no por servicio; el orgullo que te condena a vagar."
+    },
+    {
+      "arcana_id": "ace-of-swords",
+      "image": null,
+      "yokai_name": "Shōrōkaze",
+      "yokai_kanji": "精霊風",
+      "deck_story": "The Obon festival is a moment to honor the deceased with rice and sake. The morning after, the spirits of the ancestors travel with a breeze called shōrōkaze (精霊風, literally: \"ghost wind\") to caress those who honored them and scold those who did not. This arcane wind rises suddenly, like an epiphany: use the wings of inspiration to ride it, and fly over problems with the power of new ideas. Beware, however, as it may also bring thoughts of strict discipline and responsibility.",
+      "deck_resumen": "Supera los problemas con la fuerza de las nuevas ideas. Sin embargo, ten cuidado, porque los pensamientos extremadamente racionales pueden conducirte a una disciplina demasiado rígida y a responsabilidades excesivas.",
+      "deck_sombra": "La idea se vuelve rigidez o juicio frío. Claridad usada para herir; pensamiento que se separa del corazón."
+    },
+    {
+      "arcana_id": "2-of-swords",
+      "image": null,
+      "yokai_name": "Ohaguro-bettari",
+      "yokai_kanji": "おはぐろ",
+      "deck_story": "The soothing voice of a woman attracts the attention of travelers. Those who decide to answer the call gasp at the sight of the pitch-black smile she displays as she cackles sinisterly. This is ohaguro-bettari (おはぐろべったり, literally: \"nothing but black teeth\"), and she is here to test your decision-making skills. Choose your path and enemies wisely, and beware of excessively enticing options, for their appearance might conceal incredible dangers.",
+      "deck_resumen": "Elige sabiamente tu camino y tus enemigos, y ten cuidado con las opciones que sean demasiado tentadoras, ya que su apariencia puede ocultar peligros inesperados.",
+      "deck_sombra": "La indecisión paraliza, o eliges lo tentador y peligroso. Te niegas a ver la verdad; punto muerto por miedo."
+    },
+    {
+      "arcana_id": "3-of-swords",
+      "image": null,
+      "yokai_name": "Gashadokuro",
+      "yokai_kanji": "がしゃどくろ",
+      "deck_story": "The gashadokuro (がしゃどくろ, from the sound of its chattering teeth) is a giant skeleton spirit born out of the bones of those who died violently on the battlefield. This frightful yōkai hunts at night, devouring men until its pent-up anger is finally extinguished. This apparition represents a hurtful event knocking at your door, or a past grudge outliving its cause. Don't give in to despair; face the issue —only then will it turn back into dust.",
+      "deck_resumen": "Un acontecimiento doloroso o un viejo rencor ahora llama a tu puerta. No te desesperes y afronta el problema con todas tus fuerzas.",
+      "deck_sombra": "El dolor se enquista en rencor. Te recreas en la herida; culpa o duelo que no quieres soltar."
+    },
+    {
+      "arcana_id": "4-of-swords",
+      "image": null,
+      "yokai_name": "Aonyōbo",
+      "yokai_kanji": "青女房",
+      "deck_story": "In the dark, dusty halls of long-abandoned mansions, one can stumble upon a yōkai called aonyōbo (青女房, literally: \"blue spouse\"). This is the spirit of a frustrated courtier, waiting for a lover or a husband who will never return, and devouring any trespasser who disturbs her wait. This cruel spirit is a warning not to obsess over goals and ambitions, because stability of the mind is of the utmost importance. Take time to rest, reflect, and recuperate.",
+      "deck_resumen": "No te obsesiones con metas y ambiciones, porque la estabilidad mental es lo más importante. Tómate el tiempo para descansar, reflexionar y recuperarte.",
+      "deck_sombra": "El descanso se vuelve estancamiento o huida. Te retiras de más, o no te permites parar; obsesión que no deja sanar."
+    },
+    {
+      "arcana_id": "5-of-swords",
+      "image": null,
+      "yokai_name": "Yatagarasu",
+      "yokai_kanji": "八咫烏",
+      "deck_story": "During his eastward expedition, the legendary first emperor of Japan was guided by a three-legged crow known as Yatagarasu (八咫烏, literally: \"eight-span crow\"). Thanks to this yōkai, the emperor's party managed to traverse the mountains and proceed to establish the country. The coming of Yatagarasu urges you to abandon selfishness and excessive pride and power. Be humble and accept outside help if needed, and your kingdom will finally see the light.",
+      "deck_resumen": "Abandona el egoísmo, el orgullo y el poder. Sé humilde y si es necesario, acepta la ayuda externa y tu reino finalmente verá la luz.",
+      "deck_sombra": "El ego gana: victoria a cualquier costo, dominación, venganza. Ganar perdiendo lo importante; soberbia que aísla."
+    },
+    {
+      "arcana_id": "6-of-swords",
+      "image": null,
+      "yokai_name": "Yūrei",
+      "yokai_kanji": "幽霊",
+      "deck_story": "Lingering between this world and the next, the yūrei (幽霊, literally: \"faint spirit\") represent a close parallel to traditional Western ghosts. Kept out of the afterlife by the unfair conditions of their deaths, these spirits travel to finally reach the final rest. You too might be on a journey right now, caught between the start and the destination. Feeling adrift is normal when you are in the midst of a search, but new shores will soon be in sight.",
+      "deck_resumen": "Ahora estás en algún sitio entre el lugar del que partiste y el destino al que te gustaría llegar. Sentirse a la deriva es normal cuando estás en medio de una búsqueda, pero pronto verás tierra en el horizonte.",
+      "deck_sombra": "El tránsito se atasca: te quedas a medio camino cargando lo que deberías dejar. Huir sin sanar; ir a la deriva sin avanzar."
+    },
+    {
+      "arcana_id": "7-of-swords",
+      "image": null,
+      "yokai_name": "Kamaitachi",
+      "yokai_kanji": "鎌鼬",
+      "deck_story": "The kamaitachi (鎌鼬, literally: \"sickle weasel\") rides the swirling whirlwinds of the mountain regions and cuts unfortunate travelers with its sharp claws and spiky fur. Its movement is said to be so fast and stealthy as to be invisible to the naked eye. The kamaitachi symbolizes a silent menace, someone lying or plotting behind your back. Alternatively, it may be an invitation for you to be particularly sneaky in approaching the current issue.",
+      "deck_resumen": "Se acerca una amenaza silenciosa; alguien miente o conspira a tus espaldas. Alternativamente, puedes ser tú quien tenga que tramar una solución al problema.",
+      "deck_sombra": "El engaño te rodea, o lo ejerces tú. Traición silenciosa, atajos deshonestos; jugadas que se vuelven en tu contra."
+    },
+    {
+      "arcana_id": "8-of-swords",
+      "image": null,
+      "yokai_name": "Ubume",
+      "yokai_kanji": "産女",
+      "deck_story": "The name ubume (産女, literally: \"birthing woman\") describes the ghost of a mother who has passed away during childbirth. With a baby in her arms, this spirit wanders in search of someone to take care of it. Anyone who accepts the bundle can feel it grow heavier and heavier, until it becomes impossible to move. This apparition speaks of a situation of stasis, possibly brought by a past trauma. Sharing the load might be the right way to overcome the block.",
+      "deck_resumen": "Hay una situación de estancamiento, quizás provocada por un trauma del pasado. Compartir la carga podría ser la forma correcta de superar el bloqueo.",
+      "deck_sombra": "Te sientes atrapado y te cuesta pedir ayuda. Parálisis por un trauma; cargas un peso que crece al no soltarlo."
+    },
+    {
+      "arcana_id": "9-of-swords",
+      "image": null,
+      "yokai_name": "Nikusui",
+      "yokai_kanji": "肉吸い",
+      "deck_story": "The nikusui (肉吸い, literally: \"meat sucker\") are vampiric yōkai, notorious for taking advantage of their beauty to attract victims and then suck the flesh out of them, leaving only skin and bones behind. Yet, this time it is the \"monster\" itself who wakes up from a terrible nightmare. This might be the result of sudden doubts, guilt, or pain for an obsessive behavior. Confront the issue openly to strip it of its daunting and fearful charge.",
+      "deck_resumen": "Estás experimentando dudas repentinas, culpa, ansiedad o comportamientos obsesivos. Discute el problema abiertamente para despojarlo de su carga negativa.",
+      "deck_sombra": "La angustia te despierta de noche: culpa, ansiedad, pensamientos que devoran. Miedos que crecen al no enfrentarlos."
+    },
+    {
+      "arcana_id": "10-of-swords",
+      "image": null,
+      "yokai_name": "Yūrei",
+      "yokai_kanji": "幽霊",
+      "deck_story": "Pierced by the blades of ten sharp katana, a woman lies dead on the ground. When the mortal body is lost, the soul persists as a yūrei (幽霊, literally: \"faint spirit\"), which parts from the body once and for all. This scene ought to teach you not to cling to remnants of a past that will never come back. Accepting defeat is the only way forward, but do not despair, because a loss is but the prelude of transcendence.",
+      "deck_resumen": "No te aferres a los recuerdos de un pasado que no volverá. No te desesperes: la pérdida no es más que el preludio de la trascendencia.",
+      "deck_sombra": "Tocas fondo y te niegas a aceptarlo. Te aferras a lo perdido; dramatizar la derrota impide la trascendencia."
+    },
+    {
+      "arcana_id": "page-of-swords",
+      "image": null,
+      "yokai_name": "Daitengu",
+      "yokai_kanji": "大天狗",
+      "deck_story": "Secluded upon the peaks they love and protect, the daitengu (大天狗, literally: \"great divine dog\") are winged creatures with a red face and a long nose. The monks of the mountains admire and respect the cunning of these creatures —and so should you. Be vigilant and protect what you love dearly with the same cleverness of a daitengu, but remember to look beyond your lonely peak if you want to learn more and better yourself.",
+      "deck_resumen": "Estate atento y protege lo que amas con ingenio, pero recuerda mirar más allá de tus narices para aprender más y mejorarte a ti mismo.",
+      "deck_sombra": "El ingenio se vuelve recelo o aislamiento. Defiendes tu cumbre sin abrirte; la astucia se torna desconfianza."
+    },
+    {
+      "arcana_id": "knight-of-swords",
+      "image": null,
+      "yokai_name": "Zashiki-warashi",
+      "yokai_kanji": "座敷童子",
+      "deck_story": "If a set of tiny footprints mysteriously appears in your home, follow it: it might lead you to a zashiki warashi (座敷童子, literally: \"parlor child\"). It is said that those who withstand its juvenile pranks may obtain good fortune, while those who lose their temper and shoo it away will receive trouble. This ought to remind you to reflect before acting and to make honorable decisions. Being smart and impatient makes you jump to conclusions at times.",
+      "deck_resumen": "Piensa siempre antes de actuar y toma decisiones honorables. Ser astuto e impaciente a veces te hace sacar conclusiones precipitadas.",
+      "deck_sombra": "La prisa te traiciona: actúas sin pensar y sacas conclusiones precipitadas. La impaciencia ahuyenta la fortuna."
+    },
+    {
+      "arcana_id": "queen-of-swords",
+      "image": null,
+      "yokai_name": "Kaze-no-kami",
+      "yokai_kanji": "風の神",
+      "deck_story": "The kaze no kami (風の神, literally: \"spirits of the wind\") are yōkai of the air realm, traveling with the gusts across Japan to bring their influence to bear upon humanity. Their breath can be either positive and fresh or negative and pestilent, depending on their intentions. Similarly to this kaze no kami, your actions must be swift and direct. Open your mouth only to benefit the worthy or punish the undeserving, with no in-between.",
+      "deck_resumen": "Tus acciones deben ser rápidas y directas. Abre la boca sólo para favorecer a quien lo merece o para castigar al injusto, sin vías intermedias.",
+      "deck_sombra": "La franqueza se vuelve frialdad o crueldad verbal. Hieres con la palabra; rigor sin empatía, juicio cortante."
+    },
+    {
+      "arcana_id": "king-of-swords",
+      "image": null,
+      "yokai_name": "Fūjin",
+      "yokai_kanji": "風神",
+      "deck_story": "Fūjin (風神, literally: \"wind god\") is the divinity that governs the air. His cloth bag safeguards the winds of the world, which he sometimes lets loose in order to fight his brother Raijin, the god of lightning, thunder, and storms. This godly figure is here to inspire you: affirm yourself and devise cunning plans to take control of the current situation. If fighting someone close to you is the only logical solution to the problem, don't hesitate to do so.",
+      "deck_resumen": "Afírmate y encuentra una manera de tomar el control de la situación actual. Si enfrentarte con alguien cercano a ti es la única solución lógica, no lo dudes.",
+      "deck_sombra": "La razón se vuelve manipulación o control frío. Planeas para imponerte; lógica usada como arma, conflicto buscado."
+    }
+  ]
+}

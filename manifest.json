@@ -1,0 +1,16 @@
+{
+  "name": "Tarot Companion",
+  "short_name": "Tarot",
+  "description": "Guía de referencia de tarot sin conexión: energía pura de los 78 arcanos, tiradas y numerología.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "es",
+  "background_color": "#0d0b10",
+  "theme_color": "#0d0b10",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

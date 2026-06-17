@@ -1,0 +1,2108 @@
+[
+  {
+    "id": "the-fool",
+    "number": 0,
+    "roman": "0",
+    "group": "major",
+    "en": "The Fool",
+    "es": "El Loco",
+    "keywords_en": [
+      "Freedom",
+      "Spontaneity",
+      "Innocence",
+      "Madness",
+      "Naivety"
+    ],
+    "keywords_es": [
+      "Libertad",
+      "Espontaneidad",
+      "Inocencia",
+      "Locura",
+      "Ingenio"
+    ],
+    "energy": "The Fool is the pure spark of beginning — the step taken before the path is known. There is innocence here, and trust: a willingness to leap into the unknown with open hands and a light heart. This energy invites you to follow your curiosity, to embrace freedom and possibility, and to start fresh without the weight of what came before.",
+    "energy_es": "",
+    "shadow": "Reversed, the leap becomes a stumble. Spontaneity tips into recklessness, and openness into naivety — moving without looking, ignoring real risks, or refusing to grow. It can also mean holding back from a beginning you are afraid to take.",
+    "shadow_es": "",
+    "numerology_id": "0"
+  },
+  {
+    "id": "the-magician",
+    "number": 1,
+    "roman": "I",
+    "group": "major",
+    "en": "The Magician",
+    "es": "El Mago",
+    "keywords_en": [
+      "Will",
+      "Ability",
+      "Ambition",
+      "Trickery",
+      "Deception"
+    ],
+    "keywords_es": [
+      "Voluntad",
+      "Habilidad",
+      "Ambición",
+      "Engaño",
+      "Mentiras"
+    ],
+    "energy": "The Magician is focused will made manifest. You have everything you need — mind, heart, body, and craft — and the power to channel intention into the material world. This is the energy of creation and concentration: name what you want, gather your resources, and act with confidence, knowing you are the one who turns possibility into reality.",
+    "energy_es": "",
+    "shadow": "Reversed, power loses its center. Talent scatters across too many things, or skill bends toward manipulation, illusion, and empty promises. It can signal untapped potential, self-doubt, or a gap between what you say and what you actually do.",
+    "shadow_es": "",
+    "numerology_id": "1"
+  },
+  {
+    "id": "the-high-priestess",
+    "number": 2,
+    "roman": "II",
+    "group": "major",
+    "en": "The High Priestess",
+    "es": "La Suma Sacerdotisa",
+    "keywords_en": [
+      "Wisdom",
+      "Intuition",
+      "Secrecy",
+      "Introspection",
+      "Severity"
+    ],
+    "keywords_es": [
+      "Sabiduría",
+      "Intuición",
+      "Secreto",
+      "Introspección",
+      "Severidad"
+    ],
+    "energy": "The High Priestess is the keeper of inner knowing. She speaks in the quiet — through intuition, dreams, and the wisdom you sense but cannot yet explain. This energy asks you to be still, to trust the voice beneath the noise, and to honor the mysteries that logic alone cannot solve. Some doors open only from within.",
+    "energy_es": "",
+    "shadow": "Reversed, the inner voice is drowned out. You may be ignoring your intuition, lost in confusion, or cut off from your own depths. It can also mean secrets held too tightly, or wisdom withheld and turned into cold judgment.",
+    "shadow_es": "",
+    "numerology_id": "2"
+  },
+  {
+    "id": "the-empress",
+    "number": 3,
+    "roman": "III",
+    "group": "major",
+    "en": "The Empress",
+    "es": "La Emperatriz",
+    "keywords_en": [
+      "Abundance",
+      "Fertility",
+      "Elegance",
+      "Beauty",
+      "Protection"
+    ],
+    "keywords_es": [
+      "Abundancia",
+      "Fertilidad",
+      "Elegancia",
+      "Belleza",
+      "Protección"
+    ],
+    "energy": "The Empress is the abundance of life itself — creativity, nurture, and the lush fullness of the senses. She invites you to create and to care, to receive beauty and pleasure without guilt, and to let what you tend grow in its own time. This is fertile ground: ideas, relationships, and projects flourish when met with warmth and patience.",
+    "energy_es": "",
+    "shadow": "Reversed, abundance turns possessive or depleted. Care becomes smothering, or you pour out so much for others that nothing is left for you. It can point to creative block, neglect of the self, or beauty lived as vanity rather than nourishment.",
+    "shadow_es": "",
+    "numerology_id": "3"
+  },
+  {
+    "id": "the-emperor",
+    "number": 4,
+    "roman": "IV",
+    "group": "major",
+    "en": "The Emperor",
+    "es": "El Emperador",
+    "keywords_en": [
+      "Power",
+      "Authority",
+      "Discipline",
+      "Experience",
+      "Precision"
+    ],
+    "keywords_es": [
+      "Poder",
+      "Autoridad",
+      "Disciplina",
+      "Experiencia",
+      "Precisión"
+    ],
+    "energy": "The Emperor is steady authority and the order that protects what matters. This is the energy of structure, discipline, and clear boundaries — taking charge of a situation, building something durable, and leading with experience rather than impulse. Stand firm in your principles, and let earned respect, not fear, be the source of your power.",
+    "energy_es": "",
+    "shadow": "Reversed, authority hardens into tyranny or rigidity. Control rules by fear instead of respect, or stubbornness blocks all change. It can also mean a loss of command — feeling powerless, undisciplined, or without solid ground beneath you.",
+    "shadow_es": "",
+    "numerology_id": "4"
+  },
+  {
+    "id": "the-hierophant",
+    "number": 5,
+    "roman": "V",
+    "group": "major",
+    "en": "The Hierophant",
+    "es": "El Papa",
+    "keywords_en": [
+      "Knowledge",
+      "Inspiration",
+      "Faith",
+      "Conformity",
+      "Hierarchy"
+    ],
+    "keywords_es": [
+      "Conocimiento",
+      "Inspiración",
+      "Fe",
+      "Conformidad",
+      "Jerarquía"
+    ],
+    "energy": "The Hierophant is the wisdom passed down — tradition, teaching, and the shared beliefs that give a community its shape. This energy points to mentors and time-tested paths, to learning within a structure and finding your place among others. There is comfort and meaning in belonging, in ritual, and in a road that many have walked before you.",
+    "energy_es": "",
+    "shadow": "Reversed, tradition becomes a cage. Rules are followed without question, dogma replaces understanding, or you bend to expectation at the cost of your own truth. It can also be the call to break from convention and find your own way.",
+    "shadow_es": "",
+    "numerology_id": "5"
+  },
+  {
+    "id": "the-lovers",
+    "number": 6,
+    "roman": "VI",
+    "group": "major",
+    "en": "The Lovers",
+    "es": "Los Amantes",
+    "keywords_en": [
+      "Joy",
+      "Passion",
+      "Union",
+      "Desire",
+      "Choice"
+    ],
+    "keywords_es": [
+      "Alegría",
+      "Pasión",
+      "Unión",
+      "Deseo",
+      "Elección"
+    ],
+    "energy": "The Lovers is union and the choices that bind us. This is the energy of deep connection — attraction, harmony, and meeting another as a true equal — but also of decision: choosing in alignment with your values and your heart. When you choose from love rather than fear, even the heaviest commitment becomes worth its weight.",
+    "energy_es": "",
+    "shadow": "Reversed, harmony fractures. Distance, indecision, or misaligned values strain the bond; you may be choosing from fear, avoiding commitment, or out of step with what you truly want. It can mark a relationship out of balance or a choice you keep postponing.",
+    "shadow_es": "",
+    "numerology_id": "6"
+  },
+  {
+    "id": "the-chariot",
+    "number": 7,
+    "roman": "VII",
+    "group": "major",
+    "en": "The Chariot",
+    "es": "El Carro",
+    "keywords_en": [
+      "Action",
+      "Progress",
+      "Energy",
+      "Travel",
+      "Confidence"
+    ],
+    "keywords_es": [
+      "Acción",
+      "Progreso",
+      "Energía",
+      "Viaje",
+      "Confianza"
+    ],
+    "energy": "The Chariot is willpower in motion — focus, drive, and the determination to steer opposing forces toward a single goal. This energy asks you to take the reins, face challenges head-on, and move forward with confidence and discipline. Victory comes not from force alone, but from holding your direction steady when the road pulls you sideways.",
+    "energy_es": "",
+    "shadow": "Reversed, control slips. You may be moving without direction, forcing a situation instead of facing it, or pulled apart by competing urges. It can also mean stalled momentum — energy that scatters, or a goal abandoned just short of the finish.",
+    "shadow_es": "",
+    "numerology_id": "7"
+  },
+  {
+    "id": "strength",
+    "number": 8,
+    "roman": "VIII",
+    "group": "major",
+    "en": "Strength",
+    "es": "La Fuerza",
+    "keywords_en": [
+      "Fortitude",
+      "Endurance",
+      "Composure",
+      "Patience",
+      "Serenity"
+    ],
+    "keywords_es": [
+      "Coraje",
+      "Resistencia",
+      "Compostura",
+      "Paciencia",
+      "Serenidad"
+    ],
+    "energy": "Strength is the quiet power that tames without force. This is courage of the heart — patience, composure, and the gentle confidence that meets fear and passion with compassion rather than violence. True power lives in a steady spirit: when you hold your calm, even the wildest situation softens in your hands.",
+    "energy_es": "",
+    "shadow": "Reversed, inner strength wavers. Calm gives way to anger, self-doubt, or reactions you cannot quite govern. It can mean feeling overpowered by a situation, or forcing control where patience was the answer.",
+    "shadow_es": "",
+    "numerology_id": "8"
+  },
+  {
+    "id": "the-hermit",
+    "number": 9,
+    "roman": "IX",
+    "group": "major",
+    "en": "The Hermit",
+    "es": "El Ermitaño",
+    "keywords_en": [
+      "Guidance",
+      "Meditation",
+      "Prudence",
+      "Humility",
+      "Withdrawal"
+    ],
+    "keywords_es": [
+      "Orientación",
+      "Meditación",
+      "Prudencia",
+      "Humildad",
+      "Retiro"
+    ],
+    "energy": "The Hermit is the wisdom found in solitude. This energy invites you to step back from the noise, turn inward, and let your own inner light guide the way. There is no rush here — only reflection, prudence, and the deep self-knowledge that comes from walking your own path alone for a while. Seek within, and you will find the answer you already carry.",
+    "energy_es": "",
+    "shadow": "Reversed, withdrawal becomes isolation. Solitude curdles into loneliness or avoidance, or you refuse all guidance — your own and everyone else's. It can also mean re-emerging too soon, before the inner work is done.",
+    "shadow_es": "",
+    "numerology_id": "9"
+  },
+  {
+    "id": "the-wheel",
+    "number": 10,
+    "roman": "X",
+    "group": "major",
+    "en": "The Wheel",
+    "es": "La Rueda",
+    "keywords_en": [
+      "Destiny",
+      "Revolution",
+      "Repetition",
+      "Alternation",
+      "Fortune"
+    ],
+    "keywords_es": [
+      "Destino",
+      "Revolución",
+      "Repetición",
+      "Alternancia",
+      "Suerte"
+    ],
+    "energy": "The Wheel of Fortune is the great turning of life — cycles, change, and the moments when fate shifts the ground beneath you. This energy reminds you that nothing stays fixed: what rises will fall, and what falls will rise again. When the wheel turns in your favor, ride it; when it turns away, trust the flow, for movement itself is the law of life.",
+    "energy_es": "",
+    "shadow": "Reversed, you fight the turning. Resistance to change prolongs a hard cycle, or a run of bad luck feels like a sentence rather than a season. It can mean clinging to what is passing, or trying to force a wheel that turns on its own time.",
+    "shadow_es": "",
+    "numerology_id": "10"
+  },
+  {
+    "id": "justice",
+    "number": 11,
+    "roman": "XI",
+    "group": "major",
+    "en": "Justice",
+    "es": "La Justicia",
+    "keywords_en": [
+      "Fairness",
+      "Balance",
+      "Valor",
+      "Logic",
+      "Insensitivity"
+    ],
+    "keywords_es": [
+      "Equidad",
+      "Equilibrio",
+      "Valor",
+      "Lógica",
+      "Insensibilidad"
+    ],
+    "energy": "Justice is truth weighed without bias. This is the energy of fairness, accountability, and clear cause and effect — every action returns to meet its consequence. It asks you to act with integrity, to see a situation as it truly is, and to take responsibility for your part. Do what is right for its own sake, and let the outcome follow.",
+    "energy_es": "",
+    "shadow": "Reversed, the scales tip. Judgment turns biased, decisions grow cold or unfair, or you dodge accountability for your actions. It can also mean truth avoided, or logic applied without a trace of compassion.",
+    "shadow_es": "",
+    "numerology_id": "11"
+  },
+  {
+    "id": "the-hanged-one",
+    "number": 12,
+    "roman": "XII",
+    "group": "major",
+    "en": "The Hanged One",
+    "es": "El Colgado",
+    "keywords_en": [
+      "Transcendence",
+      "Inversion",
+      "Perspective",
+      "Acceptance",
+      "Epiphany"
+    ],
+    "keywords_es": [
+      "Trascendencia",
+      "Inversión",
+      "Perspectiva",
+      "Aceptación",
+      "Epifanía"
+    ],
+    "energy": "The Hanged One is the wisdom of the pause. By surrendering control and hanging in stillness, you gain a new angle on everything you thought you knew. This energy asks you to let go, to stop pushing, and to see the situation upside-down — for sometimes the only way forward is to release, wait, and let understanding arrive on its own.",
+    "energy_es": "",
+    "shadow": "Reversed, the pause becomes paralysis. Surrender turns to stalling, or you resist the shift in perspective the moment requires. It can mean useless sacrifice, stagnation, or clinging to control when letting go is the only way through.",
+    "shadow_es": "",
+    "numerology_id": "12"
+  },
+  {
+    "id": "death",
+    "number": 13,
+    "roman": "XIII",
+    "group": "major",
+    "en": "Death",
+    "es": "La Muerte",
+    "keywords_en": [
+      "End",
+      "Passage",
+      "Transformation",
+      "Cleansing",
+      "Irreversibility"
+    ],
+    "keywords_es": [
+      "Fin",
+      "Paso",
+      "Transformación",
+      "Limpieza",
+      "Irreversibilidad"
+    ],
+    "energy": "Death is the great threshold — the ending that clears the way for what comes next. This energy is not loss for its own sake but transformation: something must close so that something truer can begin. Face the ending honestly, release what has run its course, and let yourself be made new. Every passage leaves room for life.",
+    "energy_es": "",
+    "shadow": "Reversed, the ending is resisted. Fear of change prolongs the pain, or you cling to what is already over. It can mean a transition stalled halfway, or a part of you that refuses to let the old self die.",
+    "shadow_es": "",
+    "numerology_id": "13"
+  },
+  {
+    "id": "temperance",
+    "number": 14,
+    "roman": "XIV",
+    "group": "major",
+    "en": "Temperance",
+    "es": "La Templanza",
+    "keywords_en": [
+      "Mediation",
+      "Adaptation",
+      "Compromise",
+      "Harmony",
+      "Regeneration"
+    ],
+    "keywords_es": [
+      "Mediación",
+      "Adaptación",
+      "Compromiso",
+      "Armonía",
+      "Regeneración"
+    ],
+    "energy": "Temperance is the art of balance. This energy blends opposites into harmony — patience over haste, moderation over excess, the steady mixing of forces until something whole and healing emerges. Find the middle way, temper your impulses, and let calm and care guide the slow work of bringing your life back into balance.",
+    "energy_es": "",
+    "shadow": "Reversed, balance is lost. Excess, impatience, or extremes pull you off center, and the parts no longer blend. It can mean a healing rushed, opposing forces poorly mixed, or a life out of rhythm with itself.",
+    "shadow_es": "",
+    "numerology_id": "14"
+  },
+  {
+    "id": "the-devil",
+    "number": 15,
+    "roman": "XV",
+    "group": "major",
+    "en": "The Devil",
+    "es": "El Diablo",
+    "keywords_en": [
+      "Temptation",
+      "Obsession",
+      "Selfishness",
+      "Indulgence",
+      "Taboo"
+    ],
+    "keywords_es": [
+      "Tentación",
+      "Obsesión",
+      "Egoísmo",
+      "Indulgencia",
+      "Tabú"
+    ],
+    "energy": "The Devil reveals the chains we choose. This energy is about attachment and desire — the pleasures, habits, and dependencies that can either enrich life or quietly enslave it. It asks you to look honestly at what holds you: enjoy your passions, but know the difference between savoring and being consumed. The chains are often looser than they look.",
+    "energy_es": "",
+    "shadow": "Reversed, the grip begins to break — or tightens unseen. You may be confronting an attachment, releasing what bound you, or refusing to admit how deep the hold goes. It can mark the painful, freeing moment of naming what owns you.",
+    "shadow_es": "",
+    "numerology_id": "15"
+  },
+  {
+    "id": "the-tower",
+    "number": 16,
+    "roman": "XVI",
+    "group": "major",
+    "en": "The Tower",
+    "es": "La Torre",
+    "keywords_en": [
+      "Shock",
+      "Ruin",
+      "Destruction",
+      "Liberation",
+      "Chaos"
+    ],
+    "keywords_es": [
+      "Conmoción",
+      "Ruina",
+      "Destrucción",
+      "Liberación",
+      "Caos"
+    ],
+    "energy": "The Tower is the sudden lightning that brings false structures down. This energy is upheaval — a shock that shatters what was built on shaky ground, often without warning. It can feel like ruin, yet it is also liberation: only when the unstable falls can something truer be raised. Let the old structure go; the collapse is clearing space.",
+    "energy_es": "",
+    "shadow": "Reversed, the upheaval is delayed or denied. You may be clinging to a structure already cracking, fearing a change that must come, or moving through disaster while refusing its lesson. The longer the fall is resisted, the harder it lands.",
+    "shadow_es": "",
+    "numerology_id": "16"
+  },
+  {
+    "id": "the-star",
+    "number": 17,
+    "roman": "XVII",
+    "group": "major",
+    "en": "The Star",
+    "es": "La Estrella",
+    "keywords_en": [
+      "Hope",
+      "Clarity",
+      "Tranquility",
+      "Purity",
+      "Direction"
+    ],
+    "keywords_es": [
+      "Esperanza",
+      "Claridad",
+      "Tranquilidad",
+      "Pureza",
+      "Dirección"
+    ],
+    "energy": "The Star is hope after the storm. This gentle energy brings renewal, faith, and the quiet certainty that the pieces will fall into place. It shines brightest when the night is darkest — a reminder to heal, to trust, and to keep walking toward the luminous dream that guides you. Open yourself; you are exactly where you need to be.",
+    "energy_es": "",
+    "shadow": "Reversed, the light dims. Hope fades into discouragement, doubt, or a sense of being lost and uninspired. It can mean faith withdrawn, a dream abandoned, or losing trust that things will come right.",
+    "shadow_es": "",
+    "numerology_id": "17"
+  },
+  {
+    "id": "the-moon",
+    "number": 18,
+    "roman": "XVIII",
+    "group": "major",
+    "en": "The Moon",
+    "es": "La Luna",
+    "keywords_en": [
+      "Mystery",
+      "Illusion",
+      "Subconsciousness",
+      "Romanticism",
+      "Occultism"
+    ],
+    "keywords_es": [
+      "Misterio",
+      "Ilusión",
+      "Subconsciente",
+      "Romanticismo",
+      "Ocultismo"
+    ],
+    "energy": "The Moon is the realm of dream and intuition, where nothing is quite what it seems. This energy asks you to move by feeling rather than logic, to trust your instincts through the fog, and to face the fears and fantasies the subconscious stirs up. Not every door opens to reason — let your inner sense lead you through the uncertain dark.",
+    "energy_es": "",
+    "shadow": "Reversed, the fog begins to lift — or thickens. Confusion and self-deception may be clearing and hidden truths surfacing; or anxiety, illusion, and fear may be clouding the way more than ever. Look carefully at what you have been afraid to see.",
+    "shadow_es": "",
+    "numerology_id": "18"
+  },
+  {
+    "id": "the-sun",
+    "number": 19,
+    "roman": "XIX",
+    "group": "major",
+    "en": "The Sun",
+    "es": "El Sol",
+    "keywords_en": [
+      "Truth",
+      "Glory",
+      "Happiness",
+      "Honesty",
+      "Exuberance"
+    ],
+    "keywords_es": [
+      "Verdad",
+      "Gloria",
+      "Felicidad",
+      "Honestidad",
+      "Exuberancia"
+    ],
+    "energy": "The Sun is pure radiance — joy, vitality, and the warm clarity that brings everything into the light. This energy is success and honesty, the simple happiness of being fully alive. Pour your enthusiasm into what you love and let yourself shine, freely and without arrogance. This is a time of growth, truth, and celebration.",
+    "energy_es": "",
+    "shadow": "Reversed, the light is veiled. Joy feels forced, or shines outward while something inside stays empty; vanity or a passing gloom dims the glow. It can mean success delayed, or a brightness you are not letting yourself feel.",
+    "shadow_es": "",
+    "numerology_id": "19"
+  },
+  {
+    "id": "judgement",
+    "number": 20,
+    "roman": "XX",
+    "group": "major",
+    "en": "Judgement",
+    "es": "El Juicio",
+    "keywords_en": [
+      "Awakening",
+      "Revelation",
+      "Redemption",
+      "Emergence",
+      "Release"
+    ],
+    "keywords_es": [
+      "Despertar",
+      "Revelación",
+      "Redención",
+      "Surgimiento",
+      "Liberación"
+    ],
+    "energy": "Judgement is the call you cannot ignore — a moment of awakening, reckoning, and rebirth. This energy asks you to look honestly at your life, answer the deeper calling that has been sounding, and rise renewed. The past is weighed, the lessons are claimed, and you are offered the chance to begin again, clear and absolved. Listen — the bell is tolling for you.",
+    "energy_es": "",
+    "shadow": "Reversed, the call goes unanswered. You may be avoiding self-reflection, harsh with yourself, or afraid of being judged. It can mean clinging to the past, doubting your worth, or ignoring an awakening that keeps knocking.",
+    "shadow_es": "",
+    "numerology_id": "20"
+  },
+  {
+    "id": "the-world",
+    "number": 21,
+    "roman": "XXI",
+    "group": "major",
+    "en": "The World",
+    "es": "El Mundo",
+    "keywords_en": [
+      "Fulfillment",
+      "Accomplishment",
+      "Integration",
+      "Reward",
+      "Satisfaction"
+    ],
+    "keywords_es": [
+      "Cumplimiento",
+      "Realización",
+      "Integración",
+      "Recompensa",
+      "Satisfacción"
+    ],
+    "energy": "The World is completion and wholeness — the journey come full circle, the goal achieved, all the pieces integrated at last. This energy is fulfillment and well-earned reward, the deep satisfaction of arriving. Honor how far you have come, celebrate the accomplishment, and let this ending become the threshold of the next great beginning.",
+    "energy_es": "",
+    "shadow": "Reversed, completion feels just out of reach. A cycle stays unfinished, closure is delayed, or success arrives hollow and unsatisfying. It can mean clinging to a chapter that needs to end, or stalling on the last step before the finish.",
+    "shadow_es": "",
+    "numerology_id": "21"
+  },
+  {
+    "id": "ace-of-cups",
+    "number": 1,
+    "roman": null,
+    "group": "cups",
+    "en": "Ace of Cups",
+    "es": "As de Copas",
+    "keywords_en": [
+      "Emotion",
+      "Memory",
+      "Care",
+      "Openness",
+      "Peace"
+    ],
+    "keywords_es": [
+      "Emoción",
+      "Memoria",
+      "Cuidado",
+      "Apertura",
+      "Paz"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "1"
+  },
+  {
+    "id": "2-of-cups",
+    "number": 2,
+    "roman": null,
+    "group": "cups",
+    "en": "2 of Cups",
+    "es": "2 de Copas",
+    "keywords_en": [
+      "Attraction",
+      "Affinity",
+      "Reciprocity",
+      "Agreement",
+      "Pact"
+    ],
+    "keywords_es": [
+      "Atracción",
+      "Afinidad",
+      "Reciprocidad",
+      "Acuerdo",
+      "Pacto"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "2"
+  },
+  {
+    "id": "3-of-cups",
+    "number": 3,
+    "roman": null,
+    "group": "cups",
+    "en": "3 of Cups",
+    "es": "3 de Copas",
+    "keywords_en": [
+      "Communion",
+      "Frivolity",
+      "Dance",
+      "Excitement",
+      "Intoxication"
+    ],
+    "keywords_es": [
+      "Comunión",
+      "Frivolidad",
+      "Danza",
+      "Entusiasmo",
+      "Embriaguez"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "3"
+  },
+  {
+    "id": "4-of-cups",
+    "number": 4,
+    "roman": null,
+    "group": "cups",
+    "en": "4 of Cups",
+    "es": "4 de Copas",
+    "keywords_en": [
+      "Boredom",
+      "Apathy",
+      "Disenchantment",
+      "Distraction",
+      "Expectation"
+    ],
+    "keywords_es": [
+      "Aburrimiento",
+      "Apatía",
+      "Desencanto",
+      "Distracción",
+      "Expectativa"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "4"
+  },
+  {
+    "id": "5-of-cups",
+    "number": 5,
+    "roman": null,
+    "group": "cups",
+    "en": "5 of Cups",
+    "es": "5 de Copas",
+    "keywords_en": [
+      "Repentance",
+      "Loss",
+      "Refusal",
+      "Despair",
+      "Regret"
+    ],
+    "keywords_es": [
+      "Lamento",
+      "Pérdida",
+      "Rechazo",
+      "Desesperación",
+      "Arrepentimiento"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "5"
+  },
+  {
+    "id": "6-of-cups",
+    "number": 6,
+    "roman": null,
+    "group": "cups",
+    "en": "6 of Cups",
+    "es": "6 de Copas",
+    "keywords_en": [
+      "Nostalgia",
+      "Longing",
+      "Friendship",
+      "Altruism",
+      "Safety"
+    ],
+    "keywords_es": [
+      "Nostalgia",
+      "Ausencia",
+      "Amistad",
+      "Altruismo",
+      "Seguridad"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "6"
+  },
+  {
+    "id": "7-of-cups",
+    "number": 7,
+    "roman": null,
+    "group": "cups",
+    "en": "7 of Cups",
+    "es": "7 de Copas",
+    "keywords_en": [
+      "Fantasy",
+      "Vision",
+      "Variety",
+      "Selection",
+      "Envy"
+    ],
+    "keywords_es": [
+      "Fantasía",
+      "Visión",
+      "Variedad",
+      "Selección",
+      "Envidia"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "7"
+  },
+  {
+    "id": "8-of-cups",
+    "number": 8,
+    "roman": null,
+    "group": "cups",
+    "en": "8 of Cups",
+    "es": "8 de Copas",
+    "keywords_en": [
+      "Release",
+      "Waiver",
+      "Shyness",
+      "Farsightedness",
+      "Adventure"
+    ],
+    "keywords_es": [
+      "Liberación",
+      "Renuncia",
+      "Timidez",
+      "Previsión",
+      "Aventura"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "8"
+  },
+  {
+    "id": "9-of-cups",
+    "number": 9,
+    "roman": null,
+    "group": "cups",
+    "en": "9 of Cups",
+    "es": "9 de Copas",
+    "keywords_en": [
+      "Contentment",
+      "Pleasure",
+      "Virtue",
+      "Sensuality",
+      "Saturation"
+    ],
+    "keywords_es": [
+      "Satisfacción",
+      "Placer",
+      "Virtud",
+      "Sensualidad",
+      "Saturación"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "9"
+  },
+  {
+    "id": "10-of-cups",
+    "number": 10,
+    "roman": null,
+    "group": "cups",
+    "en": "10 of Cups",
+    "es": "10 de Copas",
+    "keywords_en": [
+      "Success",
+      "Conclusion",
+      "Recognition",
+      "Family",
+      "Rest"
+    ],
+    "keywords_es": [
+      "Éxito",
+      "Conclusión",
+      "Reconocimiento",
+      "Familia",
+      "Descanso"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "10"
+  },
+  {
+    "id": "page-of-cups",
+    "number": null,
+    "roman": null,
+    "group": "cups",
+    "en": "Page of Cups",
+    "es": "Sota de Copas",
+    "keywords_en": [
+      "Receptivity",
+      "Sweetness",
+      "Kindness",
+      "Perception",
+      "Grace"
+    ],
+    "keywords_es": [
+      "Receptividad",
+      "Dulzura",
+      "Bondad",
+      "Percepción",
+      "Gracia"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "page"
+  },
+  {
+    "id": "knight-of-cups",
+    "number": null,
+    "roman": null,
+    "group": "cups",
+    "en": "Knight of Cups",
+    "es": "Caballero de Copas",
+    "keywords_en": [
+      "Seduction",
+      "Flattery",
+      "Encouragement",
+      "Temperament",
+      "Warm"
+    ],
+    "keywords_es": [
+      "Seducción",
+      "Adulación",
+      "Coraje",
+      "Temperamento",
+      "Calidez"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "knight"
+  },
+  {
+    "id": "queen-of-cups",
+    "number": null,
+    "roman": null,
+    "group": "cups",
+    "en": "Queen of Cups",
+    "es": "Reina de Copas",
+    "keywords_en": [
+      "Sensitivity",
+      "Tolerance",
+      "Forgiveness",
+      "Tenderness",
+      "Support"
+    ],
+    "keywords_es": [
+      "Sensibilidad",
+      "Tolerancia",
+      "Perdón",
+      "Ternura",
+      "Apoyo"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "queen"
+  },
+  {
+    "id": "king-of-cups",
+    "number": null,
+    "roman": null,
+    "group": "cups",
+    "en": "King of Cups",
+    "es": "Rey de Copas",
+    "keywords_en": [
+      "Loyalty",
+      "Composure",
+      "Calm",
+      "Affection",
+      "Sympathy"
+    ],
+    "keywords_es": [
+      "Lealtad",
+      "Compostura",
+      "Calma",
+      "Cariño",
+      "Simpatía"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "king"
+  },
+  {
+    "id": "ace-of-coins",
+    "number": 1,
+    "roman": null,
+    "group": "coins",
+    "en": "Ace of Coins",
+    "es": "As de Oros",
+    "keywords_en": [
+      "Gain",
+      "Fortune",
+      "Materialism",
+      "Possession",
+      "Start"
+    ],
+    "keywords_es": [
+      "Ganancias",
+      "Suerte",
+      "Materialismo",
+      "Posesión",
+      "Comienzo"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "1"
+  },
+  {
+    "id": "2-of-coins",
+    "number": 2,
+    "roman": null,
+    "group": "coins",
+    "en": "2 of Coins",
+    "es": "2 de Oros",
+    "keywords_en": [
+      "Duality",
+      "Gaiety",
+      "Flexibility",
+      "Juggle",
+      "Inconstancy"
+    ],
+    "keywords_es": [
+      "Dualidad",
+      "Alegría",
+      "Flexibilidad",
+      "Bohemia",
+      "Inconstancia"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "2"
+  },
+  {
+    "id": "3-of-coins",
+    "number": 3,
+    "roman": null,
+    "group": "coins",
+    "en": "3 of Coins",
+    "es": "3 de Oros",
+    "keywords_en": [
+      "Craft",
+      "Art",
+      "Project",
+      "Talent",
+      "Inspiration"
+    ],
+    "keywords_es": [
+      "Artesanía",
+      "Arte",
+      "Proyecto",
+      "Talento",
+      "Inspiración"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "3"
+  },
+  {
+    "id": "4-of-coins",
+    "number": 4,
+    "roman": null,
+    "group": "coins",
+    "en": "4 of Coins",
+    "es": "4 de Oros",
+    "keywords_en": [
+      "Greed",
+      "Thrift",
+      "Control",
+      "Inheritance",
+      "Investment"
+    ],
+    "keywords_es": [
+      "Avaricia",
+      "Ahorro",
+      "Control",
+      "Herencia",
+      "Inversión"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "4"
+  },
+  {
+    "id": "5-of-coins",
+    "number": 5,
+    "roman": null,
+    "group": "coins",
+    "en": "5 of Coins",
+    "es": "5 de Oros",
+    "keywords_en": [
+      "Need",
+      "Poverty",
+      "Struggle",
+      "Obstacle",
+      "Cold"
+    ],
+    "keywords_es": [
+      "Necesidad",
+      "Pobreza",
+      "Lucha",
+      "Obstáculo",
+      "Frío"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "5"
+  },
+  {
+    "id": "6-of-coins",
+    "number": 6,
+    "roman": null,
+    "group": "coins",
+    "en": "6 of Coins",
+    "es": "6 de Oros",
+    "keywords_en": [
+      "Generosity",
+      "Charity",
+      "Distribution",
+      "Empathy",
+      "Offer"
+    ],
+    "keywords_es": [
+      "Generosidad",
+      "Caridad",
+      "Distribución",
+      "Empatía",
+      "Ofrecimiento"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "6"
+  },
+  {
+    "id": "7-of-coins",
+    "number": 7,
+    "roman": null,
+    "group": "coins",
+    "en": "7 of Coins",
+    "es": "7 de Oros",
+    "keywords_en": [
+      "Evaluation",
+      "Expansion",
+      "Duty",
+      "Development",
+      "Patience"
+    ],
+    "keywords_es": [
+      "Evaluación",
+      "Expansión",
+      "Deber",
+      "Desarrollo",
+      "Control"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "7"
+  },
+  {
+    "id": "8-of-coins",
+    "number": 8,
+    "roman": null,
+    "group": "coins",
+    "en": "8 of Coins",
+    "es": "8 de Oros",
+    "keywords_en": [
+      "Work",
+      "Habit",
+      "Commitment",
+      "Autonomy",
+      "Finesse"
+    ],
+    "keywords_es": [
+      "Trabajo",
+      "Hábito",
+      "Compromiso",
+      "Autonomía",
+      "Delicadeza"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "8"
+  },
+  {
+    "id": "9-of-coins",
+    "number": 9,
+    "roman": null,
+    "group": "coins",
+    "en": "9 of Coins",
+    "es": "9 de Oros",
+    "keywords_en": [
+      "Prudence",
+      "Independence",
+      "Education",
+      "Assurance",
+      "Richness"
+    ],
+    "keywords_es": [
+      "Prudencia",
+      "Independencia",
+      "Educación",
+      "Seguridad",
+      "Riqueza"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "9"
+  },
+  {
+    "id": "10-of-coins",
+    "number": 10,
+    "roman": null,
+    "group": "coins",
+    "en": "10 of Coins",
+    "es": "10 de Oros",
+    "keywords_en": [
+      "Wealth",
+      "Legacy",
+      "Link",
+      "Culmination",
+      "Home"
+    ],
+    "keywords_es": [
+      "Riqueza",
+      "Herencia",
+      "Vínculo",
+      "Culminación",
+      "Hogar"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "10"
+  },
+  {
+    "id": "page-of-coins",
+    "number": null,
+    "roman": null,
+    "group": "coins",
+    "en": "Page of Coins",
+    "es": "Sota de Oros",
+    "keywords_en": [
+      "Effort",
+      "Study",
+      "Practicality",
+      "Curiosity",
+      "Examination"
+    ],
+    "keywords_es": [
+      "Esfuerzo",
+      "Estudio",
+      "Practicidad",
+      "Curiosidad",
+      "Examen"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "page"
+  },
+  {
+    "id": "knight-of-coins",
+    "number": null,
+    "roman": null,
+    "group": "coins",
+    "en": "Knight of Coins",
+    "es": "Caballero de Oros",
+    "keywords_en": [
+      "Adaptability",
+      "Pragmatism",
+      "Persistency",
+      "Professionalism",
+      "Dependability"
+    ],
+    "keywords_es": [
+      "Adaptabilidad",
+      "Pragmatismo",
+      "Persistencia",
+      "Profesionalismo",
+      "Fiabilidad"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "knight"
+  },
+  {
+    "id": "queen-of-coins",
+    "number": null,
+    "roman": null,
+    "group": "coins",
+    "en": "Queen of Coins",
+    "es": "Reina de Oros",
+    "keywords_en": [
+      "Conservation",
+      "Conscience",
+      "Nurture",
+      "Heart",
+      "Discretion"
+    ],
+    "keywords_es": [
+      "Conservación",
+      "Conciencia",
+      "Nutrición",
+      "Corazón",
+      "Discreción"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "queen"
+  },
+  {
+    "id": "king-of-coins",
+    "number": null,
+    "roman": null,
+    "group": "coins",
+    "en": "King of Coins",
+    "es": "Rey de Oros",
+    "keywords_en": [
+      "Business",
+      "Enterprise",
+      "Money",
+      "Administration",
+      "Maturation"
+    ],
+    "keywords_es": [
+      "Negocios",
+      "Empresa",
+      "Dinero",
+      "Administración",
+      "Maduración"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "king"
+  },
+  {
+    "id": "ace-of-wands",
+    "number": 1,
+    "roman": null,
+    "group": "wands",
+    "en": "Ace of Wands",
+    "es": "As de Bastos",
+    "keywords_en": [
+      "Creativity",
+      "Originality",
+      "Adventure",
+      "Strength",
+      "Spark"
+    ],
+    "keywords_es": [
+      "Creatividad",
+      "Originalidad",
+      "Aventura",
+      "Fuerza",
+      "Chispa"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "1"
+  },
+  {
+    "id": "2-of-wands",
+    "number": 2,
+    "roman": null,
+    "group": "wands",
+    "en": "2 of Wands",
+    "es": "2 de Bastos",
+    "keywords_en": [
+      "Plan",
+      "Aspiration",
+      "Drive",
+      "Restlessness",
+      "Arrogance"
+    ],
+    "keywords_es": [
+      "Plan",
+      "Aspiración",
+      "Impulso",
+      "Inquietud",
+      "Arrogancia"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "2"
+  },
+  {
+    "id": "3-of-wands",
+    "number": 3,
+    "roman": null,
+    "group": "wands",
+    "en": "3 of Wands",
+    "es": "3 de Bastos",
+    "keywords_en": [
+      "Anticipation",
+      "Observation",
+      "Attention",
+      "Delay",
+      "Foresight"
+    ],
+    "keywords_es": [
+      "Anticipación",
+      "Observación",
+      "Atención",
+      "Retraso",
+      "Previsión"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "3"
+  },
+  {
+    "id": "4-of-wands",
+    "number": 4,
+    "roman": null,
+    "group": "wands",
+    "en": "4 of Wands",
+    "es": "4 de Bastos",
+    "keywords_en": [
+      "Celebration",
+      "Preparation",
+      "Tranquility",
+      "Perfectionism",
+      "Solidity"
+    ],
+    "keywords_es": [
+      "Celebración",
+      "Preparación",
+      "Tranquilidad",
+      "Perfeccionismo",
+      "Solidez"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "4"
+  },
+  {
+    "id": "5-of-wands",
+    "number": 5,
+    "roman": null,
+    "group": "wands",
+    "en": "5 of Wands",
+    "es": "5 de Bastos",
+    "keywords_en": [
+      "Competition",
+      "Rivalry",
+      "Conflict",
+      "Training",
+      "Imitation"
+    ],
+    "keywords_es": [
+      "Competencia",
+      "Rivalidad",
+      "Conflicto",
+      "Entrenamiento",
+      "Imitación"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "5"
+  },
+  {
+    "id": "6-of-wands",
+    "number": 6,
+    "roman": null,
+    "group": "wands",
+    "en": "6 of Wands",
+    "es": "6 de Bastos",
+    "keywords_en": [
+      "Victory",
+      "Fame",
+      "Vanity",
+      "Diplomacy",
+      "News"
+    ],
+    "keywords_es": [
+      "Victoria",
+      "Fama",
+      "Vanidad",
+      "Diplomacia",
+      "Novedades"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "6"
+  },
+  {
+    "id": "7-of-wands",
+    "number": 7,
+    "roman": null,
+    "group": "wands",
+    "en": "7 of Wands",
+    "es": "7 de Bastos",
+    "keywords_en": [
+      "Defense",
+      "Opposition",
+      "Opinion",
+      "Battle",
+      "Nonconformity"
+    ],
+    "keywords_es": [
+      "Defensa",
+      "Oposición",
+      "Opinión",
+      "Batalla",
+      "Inconformismo"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "7"
+  },
+  {
+    "id": "8-of-wands",
+    "number": 8,
+    "roman": null,
+    "group": "wands",
+    "en": "8 of Wands",
+    "es": "8 de Bastos",
+    "keywords_en": [
+      "Speed",
+      "Movement",
+      "Swiftness",
+      "Reaction",
+      "Expedition"
+    ],
+    "keywords_es": [
+      "Velocidad",
+      "Movimiento",
+      "Rapidez",
+      "Reacción",
+      "Expedición"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "8"
+  },
+  {
+    "id": "9-of-wands",
+    "number": 9,
+    "roman": null,
+    "group": "wands",
+    "en": "9 of Wands",
+    "es": "9 de Bastos",
+    "keywords_en": [
+      "Guard",
+      "Vigilance",
+      "Tenacity",
+      "Threshold",
+      "Experience"
+    ],
+    "keywords_es": [
+      "Guardia",
+      "Precaución",
+      "Tenacidad",
+      "Umbral",
+      "Experiencia"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "9"
+  },
+  {
+    "id": "10-of-wands",
+    "number": 10,
+    "roman": null,
+    "group": "wands",
+    "en": "10 of Wands",
+    "es": "10 de Bastos",
+    "keywords_en": [
+      "Fatigue",
+      "Toil",
+      "Oppression",
+      "Burnout",
+      "Completion"
+    ],
+    "keywords_es": [
+      "Cansancio",
+      "Fatiga",
+      "Opresión",
+      "Agotamiento",
+      "Desenlace"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "10"
+  },
+  {
+    "id": "page-of-wands",
+    "number": null,
+    "roman": null,
+    "group": "wands",
+    "en": "Page of Wands",
+    "es": "Sota de Bastos",
+    "keywords_en": [
+      "Initiative",
+      "Vitality",
+      "Excitement",
+      "Playfulness",
+      "Risk"
+    ],
+    "keywords_es": [
+      "Iniciativa",
+      "Vitalidad",
+      "Entusiasmo",
+      "Alegría",
+      "Riesgo"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "page"
+  },
+  {
+    "id": "knight-of-wands",
+    "number": null,
+    "roman": null,
+    "group": "wands",
+    "en": "Knight of Wands",
+    "es": "Caballero de Bastos",
+    "keywords_en": [
+      "Courage",
+      "Momentum",
+      "Distance",
+      "Idealism",
+      "Recklessness"
+    ],
+    "keywords_es": [
+      "Coraje",
+      "Impulso",
+      "Distancia",
+      "Idealismo",
+      "Inconsciencia"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "knight"
+  },
+  {
+    "id": "queen-of-wands",
+    "number": null,
+    "roman": null,
+    "group": "wands",
+    "en": "Queen of Wands",
+    "es": "Reina de Bastos",
+    "keywords_en": [
+      "Charisma",
+      "Magnetism",
+      "Sensuality",
+      "Optimism",
+      "Vivacity"
+    ],
+    "keywords_es": [
+      "Carisma",
+      "Magnetismo",
+      "Sensualidad",
+      "Optimismo",
+      "Vivacidad"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "queen"
+  },
+  {
+    "id": "king-of-wands",
+    "number": null,
+    "roman": null,
+    "group": "wands",
+    "en": "King of Wands",
+    "es": "Rey de Bastos",
+    "keywords_en": [
+      "Leadership",
+      "Motivation",
+      "Persuasion",
+      "Wit",
+      "Presumption"
+    ],
+    "keywords_es": [
+      "Liderazgo",
+      "Motivación",
+      "Persuasión",
+      "Ingenio",
+      "Vanidad"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "king"
+  },
+  {
+    "id": "ace-of-swords",
+    "number": 1,
+    "roman": null,
+    "group": "swords",
+    "en": "Ace of Swords",
+    "es": "As de Espadas",
+    "keywords_en": [
+      "Thought",
+      "Idea",
+      "Objectivity",
+      "Responsibility",
+      "Conviction"
+    ],
+    "keywords_es": [
+      "Pensamiento",
+      "Idea",
+      "Objetividad",
+      "Responsabilidad",
+      "Convicción"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "1"
+  },
+  {
+    "id": "2-of-swords",
+    "number": 2,
+    "roman": null,
+    "group": "swords",
+    "en": "2 of Swords",
+    "es": "2 de Espadas",
+    "keywords_en": [
+      "Duel",
+      "Discussion",
+      "Duality",
+      "Stalemate",
+      "Blindness"
+    ],
+    "keywords_es": [
+      "Duelo",
+      "Discusión",
+      "Dualidad",
+      "Estancamiento",
+      "Ceguera"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "2"
+  },
+  {
+    "id": "3-of-swords",
+    "number": 3,
+    "roman": null,
+    "group": "swords",
+    "en": "3 of Swords",
+    "es": "3 de Espadas",
+    "keywords_en": [
+      "Sorrow",
+      "Pain",
+      "Despair",
+      "Guilt",
+      "Regret"
+    ],
+    "keywords_es": [
+      "Disgusto",
+      "Dolor",
+      "Desesperación",
+      "Culpa",
+      "Arrepentimiento"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "3"
+  },
+  {
+    "id": "4-of-swords",
+    "number": 4,
+    "roman": null,
+    "group": "swords",
+    "en": "4 of Swords",
+    "es": "4 de Espadas",
+    "keywords_en": [
+      "Recovery",
+      "Sleep",
+      "Truce",
+      "Retreat",
+      "Pause"
+    ],
+    "keywords_es": [
+      "Recuperación",
+      "Sueño",
+      "Tregua",
+      "Retiro",
+      "Pausa"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "4"
+  },
+  {
+    "id": "5-of-swords",
+    "number": 5,
+    "roman": null,
+    "group": "swords",
+    "en": "5 of Swords",
+    "es": "5 de Espadas",
+    "keywords_en": [
+      "Selfishness",
+      "Complacency",
+      "Domination",
+      "Revenge",
+      "Drama"
+    ],
+    "keywords_es": [
+      "Egoísmo",
+      "Complacencia",
+      "Dominación",
+      "Venganza",
+      "Drama"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "5"
+  },
+  {
+    "id": "6-of-swords",
+    "number": 6,
+    "roman": null,
+    "group": "swords",
+    "en": "6 of Swords",
+    "es": "6 de Espadas",
+    "keywords_en": [
+      "Journey",
+      "Escape",
+      "Renunciation",
+      "Expedience",
+      "Transfer"
+    ],
+    "keywords_es": [
+      "Viaje",
+      "Escape",
+      "Renuncia",
+      "Conveniente",
+      "Traslado"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "6"
+  },
+  {
+    "id": "7-of-swords",
+    "number": 7,
+    "roman": null,
+    "group": "swords",
+    "en": "7 of Swords",
+    "es": "7 de Espadas",
+    "keywords_en": [
+      "Stealth",
+      "Subterfuge",
+      "Shortcut",
+      "Espionage",
+      "Collection"
+    ],
+    "keywords_es": [
+      "Furtivo",
+      "Subterfugio",
+      "Atajo",
+      "Espionaje",
+      "Recopilación"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "7"
+  },
+  {
+    "id": "8-of-swords",
+    "number": 8,
+    "roman": null,
+    "group": "swords",
+    "en": "8 of Swords",
+    "es": "8 de Espadas",
+    "keywords_en": [
+      "Limit",
+      "Lethargy",
+      "Paralysis",
+      "Trap",
+      "Impediment"
+    ],
+    "keywords_es": [
+      "Límite",
+      "Letargo",
+      "Parálisis",
+      "Trampa",
+      "Impedimento"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "8"
+  },
+  {
+    "id": "9-of-swords",
+    "number": 9,
+    "roman": null,
+    "group": "swords",
+    "en": "9 of Swords",
+    "es": "9 de Espadas",
+    "keywords_en": [
+      "Anguish",
+      "Desperation",
+      "Uncertainty",
+      "Obscurity",
+      "Doubt"
+    ],
+    "keywords_es": [
+      "Angustia",
+      "Desesperación",
+      "Incertidumbre",
+      "Oscuridad",
+      "Duda"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "9"
+  },
+  {
+    "id": "10-of-swords",
+    "number": 10,
+    "roman": null,
+    "group": "swords",
+    "en": "10 of Swords",
+    "es": "10 de Espadas",
+    "keywords_en": [
+      "Affliction",
+      "Block",
+      "Desolation",
+      "Fear",
+      "Finish"
+    ],
+    "keywords_es": [
+      "Aflicción",
+      "Bloqueo",
+      "Desolación",
+      "Miedo",
+      "Fin"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "10"
+  },
+  {
+    "id": "page-of-swords",
+    "number": null,
+    "roman": null,
+    "group": "swords",
+    "en": "Page of Swords",
+    "es": "Sota de Espadas",
+    "keywords_en": [
+      "Eagerness",
+      "Cleverness",
+      "Genius",
+      "Calculation",
+      "Help"
+    ],
+    "keywords_es": [
+      "Impaciencia",
+      "Inteligencia",
+      "Genio",
+      "Cálculo",
+      "Ayuda"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "page"
+  },
+  {
+    "id": "knight-of-swords",
+    "number": null,
+    "roman": null,
+    "group": "swords",
+    "en": "Knight of Swords",
+    "es": "Caballero de Espadas",
+    "keywords_en": [
+      "Dexterity",
+      "Impatience",
+      "Valor",
+      "Haste",
+      "Frankness"
+    ],
+    "keywords_es": [
+      "Destreza",
+      "Impaciencia",
+      "Valor",
+      "Prisa",
+      "Franqueza"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "knight"
+  },
+  {
+    "id": "queen-of-swords",
+    "number": null,
+    "roman": null,
+    "group": "swords",
+    "en": "Queen of Swords",
+    "es": "Reina de Espadas",
+    "keywords_en": [
+      "Straightforwardness",
+      "Strategy",
+      "Rigor",
+      "Concision",
+      "Discipline"
+    ],
+    "keywords_es": [
+      "Sinceridad",
+      "Estrategia",
+      "Rigor",
+      "Concisión",
+      "Disciplina"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "queen"
+  },
+  {
+    "id": "king-of-swords",
+    "number": null,
+    "roman": null,
+    "group": "swords",
+    "en": "King of Swords",
+    "es": "Rey de Espadas",
+    "keywords_en": [
+      "Rationality",
+      "Analysis",
+      "Precision",
+      "Tactic",
+      "Focus"
+    ],
+    "keywords_es": [
+      "Racionalidad",
+      "Análisis",
+      "Precisión",
+      "Táctica",
+      "Concentración"
+    ],
+    "energy": "",
+    "energy_es": "",
+    "shadow": "",
+    "shadow_es": "",
+    "numerology_id": "king"
+  }
+]

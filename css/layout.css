@@ -1,0 +1,61 @@
+/* layout.css — estructura: header, nav/tabs, contenedor de vistas. Mobile-first. */
+
+/* ---- Header / barra superior ---- */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--ink) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding-top: env(safe-area-inset-top);
+}
+.bar-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  min-height: var(--bar-h);
+  padding: 0 var(--pad);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.brand b { font-family: var(--serif); letter-spacing: .18em; font-size: 15px; }
+.brand span { color: var(--muted); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; }
+
+/* ---- Tabs de navegación ---- */
+.tabs {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button {
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color .15s, background .15s;
+}
+.tabs button:hover { color: var(--cream); }
+.tabs button.active { color: var(--ink); background: var(--accent); }
+
+/* ---- Contenedor de vistas ---- */
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 var(--pad); }
+.view { display: none; padding: 28px 0 64px; }
+.view.active { display: block; animation: fade .2s ease; }
+
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* breakpoints: 480 / 768 / 1040 */
+@media (min-width: 768px) {
+  .brand b { font-size: 16px; }
+  .tabs button { font-size: 14px; padding: 9px 14px; }
+}

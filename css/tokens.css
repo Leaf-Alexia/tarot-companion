@@ -1,0 +1,35 @@
+/* tokens.css — variables de diseño (colores, tipografía, espaciado).
+   Fuentes con fallback de sistema: nada se carga por CDN (regla offline). */
+:root {
+  --ink:         #0d0b10;
+  --ink-2:       #16121c;
+  --ink-3:       #1f1928;
+  --surface:     #1a1022;
+  --cream:       #e8e0d0;
+  --muted:       #8a7f98;
+  --muted-2:     #5a5268;
+  --line:        rgba(255,255,255,.08);
+  --line-strong: rgba(255,255,255,.14);
+  --gold:        #c9a86a;
+  --vermilion:   #ce4e75;
+  --vermilion-2: #e8688a;
+  --earth:       #9c7b4e;
+  --serif:       'Yuji Syuku', Georgia, serif;
+  --sans:        'Zen Kaku Gothic New', system-ui, sans-serif;
+  --story:       'Klee One', Georgia, serif;
+  --accent:      var(--gold); /* override por JS según grupo de carta */
+
+  /* espaciado y radios */
+  --gap:   16px;
+  --pad:   20px;
+  --bar-h: 56px;
+  --radius:    14px;
+  --radius-sm: 10px;
+}
+
+/* Acento por grupo de arcano (la carta o la vista activa lo aplica) */
+.group-cups   { --accent: #6ab4ce; }
+.group-coins  { --accent: #c9a86a; }
+.group-wands  { --accent: #ce7a4e; }
+.group-swords { --accent: #9c8ece; }
+.group-major  { --accent: #ce4e75; }

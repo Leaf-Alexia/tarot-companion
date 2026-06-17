@@ -1,0 +1,147 @@
+/* components.css — cards, sheets, chips, panels, buttons.
+   Por ahora solo el overlay del detail sheet y el placeholder de la shell;
+   los componentes se irán añadiendo con cada vista (pasos 6+). */
+
+/* ---- Placeholder temporal mientras una vista no tiene contenido ---- */
+.placeholder {
+  color: var(--muted);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  padding: 40px var(--pad);
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ---- Inicio / cover ---- */
+.cover { max-width: 640px; margin: 0 auto; text-align: center; padding-top: 24px; }
+.cover .kicker { color: var(--muted); font-size: 12px; letter-spacing: .25em; text-transform: uppercase; margin: 0 0 14px; }
+.cover h1 { font-size: clamp(40px, 12vw, 72px); margin: 0; line-height: .98; }
+.cover .sub { color: var(--cream); opacity: .8; margin: 16px auto 0; max-width: 38ch; }
+.cover .rule { width: 64px; height: 2px; background: var(--accent); margin: 24px auto; border-radius: 2px; }
+
+.deck-select { display: inline-flex; flex-direction: column; gap: 8px; align-items: center; margin: 0 auto 28px; }
+.ds-label { color: var(--muted); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+.ds-opts { display: inline-flex; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; }
+.ds-opts button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 13px; padding: 7px 16px; border-radius: 999px; cursor: pointer; transition: .15s; }
+.ds-opts button.active { color: var(--ink); background: var(--accent); }
+
+.enter {
+  display: inline-block; background: none; color: var(--cream);
+  border: 1px solid var(--accent); border-radius: 999px;
+  font: inherit; padding: 12px 26px; cursor: pointer; transition: .18s;
+}
+.enter:hover { background: var(--accent); color: var(--ink); }
+
+/* ---- Controles de Arcanos (búsqueda + chips) ---- */
+.controls { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+.search {
+  display: flex; align-items: center; gap: 10px;
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 0 14px;
+  color: var(--muted); background: var(--ink-2);
+}
+.search input { flex: 1; background: none; border: 0; color: var(--cream); font: inherit; padding: 12px 0; outline: none; }
+.search input::placeholder { color: var(--muted-2); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: var(--ink-2); border: 1px solid var(--line); color: var(--muted);
+  font: inherit; font-size: 13px; padding: 7px 14px; border-radius: 999px; cursor: pointer; transition: .15s;
+}
+.chip:hover { color: var(--cream); }
+.chip.active { color: var(--ink); background: var(--accent); border-color: var(--accent); }
+.chip.day { margin-left: auto; color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+
+.count { color: var(--muted-2); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+
+/* ---- Grid de cartas ---- */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 480px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1040px) { .grid { grid-template-columns: repeat(5, 1fr); } }
+
+.card {
+  position: relative; text-align: left; cursor: pointer;
+  background: var(--ink-2); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 14px; min-height: 120px;
+  display: flex; flex-direction: column; gap: 4px; color: var(--cream); transition: .15s;
+}
+.card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+.card .mark { font-family: var(--serif); font-size: 22px; color: var(--accent); }
+.card .kanji { position: absolute; top: 12px; right: 12px; font-size: 20px; color: var(--muted-2); }
+.card .nm-en { margin-top: auto; font-family: var(--serif); font-size: 15px; }
+.card .nm-es { color: var(--muted); font-size: 12px; }
+
+/* ---- Detail sheet (contenido interno) ---- */
+.sheet-top { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: start; position: relative; padding-left: 12px; }
+.sheet-top .accentbar { position: absolute; left: 0; top: 4px; bottom: 4px; width: 3px; background: var(--accent); border-radius: 2px; }
+.sheet-top .num { color: var(--accent); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.sheet-top h2 { margin: 4px 0 2px; font-size: 26px; }
+.sheet-top .es-name { color: var(--muted); }
+.sheet-top .mark { grid-row: 1 / span 2; font-family: var(--serif); font-size: 30px; color: var(--accent); align-self: center; }
+.sheet .close {
+  position: absolute; top: -4px; right: -4px; background: none; border: 0;
+  color: var(--muted); font-size: 20px; cursor: pointer; padding: 6px; line-height: 1;
+}
+.sheet .close:hover { color: var(--cream); }
+
+.sheet-body { margin-top: 18px; display: flex; flex-direction: column; gap: 18px; }
+.field .flabel { color: var(--muted-2); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+.field .ftext { font-size: 15px; line-height: 1.7; }
+.field .ftext.en { color: var(--muted); }
+.field .ftext.italic { font-style: italic; color: var(--muted); }
+
+.kw { display: flex; flex-wrap: wrap; gap: 6px; }
+.kw span { font-size: 12px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; }
+.kw.en { margin-top: 8px; }
+.kw.en span { color: var(--muted-2); font-style: italic; }
+
+.deck-layer { border-top: 1px solid var(--line-strong); padding-top: 18px; display: flex; flex-direction: column; gap: 16px; }
+.layer-tag { color: var(--gold); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.deck-yokai { display: flex; align-items: baseline; gap: 10px; }
+.deck-yokai .kanji { font-size: 26px; color: var(--accent); }
+.deck-yokai .yname { color: var(--muted); }
+
+.sheet-nav { display: flex; gap: 10px; margin-top: 22px; }
+.sheet-nav button {
+  flex: 1; background: var(--ink-2); border: 1px solid var(--line); color: var(--cream);
+  font: inherit; padding: 11px; border-radius: var(--radius-sm); cursor: pointer; transition: .15s;
+}
+.sheet-nav button:hover:not(:disabled) { border-color: var(--accent); }
+.sheet-nav button:disabled { opacity: .35; cursor: default; }
+
+/* ---- Overlay del detail sheet ---- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+}
+.overlay.open { display: block; }
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(2px);
+}
+.sheet {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  max-height: 92dvh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-top: 1px solid var(--line-strong);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: var(--pad);
+  padding-bottom: calc(var(--pad) + env(safe-area-inset-bottom));
+}
+@media (min-width: 768px) {
+  .sheet {
+    left: 50%; right: auto; bottom: auto; top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(560px, 92vw);
+    max-height: 88dvh;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+  }
+}
