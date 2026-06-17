@@ -1119,6 +1119,15 @@ renderTorii();
 /* ---------------- INIT ---------------- */
 render();
 route();   // restaura la vista / arcano desde el #hash al cargar
+
+/* ---------------- SERVICE WORKER (offline) ---------------- */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(err => {
+      console.warn("No se pudo registrar el Service Worker:", err);
+    });
+  });
+}
 </script>
 </body>
 </html>
