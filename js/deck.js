@@ -39,6 +39,17 @@ export async function loadPure() {
   return PURE;
 }
 
+/* Registro de mazos disponibles. Añadir un mazo = soltar su JSON en data/decks/
+   y registrarlo en data/decks/index.json (available:true). Degrada a [] sin red. */
+export async function loadDeckIndex() {
+  try {
+    const data = await getJSON("data/decks/index.json");
+    return (data.decks || []).filter((d) => d.available);
+  } catch {
+    return [];
+  }
+}
+
 /* Carga (y cachea) los datos de un mazo, indexando sus cartas por arcana_id. */
 export async function loadDeck(deckId) {
   if (!deckId) return null;

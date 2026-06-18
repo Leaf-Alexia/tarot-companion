@@ -4,6 +4,7 @@
 
 import { buildCard, SUITS, cardMark } from "./deck.js";
 import { writeHash } from "./router.js";
+import { pick, pickList } from "./i18n.js";
 
 const overlay = document.getElementById("overlay");
 const sheet = document.getElementById("sheet");
@@ -27,6 +28,20 @@ function field(label, body, cls = "") {
     <div class="ftext ${cls}">${esc(body)}</div></div>`;
 }
 
+/* Arte de la carta (capa de mazo). Mientras no existan las imágenes, queda
+   visible el placeholder "Imagen próximamente"; el <img> lo tapa al cargar y,
+   si falla (404), se oculta vía clase .failed (listener en render). */
+function cardArtHTML(c) {
+  if (!c.image) return "";
+  return `<div class="card-art">
+    <span class="card-art-ph" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      Imagen próximamente
+    </span>
+    <img class="card-art-img" src="${esc(c.image)}" alt="${esc(c.en)}" loading="lazy" width="600" height="1050">
+  </div>`;
+}
+
 /* Construye el bloque de la capa del mazo según los campos que existan. */
 function deckLayerHTML(c) {
   if (c.layer !== "deck") return "";
@@ -36,17 +51,19 @@ function deckLayerHTML(c) {
          <span class="yname">${esc(c.yokai_name || "")}</span></div>`
     : "";
   const body = [
-    field("Matiz del mazo", c.deck_nuance_es || c.deck_nuance || c.deck_resumen),
+    field("Matiz del mazo", pick(c, "deck_nuance") || c.deck_resumen),
     field("Historia del mazo", c.deck_story, "en"),
     field("Sombra del mazo", c.deck_sombra, "italic"),
   ].join("");
-  if (!head && !body) return "";
-  return `<div class="deck-layer"><div class="layer-tag">✦ ${esc(name)}</div>${head}${body}</div>`;
+  const art = cardArtHTML(c);
+  if (!head && !body && !art) return "";
+  return `<div class="deck-layer"><div class="layer-tag">✦ ${esc(name)}</div>${art}${head}${body}</div>`;
 }
 
 function render(c) {
   const suit = SUITS[c.group];
   const subtitle = c.group === "major" ? `Arcano Mayor · ${c.roman}` : suit.label;
+  const kw = pickList(c, "keywords");
   const idx = ctx.listIds.indexOf(c.id);
   const hasPrev = idx > 0, hasNext = idx >= 0 && idx < ctx.listIds.length - 1;
 
@@ -65,11 +82,11 @@ function render(c) {
     <div class="sheet-body">
       <div class="field">
         <div class="flabel">Palabras clave</div>
-        <div class="kw">${c.keywords_es.map((k) => `<span>${esc(k)}</span>`).join("")}</div>
-        <div class="kw en">${c.keywords_en.map((k) => `<span>${esc(k)}</span>`).join("")}</div>
+        <div class="kw">${kw.primary.map((k) => `<span>${esc(k)}</span>`).join("")}</div>
+        ${kw.secondary.length ? `<div class="kw en">${kw.secondary.map((k) => `<span>${esc(k)}</span>`).join("")}</div>` : ""}
       </div>
-      ${field("Energía pura", c.energy_es || c.energy)}
-      ${field("Sombra · lectura invertida", c.shadow_es || c.shadow, "italic")}
+      ${field("Energía pura", pick(c, "energy"))}
+      ${field("Sombra · lectura invertida", pick(c, "shadow"), "italic")}
       ${deckLayerHTML(c)}
     </div>
     <div class="sheet-nav">
@@ -80,6 +97,10 @@ function render(c) {
   sheet.querySelectorAll("[data-close]").forEach((b) =>
     b.addEventListener("click", () => closeSheet())
   );
+  // Si la imagen no existe aún (404), se oculta y queda el placeholder.
+  const art = sheet.querySelector(".card-art-img");
+  if (art) art.addEventListener("error", () => art.classList.add("failed"));
+
   sheet.querySelector('[data-nav="prev"]').addEventListener("click", () => step(-1));
   sheet.querySelector('[data-nav="next"]').addEventListener("click", () => step(1));
 }
@@ -107,6 +128,13 @@ export function openSheet(arcanaId) {
   document.body.style.overflow = "hidden";
   document.addEventListener("keydown", onKey);
   writeHash("arcano/" + arcanaId);
+}
+
+/* Re-renderiza la carta abierta (p. ej. al cambiar de idioma). No-op si está cerrada. */
+export function refresh() {
+  if (!isOpen() || !currentId) return;
+  const c = buildCard(currentId, ctx.deckData);
+  if (c) render(c);
 }
 
 export function closeSheet() {

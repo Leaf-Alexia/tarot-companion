@@ -19,12 +19,6 @@
 .cover .sub { color: var(--cream); opacity: .8; margin: 16px auto 0; max-width: 38ch; }
 .cover .rule { width: 64px; height: 2px; background: var(--accent); margin: 24px auto; border-radius: 2px; }
 
-.deck-select { display: inline-flex; flex-direction: column; gap: 8px; align-items: center; margin: 0 auto 28px; }
-.ds-label { color: var(--muted); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
-.ds-opts { display: inline-flex; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; }
-.ds-opts button { background: none; border: 0; color: var(--muted); font: inherit; font-size: 13px; padding: 7px 16px; border-radius: 999px; cursor: pointer; transition: .15s; }
-.ds-opts button.active { color: var(--ink); background: var(--accent); }
-
 .enter {
   display: inline-block; background: none; color: var(--cream);
   border: 1px solid var(--accent); border-radius: 999px;
@@ -109,6 +103,223 @@
 }
 .sheet-nav button:hover:not(:disabled) { border-color: var(--accent); }
 .sheet-nav button:disabled { opacity: .35; cursor: default; }
+
+/* ====================================================================
+   Encabezados de sección compartidos (Tiradas · Numerología · Cómo usar)
+   ==================================================================== */
+.pad-top { padding-top: 8px; }
+.eyebrow { color: var(--muted); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; margin: 0 0 8px; }
+.title { font-family: var(--serif); font-size: clamp(26px, 7vw, 38px); margin: 0 0 12px; line-height: 1.05; }
+.lead { color: var(--cream); opacity: .82; max-width: 60ch; margin: 0 0 24px; line-height: 1.6; }
+.muted-note { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.tag { color: var(--muted-2); font-size: 13px; font-weight: 400; letter-spacing: .04em; }
+.mini-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 18px 0 0; }
+
+/* ---- Paneles ---- */
+.panel {
+  background: var(--ink-2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px; margin-bottom: 18px;
+}
+.panel h3 { font-family: var(--serif); font-size: 20px; margin: 0 0 10px; }
+.panel p { color: var(--cream); opacity: .85; line-height: 1.65; margin: 0 0 10px; }
+.panel p:last-child { margin-bottom: 0; }
+.panel a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+.panel a:hover { color: var(--vermilion-2); }
+.prose ul { margin: 0; padding-left: 20px; color: var(--cream); opacity: .85; line-height: 1.7; }
+.prose li { margin-bottom: 8px; }
+
+/* ====================================================================
+   Tiradas
+   ==================================================================== */
+.spread-grid { display: grid; gap: 18px; }
+@media (min-width: 768px) { .spread-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+.keys { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+.keys button {
+  background: var(--ink-3); border: 1px solid var(--line); color: var(--muted);
+  font: inherit; font-size: 13px; padding: 7px 14px; border-radius: 999px; cursor: pointer; transition: .15s;
+}
+.keys button:hover { color: var(--cream); }
+.keys button.active { background: var(--vermilion); border-color: var(--vermilion); color: #fff; }
+
+.slots { display: grid; gap: 10px; margin: 14px 0; }
+.slots.one   { grid-template-columns: 1fr; }
+.slots.three { grid-template-columns: repeat(3, 1fr); }
+.slots.four  { grid-template-columns: repeat(2, 1fr); }
+
+.slot {
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 12px; min-height: 96px; text-align: left;
+  display: flex; flex-direction: column; gap: 3px; color: var(--cream);
+}
+.slot.empty { border-style: dashed; color: var(--muted-2); background: none; }
+.slot.drawn {
+  cursor: pointer; background: var(--ink-3); border-left: 3px solid var(--accent);
+  font: inherit; transition: .15s;
+}
+.slot.drawn:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+.slot-role { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.slot-hint { font-size: 12px; color: var(--muted-2); line-height: 1.45; }
+.slot-face { margin-top: auto; font-family: var(--serif); font-size: 22px; color: var(--muted-2); }
+.slot-mark { margin-top: auto; font-family: var(--serif); font-size: 22px; color: var(--accent); }
+.slot-name { font-family: var(--serif); font-size: 14px; }
+.slot-en { color: var(--muted); font-size: 11px; }
+
+.draw {
+  background: none; color: var(--cream); border: 1px solid var(--accent);
+  border-radius: 999px; font: inherit; padding: 11px 20px; cursor: pointer; transition: .18s;
+}
+.draw:hover:not(:disabled) { background: var(--accent); color: var(--ink); }
+.draw:disabled { opacity: .4; cursor: default; }
+.deck-needed { margin-top: 12px; color: var(--muted); font-size: 13px; }
+
+/* Torii: capas apiladas, cumbre arriba y base abajo */
+.torii { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+.torii-layer { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; }
+.torii-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+.torii-name { font-family: var(--serif); font-size: 17px; color: var(--gold); }
+.torii-pos { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--vermilion-2); }
+.torii-cells { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.torii-text { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 12px 0 0; }
+
+/* ====================================================================
+   Numerología
+   ==================================================================== */
+.numlist { display: flex; flex-direction: column; gap: 2px; }
+.numrow { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.numrow:first-child { border-top: 0; }
+.nn { font-family: var(--serif); font-size: 24px; color: var(--accent); text-align: center; }
+.nn.glyph { font-size: 22px; }
+.nb { color: var(--cream); opacity: .85; line-height: 1.55; font-size: 14px; }
+.nb b { display: block; color: var(--cream); opacity: 1; margin-bottom: 3px; font-weight: 600; }
+.num-ref { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.num-major {
+  background: none; border: 0; color: var(--accent); font: inherit; font-size: 12px;
+  cursor: pointer; padding: 0; border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.num-major:hover { color: var(--vermilion-2); }
+
+.stages { display: flex; flex-direction: column; gap: 18px; margin: 8px 0 16px; }
+.stage-head { display: flex; align-items: baseline; gap: 10px; }
+.stage-range { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--vermilion-2); }
+.stage-name { font-family: var(--serif); font-size: 17px; }
+.stage-body { color: var(--muted); font-size: 13px; line-height: 1.55; margin: 6px 0 10px; }
+.major-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.major-chip {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  background: var(--ink-3); border: 1px solid var(--line); color: var(--cream);
+  font: inherit; padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: .15s;
+}
+.major-chip:hover { border-color: var(--accent); }
+.mc-roman { font-family: var(--serif); color: var(--accent); font-size: 12px; }
+.mc-name { font-size: 13px; }
+
+/* ====================================================================
+   Cómo usar — lista de palos
+   ==================================================================== */
+.suit-list { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+.suit-row {
+  display: flex; flex-direction: column; gap: 2px;
+  border-left: 3px solid var(--accent); padding: 8px 0 8px 12px;
+}
+.suit-name { font-family: var(--serif); font-size: 15px; }
+.suit-note { color: var(--muted); font-size: 13px; }
+
+/* ====================================================================
+   Botón de mazo en Arcanos
+   ==================================================================== */
+.controls-top { display: flex; gap: 10px; align-items: stretch; }
+.controls-top .search { flex: 1; }
+.deck-btn {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink-2); border: 1px solid var(--line); color: var(--cream);
+  font: inherit; font-size: 13px; padding: 0 14px; border-radius: var(--radius);
+  cursor: pointer; transition: .15s; max-width: 48vw;
+}
+.deck-btn:hover { border-color: var(--accent); }
+.deck-btn .db-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.deck-btn .db-caret { color: var(--muted); }
+@media (max-width: 479px) { .deck-btn .db-icon { display: none; } }
+
+/* ====================================================================
+   Selector de mazo (deck picker) — usa la estructura .overlay/.sheet
+   ==================================================================== */
+.picker-head, .menu-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.picker-head h2, .menu-head h2 { font-family: var(--serif); font-size: 22px; margin: 0; }
+
+.deck-rows { display: flex; flex-direction: column; gap: 8px; }
+.deck-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; text-align: left; background: var(--ink-2);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px;
+  color: var(--cream); font: inherit; cursor: pointer; transition: .15s;
+}
+.deck-row:hover { border-color: var(--line-strong); }
+.deck-row.active { border-color: var(--accent); }
+.dr-text { display: flex; flex-direction: column; gap: 2px; }
+.dr-name { font-family: var(--serif); font-size: 16px; }
+.dr-sub { color: var(--muted); font-size: 12px; }
+.dr-check { color: var(--accent); font-size: 18px; }
+.deck-row.locked { margin-top: 8px; cursor: default; opacity: .6; border-style: dashed; }
+.deck-row.locked:hover { border-color: var(--line); }
+
+/* ====================================================================
+   Menú de configuración
+   ==================================================================== */
+.menu-sec { padding: 16px 0; border-top: 1px solid var(--line); }
+.menu-sec:first-of-type { border-top: 0; padding-top: 0; }
+.menu-label { color: var(--muted-2); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
+.menu-note { color: var(--muted); font-size: 12px; margin: 10px 0 0; line-height: 1.5; }
+
+.menu-deck {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; background: var(--ink-2); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 13px 16px; color: var(--cream);
+  font: inherit; font-size: 15px; cursor: pointer; transition: .15s;
+}
+.menu-deck:hover { border-color: var(--accent); }
+.menu-deck .md-action { color: var(--accent); font-size: 13px; }
+
+/* Control segmentado (idioma, tema) */
+.seg { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; }
+.seg button {
+  background: none; border: 0; color: var(--muted); font: inherit; font-size: 13px;
+  padding: 8px 18px; border-radius: 999px; cursor: pointer; transition: .15s;
+}
+.seg button:hover { color: var(--cream); }
+.seg button.active { color: var(--ink); background: var(--accent); }
+
+.menu-store {
+  display: flex; flex-direction: column; gap: 4px;
+  border: 1px dashed var(--line-strong); border-radius: var(--radius);
+  padding: 16px; opacity: .7;
+}
+.ms-title { font-family: var(--serif); font-size: 15px; }
+.ms-sub { color: var(--muted); font-size: 12px; }
+.menu-about { color: var(--cream); opacity: .85; font-size: 14px; line-height: 1.6; margin: 0 0 10px; }
+.menu-credits { color: var(--muted); font-size: 12px; line-height: 1.55; margin: 0; }
+
+/* ====================================================================
+   Arte de carta + placeholder "Imagen próximamente"
+   ==================================================================== */
+.card-art {
+  position: relative; width: min(220px, 60%); margin: 4px auto 4px;
+  aspect-ratio: 2 / 3.5; border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--line);
+}
+.card-art-ph {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  color: var(--muted-2); font-size: 12px; text-align: center; background: var(--ink-3);
+}
+.card-art-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; background: var(--ink-3);
+}
+.card-art-img.failed { display: none; }
 
 /* ---- Overlay del detail sheet ---- */
 .overlay {

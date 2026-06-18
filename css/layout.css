@@ -47,6 +47,23 @@
 .tabs button:hover { color: var(--cream); }
 .tabs button.active { color: var(--ink); background: var(--accent); }
 
+/* ---- Botón de configuración (engrane) ---- */
+.menu-btn {
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  padding: 8px;
+  margin-left: 4px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: color .15s, background .15s;
+}
+.menu-btn:hover { color: var(--cream); }
+.menu-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
 /* ---- Contenedor de vistas ---- */
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 var(--pad); }
 .view { display: none; padding: 28px 0 64px; }

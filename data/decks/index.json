@@ -1,0 +1,16 @@
+{
+  "decks": [
+    {
+      "id": "yokai",
+      "name": "Yōkai Tarot",
+      "subtitle": "El mazo del folclore japonés",
+      "available": true
+    },
+    {
+      "id": "rws",
+      "name": "Tarot Waite-Smith",
+      "subtitle": "Clásico 1909 · Dominio público",
+      "available": true
+    }
+  ]
+}

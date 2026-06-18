@@ -3,6 +3,8 @@
 
 const K_DECK = "tc-active-deck";
 const K_DAILY = "tc-daily";
+const K_LANG = "tc-lang";
+const K_THEME = "tc-theme";
 
 export function getActiveDeckId() {
   try { return localStorage.getItem(K_DECK) || null; } catch { return null; }
@@ -13,6 +15,22 @@ export function setActiveDeckId(id) {
     if (id) localStorage.setItem(K_DECK, id);
     else localStorage.removeItem(K_DECK);
   } catch { /* sin persistencia: la sesión sigue en memoria */ }
+}
+
+/* Idioma del contenido de carta (es | en). Default: es (público hispanohablante). */
+export function getLang() {
+  try { return localStorage.getItem(K_LANG) || "es"; } catch { return "es"; }
+}
+export function setLang(lang) {
+  try { localStorage.setItem(K_LANG, lang); } catch { /* sin persistencia */ }
+}
+
+/* Tema visual (dark | light). Default: dark (identidad de marca). */
+export function getTheme() {
+  try { return localStorage.getItem(K_THEME) || "dark"; } catch { return "dark"; }
+}
+export function setTheme(theme) {
+  try { localStorage.setItem(K_THEME, theme); } catch { /* sin persistencia */ }
 }
 
 /* Carta del día: misma carta durante todo el día natural. Se persiste el id. */

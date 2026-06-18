@@ -27,9 +27,36 @@
   --radius-sm: 10px;
 }
 
+/* Tema claro: sobrescribe solo los tokens de superficie/texto/líneas.
+   Los nombres se conservan (p. ej. --cream sigue siendo "color de texto"),
+   así ningún componente necesita cambios; todo hereda por custom properties.
+   Acentos algo más oscuros para contraste AA sobre fondo claro. */
+:root[data-theme="light"] {
+  --ink:         #f4eee2;  /* fondo base (pergamino) */
+  --ink-2:       #ece4d4;  /* superficies elevadas */
+  --ink-3:       #e2d8c4;
+  --surface:     #faf6ee;  /* hojas / modales */
+  --cream:       #2a2330;  /* texto principal (oscuro) */
+  --muted:       #6b6275;
+  --muted-2:     #8c8498;
+  --line:        rgba(0,0,0,.10);
+  --line-strong: rgba(0,0,0,.16);
+  --gold:        #a8843f;
+  --vermilion:   #c0395f;
+  --vermilion-2: #a82f52;
+  --earth:       #8a6a3e;
+}
+
 /* Acento por grupo de arcano (la carta o la vista activa lo aplica) */
 .group-cups   { --accent: #6ab4ce; }
 .group-coins  { --accent: #c9a86a; }
 .group-wands  { --accent: #ce7a4e; }
 .group-swords { --accent: #9c8ece; }
 .group-major  { --accent: #ce4e75; }
+
+/* Acentos por grupo, ajustados para contraste sobre tema claro */
+:root[data-theme="light"] .group-cups   { --accent: #2f86a3; }
+:root[data-theme="light"] .group-coins  { --accent: #9a7b34; }
+:root[data-theme="light"] .group-wands  { --accent: #b85a2b; }
+:root[data-theme="light"] .group-swords { --accent: #6a5aa8; }
+:root[data-theme="light"] .group-major  { --accent: #c0395f; }

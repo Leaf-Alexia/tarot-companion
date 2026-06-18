@@ -1,17 +1,23 @@
 /* app.js — punto de entrada. Carga datos, arma Inicio + Arcanos y conecta router + sheet. */
 
 import {
-  loadPure, loadDeck, getPure, buildCard, cardMark, filterPure, SUITS, FILTERS,
+  loadPure, loadDeck, loadDeckIndex, getPure, buildCard, cardMark, filterPure, SUITS, FILTERS,
 } from "./deck.js";
-import { getActiveDeckId, setActiveDeckId, getDailyId } from "./store.js";
+import { getActiveDeckId, setActiveDeckId, getDailyId, getTheme } from "./store.js";
 import { initRouter, onArcano, onSheetClose } from "./router.js";
-import { openSheet, closeSheet, setContext } from "./sheet.js";
+import { openSheet, closeSheet, setContext, refresh as refreshSheet } from "./sheet.js";
+import { initTiradas, setSpreadDeck } from "./spreads.js";
+import { initNumerologia } from "./numerology.js";
+import { initUso } from "./uso.js";
+import { initDeckPicker, openDeckPicker } from "./decks-ui.js";
+import { initSettings, open as openSettings, applyTheme } from "./settings.js";
+import { onLangChange } from "./i18n.js";
 
-// Mazos disponibles (la "energía pura" es la opción sin mazo). Crecerá con rws.json.
-const DECK_OPTIONS = [
-  { id: null, label: "Energía pura" },
-  { id: "yokai", label: "Yōkai Tarot" },
-];
+// Mazos disponibles. La "energía pura" (id null) es la opción sin mazo y siempre
+// está. El resto se carga del registro data/decks/index.json en init().
+const DECK_OPTIONS = [{ id: null, label: "Energía pura", subtitle: "Universal, sin mazo" }];
+
+const deckLabel = (id) => DECK_OPTIONS.find((o) => o.id === id)?.label || "Energía pura";
 
 const state = { group: "all", query: "", deckId: null, deckData: null };
 
@@ -27,21 +33,10 @@ function renderInicio() {
       <h1>Tarot<br>Companion</h1>
       <p class="sub">La energía pura de los 78 arcanos, y cómo cada mazo la matiza.</p>
       <div class="rule"></div>
-      <div class="deck-select" id="deckSelect" aria-label="Mazo activo">
-        <span class="ds-label">Capa activa</span>
-        <div class="ds-opts">
-          ${DECK_OPTIONS.map((o) =>
-            `<button data-deck="${o.id ?? ""}" class="${state.deckId === o.id ? "active" : ""}">${esc(o.label)}</button>`
-          ).join("")}
-        </div>
-      </div>
       <button class="enter" data-go="arcanos">Consultar los arcanos →</button>
     </div>`;
 
   el.querySelector("[data-go]").addEventListener("click", () => { location.hash = "arcanos"; });
-  el.querySelectorAll("[data-deck]").forEach((b) =>
-    b.addEventListener("click", () => setDeck(b.dataset.deck || null))
-  );
 }
 
 /* ---------- Arcanos: controles (una vez) ---------- */
@@ -49,10 +44,15 @@ function renderArcanosShell() {
   const el = document.getElementById("view-arcanos");
   el.innerHTML = `
     <div class="controls">
-      <label class="search">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="search" type="search" placeholder="Buscar por nombre o palabra clave…" autocomplete="off" aria-label="Buscar arcano">
-      </label>
+      <div class="controls-top">
+        <label class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="search" type="search" placeholder="Buscar por nombre o palabra clave…" autocomplete="off" aria-label="Buscar arcano">
+        </label>
+        <button class="deck-btn" id="deckBtn" aria-label="Elegir mazo">
+          <span class="db-icon">🎴</span><span class="db-name" id="deckBtnName">${esc(deckLabel(state.deckId))}</span><span class="db-caret">▾</span>
+        </button>
+      </div>
       <div class="chips" id="chips">
         ${FILTERS.map((f) =>
           `<button class="chip ${f.g === "all" ? "active" : ""}" data-g="${f.g}">${esc(f.es)}</button>`
@@ -79,6 +79,7 @@ function renderArcanosShell() {
     state.query = e.target.value;
     renderGrid();
   });
+  el.querySelector("#deckBtn").addEventListener("click", () => openDeckPicker());
 }
 
 /* ---------- Arcanos: grid (según filtro + mazo) ---------- */
@@ -120,24 +121,12 @@ async function setDeck(deckId) {
     state.deckId = null;
   }
   setContext({ deckData: state.deckData });
-  // refrescar UI que depende del mazo
-  document.querySelectorAll("#deckSelect [data-deck]").forEach((b) =>
-    b.classList.toggle("active", (b.dataset.deck || null) === state.deckId)
-  );
+  // propagar el mazo activo a la tirada "Conoce tu mazo"
+  setSpreadDeck({ id: state.deckId, name: state.deckData?.name || deckLabel(state.deckId) });
+  // refrescar la etiqueta del botón de mazo en Arcanos
+  const nameEl = document.getElementById("deckBtnName");
+  if (nameEl) nameEl.textContent = deckLabel(state.deckId);
   if (document.getElementById("grid")) renderGrid();
-}
-
-/* Marcadores para vistas aún no construidas (pasos siguientes del roadmap). */
-function paintPending() {
-  const pend = {
-    uso: "Cómo usar el tarot (pendiente)",
-    tiradas: "Tiradas: carta del día, tres cartas, conoce tu mazo, torii (pendiente)",
-    numerologia: "Numerología 0–21 (pendiente)",
-  };
-  for (const [v, txt] of Object.entries(pend)) {
-    const el = document.getElementById("view-" + v);
-    if (el && !el.children.length) el.innerHTML = `<p class="placeholder">${txt}</p>`;
-  }
 }
 
 /* ---------- Init ---------- */
@@ -152,9 +141,28 @@ async function init() {
     return;
   }
 
+  // Mazos disponibles del registro (energía pura siempre primero).
+  const registry = await loadDeckIndex();
+  for (const d of registry) DECK_OPTIONS.push({ id: d.id, label: d.name, subtitle: d.subtitle });
+
+  // Selector de mazo reutilizable (Arcanos + menú) y menú de configuración.
+  initDeckPicker({
+    getDecks: () => DECK_OPTIONS.map((o) => ({ id: o.id, name: o.label, subtitle: o.subtitle })),
+    getActiveId: () => state.deckId,
+    onSelect: (id) => setDeck(id),
+    onMore: () => openSettings(),
+  });
+  initSettings({ getActiveDeckName: () => deckLabel(state.deckId) });
+  // Tema: el script anti-flash ya aplicó data-theme; sincroniza meta/persistencia.
+  applyTheme(getTheme());
+  // Al cambiar idioma, re-renderiza la carta abierta (el resto del chrome es estático).
+  onLangChange(() => refreshSheet());
+
   renderInicio();
   renderArcanosShell();
-  paintPending();
+  initUso();
+  initTiradas();
+  initNumerologia();
 
   // restaurar mazo activo guardado (si sigue disponible)
   const saved = getActiveDeckId();
