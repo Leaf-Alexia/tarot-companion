@@ -2,6 +2,8 @@
    Lo invocan tanto el botón de Arcanos como el menú de configuración.
    Modular y escalable: añadir un mazo = soltar su JSON + entrada en index.json. */
 
+import { t } from "./i18n.js";
+
 const overlay = document.getElementById("pickerOverlay");
 const sheet = document.getElementById("pickerSheet");
 
@@ -34,14 +36,14 @@ function render() {
 
   sheet.innerHTML = `
     <div class="picker-head">
-      <h2>Elegir mazo</h2>
-      <button class="close" aria-label="Cerrar" data-close>✕</button>
+      <h2>${esc(t("picker.title"))}</h2>
+      <button class="close" aria-label="${esc(t("sheet.close"))}" data-close>✕</button>
     </div>
     <div class="deck-rows">${rows}</div>
     <button class="deck-row locked" id="moreDecks" aria-disabled="true">
       <span class="dr-text">
-        <span class="dr-name">🔒 Obtener más mazos</span>
-        <span class="dr-sub">Próximamente</span>
+        <span class="dr-name">${esc(t("picker.more"))}</span>
+        <span class="dr-sub">${esc(t("picker.soon"))}</span>
       </span>
     </button>`;
 

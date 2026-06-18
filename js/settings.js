@@ -3,7 +3,7 @@
    Idioma vía i18n; tema vía store + data-theme; mazos reusa el deck picker. */
 
 import { getTheme, setTheme } from "./store.js";
-import { getLang, setLang } from "./i18n.js";
+import { getLang, setLang, t } from "./i18n.js";
 import { openDeckPicker } from "./decks-ui.js";
 
 const overlay = document.getElementById("menuOverlay");
@@ -39,41 +39,41 @@ function render() {
   const lang = getLang();
   panel.innerHTML = `
     <div class="menu-head">
-      <h2>Configuración</h2>
-      <button class="close" aria-label="Cerrar" data-close>✕</button>
+      <h2>${esc(t("menu.title"))}</h2>
+      <button class="close" aria-label="${esc(t("sheet.close"))}" data-close>✕</button>
     </div>
 
     <section class="menu-sec">
-      <div class="menu-label">Mazo activo</div>
+      <div class="menu-label">${esc(t("menu.activeDeck"))}</div>
       <button class="menu-deck" id="menuChangeDeck">
         <span>${esc(cfg.getActiveDeckName())}</span>
-        <span class="md-action">Cambiar →</span>
+        <span class="md-action">${esc(t("menu.change"))}</span>
       </button>
     </section>
 
     <section class="menu-sec">
-      <div class="menu-label">Idioma del contenido</div>
+      <div class="menu-label">${esc(t("menu.language"))}</div>
       ${seg("lang", lang, [{ val: "es", label: "Español" }, { val: "en", label: "English" }])}
-      <p class="menu-note">La traducción al español está en camino; por ahora algunos textos se muestran en inglés.</p>
+      <p class="menu-note">${esc(t("menu.langNote"))}</p>
     </section>
 
     <section class="menu-sec">
-      <div class="menu-label">Tema</div>
-      ${seg("theme", theme, [{ val: "dark", label: "Oscuro" }, { val: "light", label: "Claro" }])}
+      <div class="menu-label">${esc(t("menu.theme"))}</div>
+      ${seg("theme", theme, [{ val: "dark", label: t("menu.dark") }, { val: "light", label: t("menu.light") }])}
     </section>
 
     <section class="menu-sec">
-      <div class="menu-label">Tienda</div>
+      <div class="menu-label">${esc(t("menu.store"))}</div>
       <div class="menu-store locked">
-        <span class="ms-title">🔒 Más mazos, próximamente</span>
-        <span class="ms-sub">Nuevos mazos y colaboraciones con artistas llegarán aquí.</span>
+        <span class="ms-title">${esc(t("menu.storeTitle"))}</span>
+        <span class="ms-sub">${esc(t("menu.storeSub"))}</span>
       </div>
     </section>
 
     <section class="menu-sec">
-      <div class="menu-label">Acerca de</div>
-      <p class="menu-about">Tarot Companion — guía y acompañante de lectura, sin conexión y sin IA. La energía pura de los 78 arcanos, y cómo cada mazo la matiza.</p>
-      <p class="menu-credits">Tarot Waite-Smith: imágenes de dominio público (Pamela Colman Smith, 1909). Yōkai Tarot: contenido propiedad de la autora del proyecto.</p>
+      <div class="menu-label">${esc(t("menu.about"))}</div>
+      <p class="menu-about">${esc(t("menu.aboutText"))}</p>
+      <p class="menu-credits">${esc(t("menu.credits"))}</p>
     </section>`;
 
   panel.querySelector("[data-close]").addEventListener("click", close);

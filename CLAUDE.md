@@ -1,0 +1,428 @@
+# CLAUDE.md — Tarot Companion App
+
+> Lee este archivo completo al inicio de cada sesión antes de tocar cualquier archivo del proyecto.
+> Solo puedes escribir dentro de `<progress>`. El resto del documento es de solo lectura.
+
+---
+
+<project_context>
+
+## Visión del producto
+
+**Tarot Companion** es una PWA (Progressive Web App) que funciona como guía de referencia de tarot — sin conexión, sin IA generativa, sin registro obligatorio. Es un diccionario interactivo de arcanos, tiradas y numerología.
+
+### Objetivo de distribución
+Publicar en **Google Play Store** via **Trusted Web Activity (TWA)** usando Bubblewrap. La app vive en GitHub Pages como host y el APK es un wrapper que apunta a esa URL. No se requiere código nativo. Lighthouse Performance ≥ 80 es requisito de Google para aceptar el TWA.
+
+### Diferenciador central — arquitectura por capas
+1. **Energía pura** del arcano (universal, sin mazo, gratis permanentemente)
+2. **Matiz del mazo** (cómo ese arcano se expresa en un deck específico)
+
+Esta separación es el núcleo del producto. Ninguna app del mercado hace esto bien. No comprometerla.
+
+### Propuesta de valor principal
+Funciona **completamente offline**. Es la razón de existir de la app. Toda decisión técnica debe preservar esto. Una feature que requiera conexión es aceptable solo si degrada con gracia cuando no hay red.
+
+### Tono y posicionamiento
+Guía y acompañante en el camino de la lectura — no oráculo, no predicciones, no IA. El vínculo emocional con la usuaria (segmento principal: mujeres 25–40, lectoras de tarot) es una prioridad de diseño, no un adorno.
+
+### Modelo de negocio objetivo
+- **Base gratuita:** energía pura de los 78 arcanos + 1 mazo gratis (RWS Clásico 1909)
+- **Expansión de pago:** mazos adicionales (IAP en Play Store, Fase 3)
+- **Por encargo:** formulario de contacto para solicitar mazos específicos (Fase 2)
+- **Colaboración con artistas:** revenue share con creadores de mazos independientes (Fase 3)
+
+### Derechos y licencias — decisiones tomadas
+- Mazo RWS: usar solo imágenes **originales B&N de Pamela Colman Smith (1909)**, dominio público en EE.UU. desde 1966
+- Nombre del mazo: **"Tarot Waite-Smith"** o **"RWS Clásico 1909"** — nunca "Rider-Waite" (marca registrada de US Games)
+- Contenido del Yōkai Tarot (historias, kanji, traducciones): propiedad de la autora del proyecto — no reutilizar para otras secciones
+
+### Proyecto de referencia
+Existe una versión funcional en producción: **Yōkai Tarot Manual** (`yokai-tarot.html` + `sw.js`, GitHub Pages). El rebuild toma esa app como referencia de UX y lógica, pero la separa en módulos mantenibles. No es un port directo — es una reescritura con la misma experiencia y datos migrados.
+
+</project_context>
+
+---
+
+<architecture>
+
+## Estructura de carpetas objetivo
+
+```
+/
+├── index.html                  # Shell mínima: nav + contenedores vacíos
+├── sw.js                       # Service Worker mejorado
+├── manifest.json               # Manifest externo (no embebido en HTML)
+├── icons/
+│   ├── icon-192.png
+│   └── icon-512.png
+├── .well-known/
+│   └── assetlinks.json         # CRÍTICO para TWA — sin esto el APK muestra barra de URL
+├── css/
+│   ├── tokens.css              # Variables CSS (colores, tipografía, espaciado)
+│   ├── layout.css              # Grid, nav, tabs, header
+│   ├── components.css          # Cards, sheets, chips, panels, buttons
+│   └── themes/
+│       ├── base.css            # Tema oscuro base (energía pura)
+│       └── rws.css             # Tema del mazo RWS
+├── js/
+│   ├── router.js               # Navegación por hash, tab switching
+│   ├── store.js                # Abstracción de persistencia (localStorage / IndexedDB)
+│   ├── deck.js                 # Clase Deck: carga datos, filtra, busca, buildCard()
+│   ├── sheet.js                # Detail sheet: render, swipe, teclado, prev/next
+│   ├── spreads.js              # Lógica de tiradas
+│   └── app.js                  # Punto de entrada, inicialización
+├── data/
+│   ├── arcana-pure.json        # 78 cartas con energía pura (mazo-agnóstico)
+│   └── decks/
+│       ├── yokai.json          # Datos del Yōkai Tarot (matiz por carta)
+│       └── rws.json            # Datos del RWS Clásico 1909
+└── assets/
+    └── decks/
+        └── rws/                # Imágenes B&N originales (dominio público)
+            ├── 00-fool.jpg
+            └── ...             # 78 imágenes
+```
+
+## Modelo de datos
+
+### `arcana-pure.json` — capa base universal
+```json
+[
+  {
+    "id": "the-fool",
+    "number": 0,
+    "roman": "0",
+    "group": "major",
+    "en": "The Fool",
+    "es": "El Loco",
+    "keywords_es": ["Inicio", "Libertad", "Inocencia", "Riesgo", "Potencial"],
+    "keywords_en": ["Beginning", "Freedom", "Innocence", "Risk", "Potential"],
+    "energy": "Texto de energía pura, mazo-agnóstico (EN)...",
+    "energy_es": "Resumen en español de la energía pura...",
+    "shadow": "Lectura invertida / shadow aspect (EN)...",
+    "shadow_es": "Lectura invertida en español...",
+    "numerology_id": "0"
+  }
+]
+```
+
+### `decks/rws.json` — capa de matiz por mazo
+```json
+{
+  "id": "rws",
+  "name": "Tarot Waite-Smith",
+  "subtitle": "Clásico 1909 · Dominio público",
+  "theme": "rws",
+  "available": true,
+  "cards": [
+    {
+      "arcana_id": "the-fool",
+      "image": "assets/decks/rws/00-fool.jpg",
+      "deck_nuance": "Cómo el RWS expresa y matiza la energía de esta carta (EN)...",
+      "deck_nuance_es": "Versión en español del matiz..."
+    }
+  ]
+}
+```
+
+### Función central — `deck.js`
+```js
+// Mezcla capas en runtime: energía pura + matiz del mazo activo
+function buildCard(arcanaId, deckData = null) {
+  const pure = PURE_ARCANA.find(c => c.id === arcanaId);
+  if (!deckData) return { ...pure, layer: 'pure' };
+  const deckCard = deckData.cards.find(c => c.arcana_id === arcanaId);
+  return { ...pure, ...deckCard, layer: 'deck' };
+}
+```
+
+## Secciones de la app
+
+### 1. Inicio (`#inicio`)
+- Cover con presentación del concepto
+- CTA a arcanos
+- Selector de mazo activo (visible solo si hay más de un mazo disponible)
+
+### 2. Cómo usar el tarot (`#uso`)
+- Qué tener en mente antes de una lectura
+- Cómo interpretar (no predecir)
+- Arcanos mayores vs menores, los cuatro palos
+- Posiciones de las cartas
+
+### 3. Tiradas (`#tiradas`)
+- **Carta del día** — 1 carta
+- **Tres cartas** — con claves intercambiables: Tiempo / Relación / Reto
+- **Conoce tu mazo** — 4 posiciones (ver spec completa abajo)
+- **Spread Torii** — 6 cartas en forma de torii, 3 capas
+
+#### Spec: Tirada "Conoce tu mazo"
+Cuatro posiciones en segunda persona, tono cálido:
+1. **La carta que lidera el mazo** — La energía que caracteriza a este deck, su personalidad dominante
+2. **Qué puede enseñarte** — El tipo de conocimiento o perspectiva que este mazo ofrece
+3. **Cómo quiere ser consultado** — Su "preferencia" de uso: ¿reflexión lenta? ¿preguntas directas?
+4. **Qué no malinterpretar** — El error más común al leer este mazo; lo que puede confundir
+
+El copy de cada posición habla a la lectora directamente. Esta tirada construye el vínculo emocional persona-mazo. Es el feature más original del producto.
+
+### 4. Arcanos (`#arcanos`)
+- Grid filtrable con búsqueda en tiempo real
+- Chips de filtro: Todos / Mayores / Copas / Oros / Bastos / Espadas
+- Chip "Carta del día" destacado
+- Detail sheet deslizable con dos capas visibles: energía pura (siempre) + matiz del mazo (si hay mazo activo)
+- Navegación prev/next, swipe táctil, teclado (flechas + Escape)
+- Hash routing para URLs compartibles: `#arcano/the-fool`
+
+### 5. Numerología (`#numerologia`)
+- Lista de números 0–21 con significado
+- Referencia a qué arcanos llevan cada número
+
+## Service Worker — estrategias por tipo de asset
+
+```
+HTML / JS / CSS      →  network-first, fallback a caché
+JSON de datos        →  network-first, fallback a caché
+Imágenes de cartas   →  cache-first (assets estáticos, no cambian)
+Fuentes              →  cache-first
+```
+
+El SW debe cachear la shell completa en `install`. Las imágenes de cartas se cachean on-demand (primera vez que se ven). `skipWaiting()` + `clients.claim()` para actualizaciones limpias. Versión del caché en constante `CACHE_VERSION` — incrementar en cada deploy.
+
+## Variables CSS principales (`tokens.css`)
+
+```css
+:root {
+  --ink:         #0d0b10;
+  --ink-2:       #16121c;
+  --ink-3:       #1f1928;
+  --surface:     #1a1022;
+  --cream:       #e8e0d0;
+  --muted:       #8a7f98;
+  --muted-2:     #5a5268;
+  --line:        rgba(255,255,255,.08);
+  --line-strong: rgba(255,255,255,.14);
+  --gold:        #c9a86a;
+  --vermilion:   #ce4e75;
+  --vermilion-2: #e8688a;
+  --earth:       #9c7b4e;
+  --serif:       'Yuji Syuku', Georgia, serif;
+  --sans:        'Zen Kaku Gothic New', system-ui, sans-serif;
+  --story:       'Klee One', Georgia, serif;
+  --accent:      var(--gold); /* override por JS según grupo de carta */
+}
+.group-cups    { --accent: #6ab4ce; }
+.group-coins   { --accent: #c9a86a; }
+.group-wands   { --accent: #ce7a4e; }
+.group-swords  { --accent: #9c8ece; }
+.group-major   { --accent: #ce4e75; }
+```
+
+## Lighthouse — checklist para Play Store (TWA)
+
+Antes de correr Bubblewrap, verificar:
+
+- [ ] HTTPS activo (GitHub Pages lo da automáticamente)
+- [ ] `manifest.json` externo con: `name`, `short_name`, `start_url`, `display: standalone`, `background_color`, `theme_color`, `icons` (192px y 512px en archivos PNG reales)
+- [ ] SW registrado con fetch handler funcional
+- [ ] `start_url` responde offline
+- [ ] Lighthouse Performance ≥ 80
+- [ ] `assetlinks.json` en `.well-known/` (generado por Bubblewrap, subir al repo)
+- [ ] Imágenes con `width` y `height` explícitos
+- [ ] `loading="lazy"` en imágenes fuera del viewport inicial
+- [ ] Scripts con `type="module"` o `defer`
+- [ ] Sin dependencias de CDN externo (todo offline)
+
+## Convenciones de código
+
+- **Archivos:** `kebab-case.js`
+- **Clases CSS:** `kebab-case`
+- **Variables JS:** `camelCase`
+- **Constantes:** `UPPER_SNAKE_CASE`
+- **IDs del DOM:** `kebab-case`
+- **JS:** ES modules (`type="module"`), vanilla JS, sin frameworks, sin bundler en Fase 1
+- **CSS:** vanilla con custom properties, mobile-first, breakpoints: 480 / 768 / 1040px
+- **Errores:** siempre capturados con try/catch — el offline puede romper cualquier fetch
+- **Accesibilidad:** toda interacción con click tiene equivalente de teclado; `aria-label` en botones sin texto; `:focus-visible` outline visible
+
+</architecture>
+
+---
+
+<constraints>
+
+## Reglas que no se negocian
+
+### Técnicas
+- ❌ No añadir React, Vue, ni ningún framework — la app debe funcionar sin build step
+- ❌ No cargar librerías desde CDN externo — rompe el offline
+- ❌ No meter imágenes en base64 dentro del HTML o JS — van en `/assets/`
+- ❌ No añadir IA generativa — añade costos, latencia y dependencia de red (contradice el punto de venta)
+- ❌ No usar `localStorage` para volúmenes grandes — usar IndexedDB si crece
+- ❌ No romper el offline — cada feature nueva debe funcionar sin conexión o degradar con gracia explícita
+
+### Legales / de contenido
+- ❌ No usar imágenes coloreadas modernas del RWS — solo originales B&N de 1909
+- ❌ No llamar al mazo "Rider-Waite" — es marca registrada de US Games
+- ❌ No reutilizar historias/contenido del Yōkai Tarot para otras secciones — es propiedad de la autora
+- ❌ No incluir mazos de artistas independientes sin acuerdo escrito previo
+
+### De producto
+- ❌ No añadir features de Fase 2 o 3 antes de tener usuarios activos que validen la demanda
+- ❌ No optimizar el SW antes de que el contenido esté estable (invalida el caché en cada cambio)
+
+</constraints>
+
+---
+
+<working_mode>
+
+## Cómo debe trabajar Claude Code en este proyecto
+
+### Regla principal sobre este archivo
+- Lee `CLAUDE.md` completo al inicio de cada sesión
+- **Solo puedes escribir dentro de `<progress>`** — todo lo demás es de solo lectura
+- Al terminar cada sesión de trabajo, actualiza `<progress>` con lo que completaste, lo que dejaste pendiente y cualquier decisión técnica relevante tomada
+
+### Antes de escribir código
+1. Identifica qué fase del roadmap corresponde a la tarea
+2. Verifica que la tarea no contradiga ninguna constraint
+3. Si hay ambigüedad, pregunta antes de asumir — especialmente en temas de derechos o arquitectura de datos
+
+### Al escribir código
+- Escribe modular desde el inicio — no monolíticos que habrá que refactorizar
+- Prefiere código legible sobre código clever
+- Comenta decisiones no obvias, no lo que el código ya dice
+- Cada módulo JS debe tener una responsabilidad clara (ver arquitectura)
+- Si un archivo supera ~200 líneas, considera si debe dividirse
+
+### Al migrar datos del Yōkai original
+- Los 78 arcanos están en `index.html` como llamadas `major()` y `minor()` dentro del `<script>`
+- Migrarlos a `arcana-pure.json` requiere separar: id, número, grupo, nombres EN/ES, keywords EN/ES, energy (story original), energy_es (resumen), shadow (sombra)
+- El campo `energy` de la capa pura NO es la historia del yōkai — es una reescritura mazo-agnóstica. La historia del yōkai va en `yokai.json` como `deck_story`
+
+### Al hacer cambios que afectan el SW
+- Incrementar `CACHE_VERSION` en `sw.js`
+- Verificar que todos los assets nuevos estén en la lista de precaché si son parte de la shell
+- Probar offline en DevTools (Application > Service Workers > Offline) antes de dar por terminado
+
+### Al terminar una tarea
+Actualizar la sección `<progress>` con:
+```
+### Sesión YYYY-MM-DD
+**Completado:** [lista de lo que se hizo]
+**Pendiente inmediato:** [qué sigue según el roadmap]
+**Decisiones tomadas:** [cualquier elección técnica no trivial y por qué]
+**Problemas encontrados:** [si hubo blockers o workarounds]
+```
+
+### Orden de trabajo del roadmap (Fase 1)
+Seguir este orden — cada paso tiene dependencias del anterior:
+
+1. **Migración de datos** — Extraer los 78 arcanos a `arcana-pure.json` y `yokai.json`
+2. **Shell HTML** — `index.html` mínima con estructura de navegación y contenedores vacíos
+3. **CSS modular** — Extraer y separar estilos en `/css/`
+4. **Router** — `router.js` con hash navigation y tab switching
+5. **Deck module** — `deck.js` con carga de JSON y `buildCard()`
+6. **Vista Arcanos** — Grid, búsqueda, filtros, carta del día
+7. **Detail sheet** — `sheet.js` con swipe, teclado, prev/next, capas de contenido
+8. **Tiradas** — `spreads.js` con las 4 tiradas (carta del día, tres cartas, conoce tu mazo, torii)
+9. **Vista Numerología** — Lista de números con significados
+10. **SW mejorado** — Shell completa en caché + imágenes on-demand
+11. **Lighthouse audit** — Llegar a Performance ≥ 80 y pasar checklist PWA
+12. **Bubblewrap** — Generar APK, subir `assetlinks.json`, preparar ficha de Play Store
+
+</working_mode>
+
+---
+
+<progress>
+
+## Estado del proyecto
+
+**Última actualización:** 2026-06-18
+**Fase actual:** Fase 1 — MVP
+**Paso actual del roadmap:** Pasos 1–9 + **i18n de toda la app** hechos en disco (commit V3 + cambios sin commitear): datos EN, 5 vistas, menú de configuración, dos mazos activos, tema claro/oscuro, idioma ES/EN que cambia TODA la app, nombre de carta en un solo idioma con subtítulo del ser del mazo. Siguiente: traducir contenido `_es`, imágenes RWS, `css/themes/rws.css`, SW (10), Lighthouse (11).
+
+> Nota: `CLAUDE.md` no está trackeado en git; reconstruido el 2026-06-18 desde contexto. El trabajo de i18n se había perdido en un reset y se **rehízo** el mismo día (ver log). ⚠️ Recordatorio: commitear pronto para no volver a perder cambios sin trackear.
+
+---
+
+### Checklist Fase 1
+
+#### Datos
+- [~] `data/arcana-pure.json` — 78 arcanos: campos universales + `energy`/`shadow` **EN completos en los 78** (scripts `author-majors-en.mjs` / `author-minors-en.mjs`); falta todo `_es`
+- [x] `data/decks/yokai.json` — matiz del Yōkai (story EN, kanji, nombre del ser, resumen/sombra ES) + créditos. Falta `deck_story_es` para modo ES puro
+- [~] `data/decks/rws.json` — 78 cartas con `deck_nuance` EN (`scripts/build-rws.mjs`), `available:true`; falta `deck_nuance_es`
+- [x] `data/decks/index.json` — registro de mazos (yokai + rws, ambos available); el selector se arma desde aquí → añadir mazo = soltar JSON + entrada en el índice
+- [ ] `assets/decks/rws/` — 78 imágenes B&N originales (convención `<arcana_id>.jpg`); la app ya muestra placeholder "Imagen próximamente" hasta que existan
+
+#### Estructura base
+- [x] `index.html` — shell + header con engrane + overlays (sheet, picker, menú) + script anti-flash de tema/idioma
+- [~] `manifest.json` — externo creado; íconos PNG reales pendientes
+- [ ] `icons/icon-192.png` y `icons/icon-512.png` — archivos PNG reales
+- [ ] `.well-known/assetlinks.json` — placeholder hasta tener package name de Play Store
+
+#### CSS
+- [x] `css/tokens.css` — variables + **tema claro** (`:root[data-theme="light"]`, paleta pergamino + acentos por grupo ajustados)
+- [x] `css/layout.css` — header (incl. botón engrane), tabs, vistas
+- [x] `css/components.css` — cover, controles, chips, grid, cards, detail sheet, paneles, tiradas, numerología, "cómo usar", botón de mazo, deck picker, menú, arte de carta + placeholder
+- [x] `css/themes/base.css` — tema oscuro base
+- [ ] `css/themes/rws.css`
+
+#### JavaScript
+- [x] `js/router.js` — hash + tabs + deep link `#arcano/:id`
+- [x] `js/store.js` — mazo activo + carta del día + idioma + tema (localStorage, try/catch)
+- [x] `js/deck.js` — carga JSON, `buildCard()`, filtro/búsqueda, `loadDeckIndex()`, `cardName()`/`cardMark()` localizados, `deckCardName()`
+- [x] `js/strings.js` — diccionario de chrome `UI.es`/`UI.en` (paridad de claves verificada: 58/58)
+- [x] `js/i18n.js` — idioma de contenido (`pick`/`pickList`) + `t()` para chrome + `onLangChange`
+- [x] `js/sheet.js` — detail sheet 2 capas, prev/next, teclado, idioma, arte/placeholder, `refresh()`; nombre de carta en un solo idioma
+- [x] `js/decks-ui.js` — selector de mazo reutilizable (Arcanos + menú); fila "obtener más" bloqueada
+- [x] `js/settings.js` — menú: mazo, idioma, tema, tienda (placeholder), acerca de; `applyTheme()`
+- [x] `js/spreads.js` — 4 tiradas (bilingüe); sorteo local; cada carta abre el sheet
+- [x] `js/numerology.js` — números/figuras/Mayores (bilingüe); enlaza al sheet
+- [x] `js/uso.js` — "Cómo usar" (bilingüe)
+- [x] `js/app.js` — orquesta 5 vistas + picker + menú; tema/idioma; `applyLanguage()` re-render con preservación de estado
+
+#### Vistas
+- [x] Inicio / Cover — cover + CTA (el cambio de mazo se movió a Arcanos + menú)
+- [x] Cómo usar el tarot
+- [x] Tiradas — carta del día, tres cartas, conoce tu mazo, torii
+- [x] Arcanos — grid + filtros + búsqueda + carta del día + detail sheet por capas + botón de mazo
+- [x] Numerología
+- [x] Menú de configuración (engrane) — mazo, idioma (ES/EN), tema (claro/oscuro), tienda (placeholder), acerca de
+
+#### Idioma (i18n)
+- [x] Toggle ES/EN persistente que cambia **TODA la app** (chrome vía `t()` + contenido vía `pick`)
+- [x] Identidad de carta en un solo idioma; 2ª línea = nombre del ser del mazo (Yōkai → `yokai_name`) o vacío (RWS/pura)
+- [ ] Traducción del **contenido de carta** al español: `energy_es`, `shadow_es` (78), `deck_nuance_es` (78 RWS), `deck_story_es` (Yōkai) — diferido. En modo ES el significado cae a inglés hasta esta pasada
+
+#### PWA / Play Store
+- [ ] SW mejorado con caché completa
+- [ ] Lighthouse Performance ≥ 80 + checklist PWA
+- [ ] APK con Bubblewrap + `assetlinks.json` + ficha de Play Store
+
+---
+
+### Log de sesiones
+
+#### Sesión 2026-06-17 — Capa pura EN + matiz RWS + vistas
+- Capa pura completada en inglés (22 Mayores + 56 Menores) vía scripts idempotentes.
+- Vistas faltantes: `uso.js`, `spreads.js` (4 tiradas), `numerology.js`. CSS de las tres.
+- Estructura de mazos extensible: `data/decks/index.json` + `loadDeckIndex()`; selector dinámico.
+- `data/decks/rws.json` con matiz EN de las 78 cartas (`scripts/build-rws.mjs`), `available:true`.
+- **Decisión:** convención de imagen RWS = `<arcana_id>.jpg`; `rws` available aunque falten imágenes (el sheet degrada).
+
+#### Sesión 2026-06-17 — UX: selector de mazo, menú, tema, placeholders
+- Selector de mazo reubicado a componente reutilizable (`decks-ui.js`): botón en Arcanos + menú; se quitó de Inicio.
+- Menú de configuración (`settings.js`): mazo, idioma, tema claro/oscuro, tienda (placeholder), acerca de.
+- Tema claro/oscuro (tokens `:root[data-theme=light]` + script anti-flash + `meta theme-color`).
+- Placeholder "Imagen próximamente" en el sheet (capa de mazo), con `loading=lazy` + width/height.
+
+#### Sesión 2026-06-18 — i18n de toda la app (perdido y REHECHO)
+- **Completado:** Infraestructura i18n (`js/strings.js` con `UI.es/UI.en`, `t()` en `i18n.js`); chrome migrado a `t()` en todos los módulos; prosa bilingüe co-localizada en Cómo usar / Numerología / Tiradas. Identidad de carta en un solo idioma (`cardName`, glifo localizado); 2ª línea = nombre del ser del mazo (Yōkai → `yokai_name`) o vacío (RWS/pura). `applyLanguage()` re-render preservando filtro/búsqueda de Arcanos. Toggle ES/EN cambia TODA la app. Verificado: `node --check` OK en 10 módulos, paridad de claves ES/EN 58/58.
+- **Incidente:** tras el commit V3, un reset/limpieza del working tree borró todo lo no commiteado (incl. `js/strings.js` y `CLAUDE.md`). Se **rehízo** todo el i18n el mismo día desde el contexto de la sesión. `CLAUDE.md` también reconstruido.
+- **Decisiones:** i18n completo del chrome ES+EN; traducción del *contenido de carta* al español diferida (en modo ES el significado cae a inglés hasta esa pasada); palabras clave del sheet a un solo idioma; listeners delegados se adjuntan una sola vez (evita sorteos duplicados al cambiar idioma). Búsqueda en `filterPure` sigue indexando ambos idiomas (encuentra aunque la UI muestre uno).
+- **Aprendizaje:** commitear pronto el trabajo grande; no dejarlo sin trackear si habrá operaciones de git.
+- **Pendiente:** prueba visual en navegador del lado de la usuaria; commit manual de la usuaria.
+
+</progress>

@@ -2,6 +2,8 @@
    Capa pura (arcana-pure.json) + matiz del mazo activo (decks/*.json) -> buildCard().
    Esta función es el núcleo del producto: la separación por capas. */
 
+import { getLang } from "./i18n.js";
+
 export const SUITS = {
   major:  { es: "Mayores", label: "Arcano Mayor",   groupClass: "group-major"  },
   cups:   { es: "Copas",   label: "Copas · Agua",    groupClass: "group-cups"   },
@@ -73,10 +75,20 @@ export function buildCard(arcanaId, deckData = null) {
   return { ...pure, ...deckCard, deck: { id: deckData.id, name: deckData.name }, layer: "deck" };
 }
 
-/* Glifo corto para el grid: romano en Mayores, rango en Menores. */
+/* Nombre del arcano en el idioma activo (con fallback al otro idioma). */
+export function cardName(card) {
+  return getLang() === "es" ? (card.es || card.en) : (card.en || card.es);
+}
+
+/* Glifo corto para el grid: romano (neutro) en Mayores; rango localizado en Menores. */
 export function cardMark(card) {
   if (card.group === "major") return card.roman;
-  return card.en.split(" ")[0]; // "Ace", "2"… "Page", "Knight"…
+  return cardName(card).split(" ")[0]; // "Reina"/"Queen", "As"/"Ace", "2"…
+}
+
+/* Nombre propio que el mazo da a la carta (Yōkai → su criatura). null si no aplica. */
+export function deckCardName(card) {
+  return card.subtitle || card.yokai_name || null;
 }
 
 /* Filtra la capa pura por grupo + búsqueda en nombres y keywords (EN/ES). */

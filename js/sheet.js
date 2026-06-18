@@ -2,9 +2,9 @@
    1) energía pura (siempre)  2) matiz del mazo activo (si lo hay).
    Navegación prev/next dentro de la lista visible + teclado (flechas, Escape). */
 
-import { buildCard, SUITS, cardMark } from "./deck.js";
+import { buildCard, SUITS, cardMark, cardName, deckCardName } from "./deck.js";
 import { writeHash } from "./router.js";
-import { pick, pickList } from "./i18n.js";
+import { pick, pickList, t } from "./i18n.js";
 
 const overlay = document.getElementById("overlay");
 const sheet = document.getElementById("sheet");
@@ -36,9 +36,9 @@ function cardArtHTML(c) {
   return `<div class="card-art">
     <span class="card-art-ph" aria-hidden="true">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      Imagen próximamente
+      ${esc(t("sheet.imageSoon"))}
     </span>
-    <img class="card-art-img" src="${esc(c.image)}" alt="${esc(c.en)}" loading="lazy" width="600" height="1050">
+    <img class="card-art-img" src="${esc(c.image)}" alt="${esc(cardName(c))}" loading="lazy" width="600" height="1050">
   </div>`;
 }
 
@@ -46,14 +46,14 @@ function cardArtHTML(c) {
 function deckLayerHTML(c) {
   if (c.layer !== "deck") return "";
   const name = c.name || (c.deck && c.deck.name) || "Mazo";
-  const head = (c.yokai_kanji || c.yokai_name)
-    ? `<div class="deck-yokai"><span class="kanji">${esc(c.yokai_kanji || "")}</span>
-         <span class="yname">${esc(c.yokai_name || "")}</span></div>`
+  // El nombre del ser (yokai_name) ya va en el encabezado; aquí solo el kanji como deco.
+  const head = c.yokai_kanji
+    ? `<div class="deck-yokai"><span class="kanji">${esc(c.yokai_kanji)}</span></div>`
     : "";
   const body = [
-    field("Matiz del mazo", pick(c, "deck_nuance") || c.deck_resumen),
-    field("Historia del mazo", c.deck_story, "en"),
-    field("Sombra del mazo", c.deck_sombra, "italic"),
+    field(t("sheet.deckNuance"), pick(c, "deck_nuance") || c.deck_resumen),
+    field(t("sheet.deckStory"), c.deck_story, "en"),
+    field(t("sheet.deckShadow"), c.deck_sombra, "italic"),
   ].join("");
   const art = cardArtHTML(c);
   if (!head && !body && !art) return "";
@@ -62,7 +62,10 @@ function deckLayerHTML(c) {
 
 function render(c) {
   const suit = SUITS[c.group];
-  const subtitle = c.group === "major" ? `Arcano Mayor · ${c.roman}` : suit.label;
+  const subtitle = c.group === "major"
+    ? `${t("sheet.majorArcanum")} · ${c.roman}`
+    : t("suit." + c.group);
+  const sub2 = deckCardName(c); // nombre del ser del mazo (Yōkai); null en RWS/pura
   const kw = pickList(c, "keywords");
   const idx = ctx.listIds.indexOf(c.id);
   const hasPrev = idx > 0, hasNext = idx >= 0 && idx < ctx.listIds.length - 1;
@@ -73,25 +76,24 @@ function render(c) {
       <div class="accentbar"></div>
       <div class="heads">
         <div class="num">${esc(subtitle)}</div>
-        <h2>${esc(c.en)}</h2>
-        <div class="es-name">${esc(c.es)}</div>
+        <h2>${esc(cardName(c))}</h2>
+        ${sub2 ? `<div class="es-name">${esc(sub2)}</div>` : ""}
       </div>
       <div class="mark">${esc(cardMark(c))}</div>
-      <button class="close" aria-label="Cerrar" data-close>✕</button>
+      <button class="close" aria-label="${esc(t("sheet.close"))}" data-close>✕</button>
     </div>
     <div class="sheet-body">
       <div class="field">
-        <div class="flabel">Palabras clave</div>
+        <div class="flabel">${esc(t("sheet.keywords"))}</div>
         <div class="kw">${kw.primary.map((k) => `<span>${esc(k)}</span>`).join("")}</div>
-        ${kw.secondary.length ? `<div class="kw en">${kw.secondary.map((k) => `<span>${esc(k)}</span>`).join("")}</div>` : ""}
       </div>
-      ${field("Energía pura", pick(c, "energy"))}
-      ${field("Sombra · lectura invertida", pick(c, "shadow"), "italic")}
+      ${field(t("sheet.energy"), pick(c, "energy"))}
+      ${field(t("sheet.shadow"), pick(c, "shadow"), "italic")}
       ${deckLayerHTML(c)}
     </div>
     <div class="sheet-nav">
-      <button data-nav="prev" ${hasPrev ? "" : "disabled"}>← Anterior</button>
-      <button data-nav="next" ${hasNext ? "" : "disabled"}>Siguiente →</button>
+      <button data-nav="prev" ${hasPrev ? "" : "disabled"}>${esc(t("sheet.prev"))}</button>
+      <button data-nav="next" ${hasNext ? "" : "disabled"}>${esc(t("sheet.next"))}</button>
     </div>`;
 
   sheet.querySelectorAll("[data-close]").forEach((b) =>
