@@ -124,6 +124,9 @@ async function setDeck(deckId) {
     state.deckId = null;
   }
   setContext({ deckData: state.deckData });
+  // Matiz visual del mazo: el tema del JSON (p. ej. "rws") engancha css/themes/<tema>.css
+  // vía :root[data-deck="..."]. Energía pura (sin mazo) limpia el atributo → tema base.
+  document.documentElement.dataset.deck = state.deckData?.theme || "";
   // propagar el mazo activo a la tirada "Conoce tu mazo"
   setSpreadDeck({ id: state.deckId, name: state.deckData?.name || deckLabel(state.deckId) });
   // refrescar la etiqueta del botón de mazo en Arcanos

@@ -14,11 +14,13 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<!-- CSS modular (tokens -> layout -> componentes -> tema base) -->
+<!-- CSS modular (tokens -> layout -> componentes -> tema base -> temas de mazo) -->
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/themes/base.css">
+<!-- Tema de mazo: solo activo cuando :root[data-deck="rws"] (lo pone setDeck en app.js) -->
+<link rel="stylesheet" href="css/themes/rws.css">
 <!-- Anti-flash: aplica tema/idioma guardados antes de pintar -->
 <script>
   try {

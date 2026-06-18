@@ -1,0 +1,53 @@
+/* rws.css — matiz visual del mazo "Tarot Waite-Smith" (RWS Clásico 1909).
+   Se activa SOLO cuando el mazo RWS está activo: app.js pone data-deck="rws"
+   en <html> al seleccionarlo, y lo limpia al volver a energía pura.
+
+   El RWS clásico es grabado en blanco y negro de dominio público; el matiz
+   evoca una estampa antigua sobre pergamino: marco dorado/sepia, serif clásica.
+   Solo toca la CAPA DEL MAZO en el detail sheet — la energía pura conserva el
+   tema base. No recolorea el arte original (regla legal: imágenes B&N de 1909).
+
+   Funciona sobre tema oscuro y claro porque usa los tokens existentes
+   (--gold, --earth, --cream, --surface) y veladuras translúcidas. */
+
+:root[data-deck="rws"] {
+  /* acento propio de la capa del mazo: clásico cálido (vs. el bermellón Yōkai) */
+  --rws-accent: var(--gold);
+  --rws-wash:   rgba(201, 168, 106, .06); /* veladura pergamino sobre el panel */
+}
+
+/* Panel "matiz del mazo": leve wash cálido y filete dorado en vez de línea plana. */
+:root[data-deck="rws"] .deck-layer {
+  border-top-color: var(--rws-accent);
+  background:
+    linear-gradient(var(--rws-wash), var(--rws-wash));
+  margin: 0 -8px;
+  padding: 18px 8px 0;
+  border-radius: var(--radius-sm);
+}
+
+/* Etiqueta de capa con aire de portada clásica. */
+:root[data-deck="rws"] .layer-tag {
+  color: var(--rws-accent);
+  font-family: var(--serif);
+  letter-spacing: .16em;
+}
+
+/* Arte enmarcado como estampa antigua: filo cuadrado + doble línea dorada.
+   No se aplica filtro de color al <img>: el grabado B&N queda intacto. */
+:root[data-deck="rws"] .card-art {
+  border-radius: 4px;
+  border-color: var(--rws-accent);
+  box-shadow:
+    0 0 0 1px var(--rws-accent) inset,
+    0 6px 22px rgba(0, 0, 0, .35);
+}
+
+/* Fondo del placeholder / detrás del arte: papel envejecido, no púrpura base. */
+:root[data-deck="rws"] .card-art-ph,
+:root[data-deck="rws"] .card-art-img {
+  background: var(--surface);
+}
+:root[data-deck="rws"] .card-art-ph {
+  color: var(--earth);
+}

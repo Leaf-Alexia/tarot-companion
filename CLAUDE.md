@@ -367,7 +367,7 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 - [x] `css/layout.css` — header (incl. botón engrane), tabs, vistas
 - [x] `css/components.css` — cover, controles, chips, grid, cards, detail sheet, paneles, tiradas, numerología, "cómo usar", botón de mazo, deck picker, menú, arte de carta + placeholder
 - [x] `css/themes/base.css` — tema oscuro base
-- [ ] `css/themes/rws.css`
+- [x] `css/themes/rws.css` — matiz del mazo RWS (estampa clásica: marco dorado/sepia en la capa de mazo del sheet); se activa vía `:root[data-deck="rws"]` que pone `setDeck()` en `app.js`; no recolorea el arte B&N original
 
 #### JavaScript
 - [x] `js/router.js` — hash + tabs + deep link `#arcano/:id`
@@ -417,6 +417,11 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 - Menú de configuración (`settings.js`): mazo, idioma, tema claro/oscuro, tienda (placeholder), acerca de.
 - Tema claro/oscuro (tokens `:root[data-theme=light]` + script anti-flash + `meta theme-color`).
 - Placeholder "Imagen próximamente" en el sheet (capa de mazo), con `loading=lazy` + width/height.
+
+#### Sesión 2026-06-18 — Tema de mazo RWS (`css/themes/rws.css`)
+- **Completado:** Creado `css/themes/rws.css` (matiz visual del RWS, scope `:root[data-deck="rws"]`). Hook de tema de mazo en `app.js` → `setDeck()` pone/limpia `document.documentElement.dataset.deck = deckData.theme`. Enlazado `rws.css` en `index.html` tras `base.css`. `node --check js/app.js` OK.
+- **Decisiones:** El tema de mazo solo restila la **capa del mazo** del detail sheet (marco dorado/sepia, serif clásica, fondo pergamino del arte/placeholder); la energía pura conserva el tema base. NO se aplica filtro de color al `<img>` para respetar la regla de imágenes B&N originales de 1909. Usa tokens existentes → funciona en tema claro y oscuro. Mecanismo extensible: cualquier mazo nuevo con `theme` en su JSON solo necesita su `css/themes/<theme>.css` + `<link>`.
+- **Pendiente inmediato (roadmap):** bloqueado por contenido → imágenes RWS B&N (las aporta la usuaria), traducción `_es` (diferida hasta aprobar EN). SW (paso 10) sigue prematuro por constraint (contenido no estable). Prueba visual del lado de la usuaria + commit.
 
 #### Sesión 2026-06-18 — i18n de toda la app (perdido y REHECHO)
 - **Completado:** Infraestructura i18n (`js/strings.js` con `UI.es/UI.en`, `t()` en `i18n.js`); chrome migrado a `t()` en todos los módulos; prosa bilingüe co-localizada en Cómo usar / Numerología / Tiradas. Identidad de carta en un solo idioma (`cardName`, glifo localizado); 2ª línea = nombre del ser del mazo (Yōkai → `yokai_name`) o vacío (RWS/pura). `applyLanguage()` re-render preservando filtro/búsqueda de Arcanos. Toggle ES/EN cambia TODA la app. Verificado: `node --check` OK en 10 módulos, paridad de claves ES/EN 58/58.
