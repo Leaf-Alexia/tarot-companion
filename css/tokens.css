@@ -1,62 +1,75 @@
 /* tokens.css — variables de diseño (colores, tipografía, espaciado).
-   Fuentes con fallback de sistema: nada se carga por CDN (regla offline). */
+   Paleta v2: "ciruela ahumada" (oscuro) y "velo lavanda" (claro).
+   Fuentes auto-hospedadas en css/fonts.css (regla offline: nada por CDN).
+   Los NOMBRES de variables se conservan respecto a v1, así los componentes
+   heredan el re-skin sin tocarlos. */
 :root {
-  --ink:         #0d0b10;
-  --ink-2:       #16121c;
-  --ink-3:       #1f1928;
-  --surface:     #1a1022;
-  --cream:       #e8e0d0;
-  --muted:       #8a7f98;
-  --muted-2:     #5a5268;
-  --line:        rgba(255,255,255,.08);
-  --line-strong: rgba(255,255,255,.14);
-  --gold:        #c9a86a;
-  --vermilion:   #ce4e75;
-  --vermilion-2: #e8688a;
-  --earth:       #9c7b4e;
-  --serif:       'Yuji Syuku', Georgia, serif;
-  --sans:        'Zen Kaku Gothic New', system-ui, sans-serif;
-  --story:       'Klee One', Georgia, serif;
-  --accent:      var(--gold); /* override por JS según grupo de carta */
+  --ink:         #1C1430;  /* fondo base de la app */
+  --ink-2:       #241A3C;  /* superficies / cards */
+  --ink-3:       #2A2046;  /* superficies elevadas / sheets */
+  --surface:     #2A2046;  /* hojas / modales */
+  --cream:       #F4EFFB;  /* texto principal */
+  --muted:       #AE9CC0;
+  --muted-2:     #8579A0;
+  --line:        rgba(224,192,121,.16);   /* líneas con tinte oro */
+  --line-strong: rgba(224,192,121,.32);
+  --gold:        #E0C079;
+  --vermilion:   #C8AEE8;  /* acento secundario (lavanda en oscuro) */
+  --vermilion-2: #D8C2EE;
+  --earth:       #C8A86a;
+
+  --serif: 'Spectral', Georgia, serif;
+  --sans:  'Mulish', system-ui, -apple-system, sans-serif;
+  --story: 'Spectral', Georgia, serif;
+  --cjk:   'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', 'Meiryo', serif;
+  --accent: var(--gold); /* override por JS/clase según grupo de carta */
+  --on-accent: #1C1430;  /* texto legible sobre fondos de acento (oro) */
+
+  /* halo radial superior (decoración de fondo) */
+  --halo: radial-gradient(125% 46% at 50% -4%, rgba(224,192,121,.16), transparent 60%);
 
   /* espaciado y radios */
   --gap:   16px;
   --pad:   20px;
   --bar-h: 56px;
-  --radius:    14px;
-  --radius-sm: 10px;
+  --nav-h: 62px;
+  --radius:    16px;
+  --radius-sm: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
 }
 
-/* Tema claro: sobrescribe solo los tokens de superficie/texto/líneas.
-   Los nombres se conservan (p. ej. --cream sigue siendo "color de texto"),
-   así ningún componente necesita cambios; todo hereda por custom properties.
-   Acentos algo más oscuros para contraste AA sobre fondo claro. */
+/* Tema claro: sobrescribe los tokens de superficie/texto/líneas/acentos.
+   Contraste reforzado (cards en blanco puro sobre fondo lavanda) para que
+   los colores no se "laven" como pasaba con el pergamino anterior. */
 :root[data-theme="light"] {
-  --ink:         #f4eee2;  /* fondo base (pergamino) */
-  --ink-2:       #ece4d4;  /* superficies elevadas */
-  --ink-3:       #e2d8c4;
-  --surface:     #faf6ee;  /* hojas / modales */
-  --cream:       #2a2330;  /* texto principal (oscuro) */
-  --muted:       #6b6275;
-  --muted-2:     #8c8498;
-  --line:        rgba(0,0,0,.10);
-  --line-strong: rgba(0,0,0,.16);
-  --gold:        #a8843f;
-  --vermilion:   #c0395f;
-  --vermilion-2: #a82f52;
-  --earth:       #8a6a3e;
+  --ink:         #F3F0F5;  /* fondo base */
+  --ink-2:       #FFFFFF;  /* superficies / cards */
+  --ink-3:       #F7F4FA;
+  --surface:     #FBF9FC;  /* hojas / modales */
+  --cream:       #2A2433;  /* texto principal (oscuro) */
+  --muted:       #8C8498;
+  --muted-2:     #A39CB0;
+  --line:        rgba(168,130,58,.18);
+  --line-strong: rgba(168,130,58,.34);
+  --gold:        #A8823A;
+  --vermilion:   #6B4F92;  /* acento secundario (morado en claro) */
+  --vermilion-2: #5E54A0;
+  --earth:       #8A6A3E;
+  --on-accent:   #ffffff;
+  --halo: radial-gradient(125% 46% at 50% -4%, rgba(120,90,150,.10), transparent 60%);
 }
 
-/* Acento por grupo de arcano (la carta o la vista activa lo aplica) */
-.group-cups   { --accent: #6ab4ce; }
-.group-coins  { --accent: #c9a86a; }
-.group-wands  { --accent: #ce7a4e; }
-.group-swords { --accent: #9c8ece; }
-.group-major  { --accent: #ce4e75; }
+/* Acento por grupo de arcano (la carta o la vista activa lo aplica) — modo oscuro */
+.group-major  { --accent: #C8AEE8; }  /* lavanda */
+.group-cups   { --accent: #6FA8C0; }  /* aguamarina ahumada */
+.group-coins  { --accent: #E0C079; }  /* oro */
+.group-wands  { --accent: #D08A5A; }  /* ámbar-terracota */
+.group-swords { --accent: #9B8FD0; }  /* periwinkle */
 
-/* Acentos por grupo, ajustados para contraste sobre tema claro */
-:root[data-theme="light"] .group-cups   { --accent: #2f86a3; }
-:root[data-theme="light"] .group-coins  { --accent: #9a7b34; }
-:root[data-theme="light"] .group-wands  { --accent: #b85a2b; }
-:root[data-theme="light"] .group-swords { --accent: #6a5aa8; }
-:root[data-theme="light"] .group-major  { --accent: #c0395f; }
+/* Acentos por grupo, reforzados para contraste sobre tema claro */
+:root[data-theme="light"] .group-major  { --accent: #6B4F92; }
+:root[data-theme="light"] .group-cups   { --accent: #2F7C92; }
+:root[data-theme="light"] .group-coins  { --accent: #A8823A; }
+:root[data-theme="light"] .group-wands  { --accent: #B5642F; }
+:root[data-theme="light"] .group-swords { --accent: #5E54A0; }

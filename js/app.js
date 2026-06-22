@@ -1,17 +1,22 @@
-/* app.js — punto de entrada. Carga datos, arma Inicio + Arcanos y conecta router + sheet. */
+/* app.js — punto de entrada. Carga datos, arma Inicio (hub) + Glosario·Arcanos
+   y conecta router + sheet + sub-pestañas segmentadas. */
 
 import {
   loadPure, loadDeck, loadDeckIndex, getPure, buildCard, cardMark, cardName, deckCardName, filterPure, SUITS, FILTERS,
 } from "./deck.js";
-import { getActiveDeckId, setActiveDeckId, getDailyId, getTheme } from "./store.js";
-import { initRouter, onArcano, onSheetClose } from "./router.js";
+import {
+  getActiveDeckId, setActiveDeckId, getDailyId, getTheme,
+  isDailyRevealed, setDailyRevealed,
+} from "./store.js";
+import { initRouter, onArcano, onSheetClose, onSub } from "./router.js";
 import { openSheet, closeSheet, setContext, refresh as refreshSheet } from "./sheet.js";
 import { initTiradas, setSpreadDeck } from "./spreads.js";
 import { initNumerologia } from "./numerology.js";
 import { initUso } from "./uso.js";
 import { initDeckPicker, openDeckPicker } from "./decks-ui.js";
 import { initSettings, open as openSettings, applyTheme } from "./settings.js";
-import { onLangChange, t } from "./i18n.js";
+import { onLangChange, t, pick, pickList, getLang } from "./i18n.js";
+import { moonPhase } from "./moon.js";
 
 // Mazos disponibles. La "energía pura" (id null) es la opción sin mazo y siempre
 // está. El resto se carga del registro data/decks/index.json en init().
@@ -25,19 +30,110 @@ const state = { group: "all", query: "", deckId: null, deckData: null };
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-/* ---------- Inicio ---------- */
+/* Sub-vistas dentro de cada destino segmentado. */
+const SUBS = { glosario: ["arcanos", "numerologia"], tiradas: ["uso", "spreads"] };
+
+/* ---------- Inicio · hub explorador ---------- */
+function greeting() {
+  const h = new Date().getHours();
+  if (h < 6 || h >= 20) return t("home.greet.evening");
+  if (h < 13) return t("home.greet.morning");
+  return t("home.greet.afternoon");
+}
+
+/* Tarjeta de la carta del día: oculta (CTA revelar) o revelada (abre el sheet). */
+function dailyCardHTML() {
+  const revealed = isDailyRevealed();
+  if (!revealed) {
+    return `
+      <div class="daily">
+        <div class="daily-kicker"><span class="rule-l"></span><span class="diamond"></span>
+          ${esc(t("home.dailyKicker"))}<span class="diamond"></span><span class="rule-r"></span></div>
+        <div class="daily-hidden">
+          <div class="medallion blank" aria-hidden="true">?</div>
+          <p>${esc(t("home.dailyHidden"))}</p>
+        </div>
+        <button class="reveal" id="revealDaily">${esc(t("home.dailyReveal"))}</button>
+      </div>`;
+  }
+  const id = getDailyId(getPure().map((c) => c.id));
+  const c = buildCard(id, state.deckData);
+  // Subtítulo: nombre del ser del mazo (Yōkai) o, si no hay, dos palabras clave.
+  const sub = deckCardName(c) || pickList(c, "keywords").primary.slice(0, 2).join(" · ");
+  const snippet = (pick(c, "energy") || "").split(/(?<=[.。])\s/)[0];
+  return `
+    <button class="daily revealed ${SUITS[c.group].groupClass}" id="dailyOpen"
+            data-id="${esc(id)}" aria-label="${esc(t("home.dailyOpen"))}: ${esc(cardName(c))}">
+      <div class="daily-kicker"><span class="rule-l"></span><span class="diamond"></span>
+        ${esc(t("home.dailyKicker"))}<span class="diamond"></span><span class="rule-r"></span></div>
+      <div class="daily-card">
+        <div class="medallion">${esc(cardMark(c))}</div>
+        <div class="daily-id">
+          <div class="daily-name">${esc(cardName(c))}</div>
+          ${sub ? `<div class="daily-sub">${esc(sub)}</div>` : ""}
+        </div>
+      </div>
+      <p class="daily-snippet">${esc(snippet)}</p>
+    </button>`;
+}
+
+function renderDaily() {
+  const slot = document.getElementById("dailySlot");
+  if (!slot) return;
+  slot.innerHTML = dailyCardHTML();
+  const rev = slot.querySelector("#revealDaily");
+  if (rev) rev.addEventListener("click", () => { setDailyRevealed(); renderDaily(); });
+  const open = slot.querySelector("#dailyOpen");
+  if (open) open.addEventListener("click", () => {
+    setContext({ listIds: getPure().map((c) => c.id) });
+    openSheet(open.dataset.id);
+  });
+}
+
 function renderInicio() {
   const el = document.getElementById("view-inicio");
+  const moon = moonPhase(new Date(), getLang());
   el.innerHTML = `
-    <div class="cover">
-      <p class="kicker">${esc(t("cover.kicker"))}</p>
-      <h1>Tarot<br>Companion</h1>
-      <p class="sub">${esc(t("cover.sub"))}</p>
-      <div class="rule"></div>
-      <button class="enter" data-go="arcanos">${esc(t("cover.cta"))}</button>
+    <div class="home">
+      <p class="home-greet">${esc(greeting())}</p>
+      <h1 class="home-headline">${esc(t("home.headline"))}</h1>
+      <div class="moon"><span class="moon-glyph">${moon.glyph}</span><span class="moon-name">${esc(moon.name)}</span></div>
+
+      <div id="dailySlot"></div>
+
+      <button class="home-discover" data-go="discover">
+        <span class="hd-text"><span class="hd-title">${esc(t("home.discover"))}</span>
+          <span class="hd-sub">${esc(t("home.discoverSub"))}</span></span>
+        <span class="hd-glyph">✦</span>
+      </button>
+
+      <div class="home-grid">
+        <button class="home-tile" data-go="glosario/arcanos">
+          <span class="ht-top"><span class="diamond"></span><span class="ht-arrow">→</span></span>
+          <span class="ht-title">${esc(t("home.glosarioCard"))}</span>
+          <span class="ht-sub">${esc(t("home.glosarioSub"))}</span>
+        </button>
+        <button class="home-tile" data-go="tiradas/spreads">
+          <span class="ht-top"><span class="diamond"></span><span class="ht-arrow">→</span></span>
+          <span class="ht-title">${esc(t("home.tiradasCard"))}</span>
+          <span class="ht-sub">${esc(t("home.tiradasSub"))}</span>
+        </button>
+      </div>
     </div>`;
 
-  el.querySelector("[data-go]").addEventListener("click", () => { location.hash = "arcanos"; });
+  renderDaily();
+  el.querySelectorAll("[data-go]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const go = b.dataset.go;
+      if (go === "discover") {
+        const ids = getPure().map((c) => c.id);
+        setContext({ listIds: ids });
+        openSheet(ids[Math.floor(Math.random() * ids.length)]);
+        return;
+      }
+      location.hash = go;
+    })
+  );
 }
 
 /* ---------- Arcanos: controles (una vez) ---------- */
@@ -58,7 +154,6 @@ function renderArcanosShell() {
         ${FILTERS.map((f) =>
           `<button class="chip ${f.g === "all" ? "active" : ""}" data-g="${f.g}">${esc(t("filter." + f.g))}</button>`
         ).join("")}
-        <button class="chip day" id="dayBtn" title="${esc(t("arcanos.dayTitle"))}">${esc(t("arcanos.day"))}</button>
       </div>
     </div>
     <div class="count" id="count"></div>
@@ -67,11 +162,6 @@ function renderArcanosShell() {
   el.querySelector("#chips").addEventListener("click", (e) => {
     const b = e.target.closest(".chip");
     if (!b) return;
-    if (b.id === "dayBtn") {
-      const id = getDailyId(getPure().map((c) => c.id));
-      if (id) openSheet(id);
-      return;
-    }
     state.group = b.dataset.g;
     el.querySelectorAll(".chip[data-g]").forEach((x) => x.classList.toggle("active", x === b));
     renderGrid();
@@ -133,12 +223,41 @@ async function setDeck(deckId) {
   const nameEl = document.getElementById("deckBtnName");
   if (nameEl) nameEl.textContent = deckLabel(state.deckId);
   if (document.getElementById("grid")) renderGrid();
+  renderDaily(); // la carta del día puede mostrar el ser del mazo activo
 }
 
-/* Etiquetas del chrome del header (tabs + aria del engrane) según idioma. */
+/* ---------- Sub-pestañas segmentadas (Glosario, Tiradas) ---------- */
+function showSub(view, sub) {
+  const list = SUBS[view];
+  if (!list || !list.includes(sub)) return;
+  list.forEach((s) =>
+    document.getElementById("view-" + s).classList.toggle("active", s === sub)
+  );
+  const segId = view === "glosario" ? "segGlosario" : "segTiradas";
+  document.querySelectorAll("#" + segId + " button").forEach((b) => {
+    const on = b.dataset.sub === sub;
+    b.classList.toggle("active", on);
+    b.setAttribute("aria-selected", on ? "true" : "false");
+  });
+}
+
+function initSegTabs() {
+  [["segGlosario", "glosario"], ["segTiradas", "tiradas"]].forEach(([id, view]) => {
+    document.getElementById(id).addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-sub]");
+      if (b) location.hash = view + "/" + b.dataset.sub;
+    });
+  });
+}
+
+/* Etiquetas del chrome (barra inferior + sub-pestañas + aria del engrane) según idioma. */
 function setChromeLabels() {
-  document.querySelectorAll("#tabs button").forEach((b) => {
-    b.textContent = t("tab." + b.dataset.view);
+  document.querySelectorAll("#nav button").forEach((b) => {
+    const lbl = b.querySelector(".bn-lbl");
+    if (lbl) lbl.textContent = t("tab." + b.dataset.view);
+  });
+  document.querySelectorAll(".seg-tabs button[data-sub]").forEach((b) => {
+    b.textContent = t("seg." + b.dataset.sub);
   });
   const mb = document.getElementById("menuBtn");
   if (mb) mb.setAttribute("aria-label", t("menu.settingsAria"));
@@ -155,9 +274,13 @@ function refreshArcanos() {
   renderGrid();
 }
 
-/* Cambio de idioma: re-render de todo el chrome y las vistas. La vista activa
-   no cambia (el router gestiona .active aparte; aquí solo se repinta el contenido). */
+/* Cambio de idioma: re-render de todo el chrome y las vistas, preservando
+   qué sub-vista estaba activa en cada destino segmentado. */
 function applyLanguage() {
+  const activeSub = {};
+  for (const [view, list] of Object.entries(SUBS)) {
+    activeSub[view] = list.find((s) => document.getElementById("view-" + s).classList.contains("active")) || list[0];
+  }
   setChromeLabels();
   renderInicio();
   refreshArcanos();
@@ -165,6 +288,7 @@ function applyLanguage() {
   initTiradas();
   initNumerologia();
   refreshSheet();
+  for (const [view, sub] of Object.entries(activeSub)) showSub(view, sub);
 }
 
 /* ---------- Init ---------- */
@@ -201,6 +325,7 @@ async function init() {
   onLangChange(() => applyLanguage());
 
   setChromeLabels();
+  initSegTabs();
   renderInicio();
   renderArcanosShell();
   initUso();
@@ -214,8 +339,10 @@ async function init() {
 
   renderGrid();
 
-  onArcano((id) => openSheet(id));
+  // deep link a carta: asegura Glosario · Arcanos antes de abrir el sheet
+  onArcano((id) => { showSub("glosario", "arcanos"); openSheet(id); });
   onSheetClose(() => closeSheet());
+  onSub((view, sub) => showSub(view, sub));
   initRouter();
 }
 

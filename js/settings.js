@@ -14,7 +14,7 @@ let cfg = { getActiveDeckName: () => "Energía pura" };
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-const META_COLOR = { dark: "#0d0b10", light: "#faf6ee" };
+const META_COLOR = { dark: "#1C1430", light: "#F3F0F5" };
 
 /* Aplica el tema al documento (data-theme + meta theme-color) y lo persiste. */
 export function applyTheme(theme) {

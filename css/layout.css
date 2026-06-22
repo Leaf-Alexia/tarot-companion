@@ -1,11 +1,11 @@
-/* layout.css — estructura: header, nav/tabs, contenedor de vistas. Mobile-first. */
+/* layout.css — estructura: header, barra inferior, contenedor de vistas. Mobile-first. */
 
-/* ---- Header / barra superior ---- */
+/* ---- Header / barra superior (solo marca + engrane) ---- */
 .bar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--ink) 88%, transparent);
+  background: color-mix(in srgb, var(--ink) 86%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
   padding-top: env(safe-area-inset-top);
@@ -13,66 +13,98 @@
 .bar-inner {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--gap);
   min-height: var(--bar-h);
   padding: 0 var(--pad);
   max-width: 1040px;
   margin: 0 auto;
 }
-.brand { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
-.brand b { font-family: var(--serif); letter-spacing: .18em; font-size: 15px; }
-.brand span { color: var(--muted); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; }
-
-/* ---- Tabs de navegación ---- */
-.tabs {
-  display: flex;
-  gap: 2px;
-  margin-left: auto;
-  overflow-x: auto;
-  scrollbar-width: none;
+.brand {
+  font-family: var(--serif);
+  font-size: 19px;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  color: var(--cream);
 }
-.tabs::-webkit-scrollbar { display: none; }
-.tabs button {
-  flex: 0 0 auto;
-  background: none;
-  border: 0;
-  color: var(--muted);
-  font: inherit;
-  font-size: 13px;
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: color .15s, background .15s;
-}
-.tabs button:hover { color: var(--cream); }
-.tabs button.active { color: var(--ink); background: var(--accent); }
+.brand span { color: var(--vermilion); }
 
 /* ---- Botón de configuración (engrane) ---- */
 .menu-btn {
   flex: 0 0 auto;
   background: none;
-  border: 0;
-  color: var(--muted);
-  padding: 8px;
-  margin-left: 4px;
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--gold);
+  width: 36px; height: 36px;
+  border-radius: 50%;
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: color .15s, background .15s;
+  transition: border-color .15s, background .15s;
 }
-.menu-btn:hover { color: var(--cream); }
+.menu-btn:hover { background: color-mix(in srgb, var(--gold) 12%, transparent); }
 .menu-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+/* ---- Barra de navegación inferior ---- */
+.botnav {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px 8px calc(8px + env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--ink) 92%, transparent);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+}
+.botnav button {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: .02em;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color .15s;
+}
+.botnav button .bn-ico {
+  width: 7px; height: 7px;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+  transition: background .15s, border-color .15s;
+}
+.botnav button:hover { color: var(--cream); }
+.botnav button.active { color: var(--gold); font-weight: 700; }
+.botnav button.active .bn-ico { background: var(--gold); border-color: var(--gold); }
+.botnav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
 /* ---- Contenedor de vistas ---- */
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 var(--pad); }
-.view { display: none; padding: 28px 0 64px; }
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  padding-bottom: calc(var(--nav-h) + 32px + env(safe-area-inset-bottom));
+}
+.view { display: none; padding: 22px 0 16px; }
 .view.active { display: block; animation: fade .2s ease; }
+
+/* Sub-vistas dentro de un destino segmentado (Glosario, Tiradas) */
+.subview { display: none; }
+.subview.active { display: block; animation: fade .2s ease; }
 
 @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* breakpoints: 480 / 768 / 1040 */
 @media (min-width: 768px) {
-  .brand b { font-size: 16px; }
-  .tabs button { font-size: 14px; padding: 9px 14px; }
+  .brand { font-size: 21px; }
+  .botnav { gap: 8px; }
+  .botnav button { flex-direction: row; font-size: 13px; gap: 9px; }
 }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Tarot Companion</title>
 <meta name="description" content="Guía de referencia de tarot sin conexión: energía pura de los 78 arcanos, tiradas y numerología.">
-<meta name="theme-color" content="#0d0b10">
+<meta name="theme-color" content="#1C1430">
 <meta name="color-scheme" content="dark">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,7 +14,8 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<!-- CSS modular (tokens -> layout -> componentes -> tema base -> temas de mazo) -->
+<!-- CSS modular (fuentes -> tokens -> layout -> componentes -> tema base -> temas de mazo) -->
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
@@ -28,7 +29,7 @@
     document.documentElement.dataset.theme = t;
     document.documentElement.lang = localStorage.getItem("tc-lang") || "es";
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.content = t === "light" ? "#faf6ee" : "#0d0b10";
+    if (m) m.content = t === "light" ? "#F3F0F5" : "#1C1430";
   } catch (e) { /* sin storage: queda el tema oscuro por defecto */ }
 </script>
 </head>
@@ -36,28 +37,49 @@
 
 <header class="bar">
   <div class="bar-inner">
-    <a class="brand" href="#inicio"><b>TAROT</b><span>Companion</span></a>
-    <nav class="tabs" id="tabs" aria-label="Secciones">
-      <button data-view="inicio" class="active">Inicio</button>
-      <button data-view="uso">Cómo usar</button>
-      <button data-view="tiradas">Tiradas</button>
-      <button data-view="arcanos">Arcanos</button>
-      <button data-view="numerologia">Numerología</button>
-    </nav>
+    <a class="brand" href="#inicio">Tarot <span>Companion</span></a>
     <button class="menu-btn" id="menuBtn" aria-label="Configuración" title="Configuración">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </button>
   </div>
 </header>
 
-<!-- Shell mínima: contenedores vacíos que los módulos JS poblarán -->
+<!-- Shell mínima: contenedores vacíos que los módulos JS poblarán.
+     IA de 3 destinos: Inicio · Glosario (Arcanos+Números) · Tiradas (Cómo leer+Tiradas). -->
 <main class="wrap">
   <section class="view active" id="view-inicio" aria-label="Inicio"></section>
-  <section class="view" id="view-uso" aria-label="Cómo usar el tarot"></section>
-  <section class="view" id="view-tiradas" aria-label="Tiradas"></section>
-  <section class="view" id="view-arcanos" aria-label="Arcanos"></section>
-  <section class="view" id="view-numerologia" aria-label="Numerología"></section>
+
+  <section class="view" id="view-glosario" aria-label="Glosario">
+    <div class="seg-tabs" id="segGlosario" role="tablist" aria-label="Glosario">
+      <button data-sub="arcanos" class="active" role="tab">Arcanos</button>
+      <button data-sub="numerologia" role="tab">Números</button>
+    </div>
+    <div class="subview active" id="view-arcanos" role="tabpanel" aria-label="Arcanos"></div>
+    <div class="subview" id="view-numerologia" role="tabpanel" aria-label="Numerología"></div>
+  </section>
+
+  <section class="view" id="view-tiradas" aria-label="Tiradas">
+    <div class="seg-tabs" id="segTiradas" role="tablist" aria-label="Tiradas">
+      <button data-sub="uso" class="active" role="tab">Cómo leer</button>
+      <button data-sub="spreads" role="tab">Tiradas</button>
+    </div>
+    <div class="subview active" id="view-uso" role="tabpanel" aria-label="Cómo leer"></div>
+    <div class="subview" id="view-spreads" role="tabpanel" aria-label="Tiradas"></div>
+  </section>
 </main>
+
+<!-- Navegación inferior (estilo app móvil): tres destinos -->
+<nav class="botnav" id="nav" aria-label="Secciones">
+  <button data-view="inicio" class="active" aria-current="page">
+    <span class="bn-ico" aria-hidden="true"></span><span class="bn-lbl">Inicio</span>
+  </button>
+  <button data-view="glosario">
+    <span class="bn-ico" aria-hidden="true"></span><span class="bn-lbl">Glosario</span>
+  </button>
+  <button data-view="tiradas">
+    <span class="bn-ico" aria-hidden="true"></span><span class="bn-lbl">Tiradas</span>
+  </button>
+</nav>
 
 <!-- Detail sheet (lo poblará sheet.js) -->
 <div class="overlay" id="overlay" aria-hidden="true">

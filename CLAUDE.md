@@ -339,9 +339,9 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 
 ## Estado del proyecto
 
-**Última actualización:** 2026-06-18
+**Última actualización:** 2026-06-22
 **Fase actual:** Fase 1 — MVP
-**Paso actual del roadmap:** Pasos 1–9 + **i18n de toda la app** hechos en disco (commit V3 + cambios sin commitear): datos EN, 5 vistas, menú de configuración, dos mazos activos, tema claro/oscuro, idioma ES/EN que cambia TODA la app, nombre de carta en un solo idioma con subtítulo del ser del mazo. Siguiente: traducir contenido `_es`, imágenes RWS, `css/themes/rws.css`, SW (10), Lighthouse (11).
+**Paso actual del roadmap:** Pasos 1–9 + i18n + **rediseño visual v2 "ciruela ahumada / velo lavanda"** (mockups de `testing mockups/`). IA reestructurada a **3 destinos** con barra inferior: Inicio (hub) · Glosario (Arcanos+Números) · Tiradas (Cómo leer+Tiradas). Tipografías Spectral+Mulish auto-hospedadas (offline). Inicio = hub explorador (saludo por hora + fase lunar offline + carta del día revelar-y-fijar + "descubre un arcano" + accesos). Siguiente: traducir contenido `_es`, imágenes RWS, SW (10), Lighthouse (11).
 
 > Nota: `CLAUDE.md` no está trackeado en git; reconstruido el 2026-06-18 desde contexto. El trabajo de i18n se había perdido en un reset y se **rehízo** el mismo día (ver log). ⚠️ Recordatorio: commitear pronto para no volver a perder cambios sin trackear.
 
@@ -404,6 +404,16 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 ---
 
 ### Log de sesiones
+
+#### Sesión 2026-06-22 — Rediseño visual v2 + IA de 3 destinos (mockups)
+- **Completado:** Implementado el rediseño de `testing mockups/` (8 pantallas oscuro/claro).
+  - **Sistema visual:** `tokens.css` reescrito con paleta "ciruela ahumada" (oscuro) y "velo lavanda" (claro, contraste reforzado: cards en blanco puro sobre fondo lavanda → resuelve el "se lava" del claro anterior). Acentos de palo afinados (Mayores lavanda · Copas aguamarina · Oros oro · Bastos terracota · Espadas periwinkle, en ambos temas). Nuevo token `--on-accent` (texto legible sobre dorado, arregla contraste latente en claro). Radios mayores (`--radius-lg/-xl`), halo radial de fondo en `base.css`.
+  - **Tipografías:** Spectral (serif) + Mulish (sans) **auto-hospedadas** vía `scripts/fetch-fonts.mjs` → `assets/fonts/` (16 woff2, subsets latin + latin-ext para acentos y "ō") + `css/fonts.css`. Cumple offline (nada por CDN). Kanji con fallback CJK de sistema (token `--cjk`).
+  - **IA de 3 destinos:** barra **inferior** (`.botnav`, `#nav`) con Inicio · Glosario · Tiradas; header solo marca + engrane. `index.html` reestructurado: Glosario y Tiradas son `.view` con control segmentado (`.seg-tabs`) y dos `.subview` cada uno (Arcanos/Números, Cómo leer/Tiradas). `router.js` → 3 vistas + soporte de hash `vista/subvista` (`#glosario/numerologia`, `#tiradas/spreads`) + `onSub`. Enlaces internos de uso.js/spreads.js actualizados a los nuevos hashes.
+  - **Inicio = hub explorador (decisión de la usuaria, opción C):** `app.js` `renderInicio()` con saludo por franja horaria, **fase lunar** (`js/moon.js`, cálculo astronómico offline), **carta del día revelar-y-fijar** (no se asigna sola: se elige al tocar "Revelar" y queda fija el día; `store.js` `isDailyRevealed/setDailyRevealed`), tarjeta **"Descubre un arcano"** (aleatorio para quien no quiere "sacar" carta) y dos accesos (Glosario/Tiradas). El sheet recuerda la vista de origen (`returnHash`) y vuelve a ella al cerrar.
+  - **Verificado:** `node --check` en 13 módulos OK; paridad de claves ES/EN 75/75; los 16 woff2 referenciados existen; servidor local sirve `/`, CSS, JS, fuentes y JSON con 200.
+- **Decisiones:** (1) Inicio = híbrido explorador, no oráculo (carta opcional, no impuesta). (2) Carta del día se revela y se fija al día. (3) Extras: **fase lunar sí** (offline), **saludo personalizado no** (sin onboarding de nombre → saludo genérico por hora). (4) Fuentes auto-hospedadas, no CDN (regla offline). (5) Nombres de variables CSS conservados → el re-skin se propaga sin tocar componentes.
+- **Pendiente inmediato:** prueba **visual** en navegador del lado de la usuaria (oscuro/claro, las 3 pestañas, revelar carta, descubrir, deep-link de carta) + commit manual. Diferido: contenido `_es`, imágenes RWS B&N, SW (paso 10), Lighthouse (11). La portada-splash anterior podría reusarse como onboarding de primer arranque (sugerencia del mockup).
 
 #### Sesión 2026-06-17 — Capa pura EN + matiz RWS + vistas
 - Capa pura completada en inglés (22 Mayores + 56 Menores) vía scripts idempotentes.

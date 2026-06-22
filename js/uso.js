@@ -46,14 +46,14 @@ const CONTENT = {
     structure: {
       h: "Mayores y Menores",
       p: "Los <b>22 Arcanos Mayores</b> nombran las grandes fuerzas y temas de fondo de una etapa de la vida: marcan el hilo central de una lectura. Los <b>56 Arcanos Menores</b> hablan del día a día y se reparten en cuatro palos, cada uno ligado a un elemento y a un área de la vida.",
-      note: 'Dentro de cada palo, el <b>número</b> (As–10) marca la fase del ciclo y las <b>figuras</b> (Sota, Caballero, Reina, Rey) encarnan el elemento en distintas etapas de madurez. Encuentras el detalle en <a href="#numerologia">Numerología</a>.',
+      note: 'Dentro de cada palo, el <b>número</b> (As–10) marca la fase del ciclo y las <b>figuras</b> (Sota, Caballero, Reina, Rey) encarnan el elemento en distintas etapas de madurez. Encuentras el detalle en <a href="#glosario/numerologia">Números</a>.',
     },
     positions: {
       h: "Las posiciones de las cartas",
       p: [
         "En una tirada, <b>el lugar que ocupa una carta cambia su significado</b>. La misma carta no dice lo mismo en «pasado» que en «consejo». Antes de extraer, decide qué representa cada posición; así cada arcano responde a una pregunta concreta.",
         "Una carta puede salir <b>del derecho</b> (su energía fluye con claridad) o <b>invertida</b> (su sombra: la energía bloqueada, en exceso o vuelta hacia dentro). En cada lectura encontrarás ambas caras descritas.",
-        '¿Listo para probar? Empieza por la <a href="#tiradas">Carta del día</a> o explora los <a href="#arcanos">78 arcanos</a>.',
+        '¿Listo para probar? Empieza por la <a href="#tiradas/spreads">Carta del día</a> o explora los <a href="#glosario/arcanos">78 arcanos</a>.',
       ],
     },
   },
@@ -80,14 +80,14 @@ const CONTENT = {
     structure: {
       h: "Major and Minor",
       p: "The <b>22 Major Arcana</b> name the great forces and underlying themes of a chapter of life: they trace the central thread of a reading. The <b>56 Minor Arcana</b> speak to daily life and split into four suits, each tied to an element and an area of life.",
-      note: 'Within each suit, the <b>number</b> (Ace–10) marks the phase of the cycle and the <b>court figures</b> (Page, Knight, Queen, King) embody the element at different stages of maturity. Find the detail in <a href="#numerologia">Numerology</a>.',
+      note: 'Within each suit, the <b>number</b> (Ace–10) marks the phase of the cycle and the <b>court figures</b> (Page, Knight, Queen, King) embody the element at different stages of maturity. Find the detail in <a href="#glosario/numerologia">Numbers</a>.',
     },
     positions: {
       h: "The positions of the cards",
       p: [
         "In a spread, <b>the place a card occupies changes its meaning</b>. The same card doesn't say the same thing in “past” as in “advice.” Before you draw, decide what each position represents; that way each arcanum answers a concrete question.",
         "A card can come up <b>upright</b> (its energy flows clearly) or <b>reversed</b> (its shadow: the energy blocked, in excess, or turned inward). In every reading you'll find both faces described.",
-        'Ready to try? Start with the <a href="#tiradas">Card of the day</a> or explore the <a href="#arcanos">78 arcana</a>.',
+        'Ready to try? Start with the <a href="#tiradas/spreads">Card of the day</a> or explore the <a href="#glosario/arcanos">78 arcana</a>.',
       ],
     },
   },

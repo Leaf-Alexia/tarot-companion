@@ -3,7 +3,7 @@
    Navegación prev/next dentro de la lista visible + teclado (flechas, Escape). */
 
 import { buildCard, SUITS, cardMark, cardName, deckCardName } from "./deck.js";
-import { writeHash } from "./router.js";
+import { writeHash, currentView } from "./router.js";
 import { pick, pickList, t } from "./i18n.js";
 
 const overlay = document.getElementById("overlay");
@@ -11,6 +11,7 @@ const sheet = document.getElementById("sheet");
 
 let ctx = { deckData: null, listIds: [] };
 let currentId = null;
+let returnHash = "glosario/arcanos"; // a dónde volver al cerrar (la vista de origen)
 
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -123,6 +124,11 @@ function onKey(e) {
 export function openSheet(arcanaId) {
   const c = buildCard(arcanaId, ctx.deckData);
   if (!c) return;
+  // Recuerda la vista de origen solo al abrir (no en prev/next con el sheet ya abierto).
+  if (!isOpen()) {
+    const h = decodeURIComponent(location.hash.slice(1));
+    returnHash = h && !/^arcano\//.test(h) ? h : currentView();
+  }
   currentId = arcanaId;
   render(c);
   overlay.classList.add("open");
@@ -146,7 +152,7 @@ export function closeSheet() {
   document.body.style.overflow = "";
   document.removeEventListener("keydown", onKey);
   currentId = null;
-  writeHash("arcanos");
+  writeHash(returnHash || "glosario/arcanos");
 }
 
 // Cerrar al tocar el scrim

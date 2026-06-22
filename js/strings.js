@@ -4,14 +4,35 @@
 
 export const UI = {
   es: {
-    // Tabs
+    // Navegación inferior (3 destinos)
     "tab.inicio": "Inicio",
-    "tab.uso": "Cómo usar",
+    "tab.glosario": "Glosario",
     "tab.tiradas": "Tiradas",
-    "tab.arcanos": "Arcanos",
-    "tab.numerologia": "Numerología",
 
-    // Inicio / cover
+    // Sub-pestañas segmentadas
+    "seg.arcanos": "Arcanos",
+    "seg.numerologia": "Números",
+    "seg.uso": "Cómo leer",
+    "seg.spreads": "Tiradas",
+
+    // Inicio · hub explorador
+    "home.greet.morning": "Buenos días",
+    "home.greet.afternoon": "Buenas tardes",
+    "home.greet.evening": "Buenas noches",
+    "home.headline": "Explora los arcanos a tu ritmo.",
+    "home.dailyKicker": "Carta del día",
+    "home.dailyHidden": "Una carta te espera para hoy.",
+    "home.dailyTapHint": "Toca para revelar",
+    "home.dailyReveal": "✦ Revelar la carta del día",
+    "home.dailyOpen": "Abrir lectura completa",
+    "home.discover": "Descubre un arcano",
+    "home.discoverSub": "Uno al azar, solo para aprender",
+    "home.glosarioCard": "Glosario",
+    "home.glosarioSub": "Los 78 arcanos y los números",
+    "home.tiradasCard": "Tiradas",
+    "home.tiradasSub": "Cómo leer y las tiradas",
+
+    // Inicio / cover (legado; aún usado por algunas claves)
     "cover.kicker": "Guía y acompañante de lectura",
     "cover.sub": "La energía pura de los 78 arcanos, y cómo cada mazo la matiza.",
     "cover.cta": "Consultar los arcanos →",
@@ -82,14 +103,35 @@ export const UI = {
   },
 
   en: {
-    // Tabs
+    // Bottom navigation (3 destinations)
     "tab.inicio": "Home",
-    "tab.uso": "How to use",
+    "tab.glosario": "Glossary",
     "tab.tiradas": "Spreads",
-    "tab.arcanos": "Arcana",
-    "tab.numerologia": "Numerology",
 
-    // Inicio / cover
+    // Segmented sub-tabs
+    "seg.arcanos": "Arcana",
+    "seg.numerologia": "Numbers",
+    "seg.uso": "How to read",
+    "seg.spreads": "Spreads",
+
+    // Home · explorer hub
+    "home.greet.morning": "Good morning",
+    "home.greet.afternoon": "Good afternoon",
+    "home.greet.evening": "Good evening",
+    "home.headline": "Explore the arcana at your own pace.",
+    "home.dailyKicker": "Card of the day",
+    "home.dailyHidden": "A card is waiting for you today.",
+    "home.dailyTapHint": "Tap to reveal",
+    "home.dailyReveal": "✦ Reveal the card of the day",
+    "home.dailyOpen": "Open full reading",
+    "home.discover": "Discover an arcanum",
+    "home.discoverSub": "A random one, just to learn",
+    "home.glosarioCard": "Glossary",
+    "home.glosarioSub": "The 78 arcana and the numbers",
+    "home.tiradasCard": "Spreads",
+    "home.tiradasSub": "How to read and the spreads",
+
+    // Home / cover (legacy; still used by some keys)
     "cover.kicker": "A guide and reading companion",
     "cover.sub": "The pure energy of the 78 arcana, and how each deck shades it.",
     "cover.cta": "Explore the arcana →",

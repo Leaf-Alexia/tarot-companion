@@ -3,8 +3,11 @@
 
 const K_DECK = "tc-active-deck";
 const K_DAILY = "tc-daily";
+const K_DAILY_SEEN = "tc-daily-seen";
 const K_LANG = "tc-lang";
 const K_THEME = "tc-theme";
+
+const todayStr = () => new Date().toLocaleDateString("sv"); // YYYY-MM-DD local
 
 export function getActiveDeckId() {
   try { return localStorage.getItem(K_DECK) || null; } catch { return null; }
@@ -36,7 +39,7 @@ export function setTheme(theme) {
 /* Carta del día: misma carta durante todo el día natural. Se persiste el id. */
 export function getDailyId(allIds) {
   if (!allIds.length) return null;
-  const today = new Date().toLocaleDateString("sv"); // YYYY-MM-DD local
+  const today = todayStr();
   let rec = null;
   try { rec = JSON.parse(localStorage.getItem(K_DAILY) || "null"); } catch { /* noop */ }
   if (!rec || rec.d !== today || !allIds.includes(rec.id)) {
@@ -44,4 +47,13 @@ export function getDailyId(allIds) {
     try { localStorage.setItem(K_DAILY, JSON.stringify(rec)); } catch { /* noop */ }
   }
   return rec.id;
+}
+
+/* ¿La usuaria ya reveló la carta de hoy? La carta no se asigna sola: se elige
+   al revelar (getDailyId) y queda fijada el resto del día. */
+export function isDailyRevealed() {
+  try { return localStorage.getItem(K_DAILY_SEEN) === todayStr(); } catch { return false; }
+}
+export function setDailyRevealed() {
+  try { localStorage.setItem(K_DAILY_SEEN, todayStr()); } catch { /* sin persistencia */ }
 }

@@ -77,7 +77,7 @@ const TXT = {
     mazoH: "Conoce tu mazo", mazoTag: "· 4 cartas",
     mazoP: "Construye el vínculo entre tú y el mazo: cuatro posiciones que describen su personalidad, lo que enseña y cómo quiere ser leído.",
     mazoBtnBase: "Conocer el mazo", mazoBtnNamed: (n) => `Conocer el ${n}`,
-    mazoNeeded: 'Activa un mazo en <a href="#inicio">Inicio</a> para esta tirada.',
+    mazoNeeded: 'Elige un mazo con el botón de mazo en <a href="#glosario/arcanos">Glosario</a> para esta tirada.',
     toriiH: "Spread Torii", toriiTag: "· 6 cartas · 鳥居",
     toriiP: "Con forma de torii, la puerta ceremonial sintoísta. Extrae seis cartas y léelas de <b>abajo hacia arriba</b>: no avances de capa hasta asentar la anterior.",
     toriiBtn: "Extraer seis cartas", positions: "Posiciones", open: "Abrir",
@@ -94,7 +94,7 @@ const TXT = {
     mazoH: "Know your deck", mazoTag: "· 4 cards",
     mazoP: "Build the bond between you and the deck: four positions that describe its personality, what it teaches, and how it wants to be read.",
     mazoBtnBase: "Know your deck", mazoBtnNamed: (n) => `Get to know ${n}`,
-    mazoNeeded: 'Activate a deck in <a href="#inicio">Home</a> for this spread.',
+    mazoNeeded: 'Choose a deck with the deck button in <a href="#glosario/arcanos">Glossary</a> for this spread.',
     toriiH: "Torii spread", toriiTag: "· 6 cards · 鳥居",
     toriiP: "Shaped like a torii, the Shinto ceremonial gate. Draw six cards and read them <b>from the bottom up</b>: don't move up a layer until the one below has settled.",
     toriiBtn: "Draw six cards", positions: "Positions", open: "Open",
@@ -301,7 +301,7 @@ function onTiradasClick(e) {
 
 /* ---------- API pública ---------- */
 export function initTiradas() {
-  const el = document.getElementById("view-tiradas");
+  const el = document.getElementById("view-spreads");
   el.innerHTML = viewHTML();
 
   renderThreeKeys();
