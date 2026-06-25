@@ -3,6 +3,7 @@
    Modular y escalable: añadir un mazo = soltar su JSON + entrada en index.json. */
 
 import { t } from "./i18n.js";
+import { lockScroll, unlockScroll } from "./scroll-lock.js";
 
 const overlay = document.getElementById("pickerOverlay");
 const sheet = document.getElementById("pickerSheet");
@@ -60,15 +61,16 @@ function render() {
 }
 
 export function openDeckPicker() {
+  const wasOpen = isOpen();
   render();
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+  if (!wasOpen) lockScroll();
 }
 
 export function close() {
   if (!isOpen()) return;
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
+  unlockScroll();
 }

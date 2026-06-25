@@ -5,6 +5,7 @@
 import { getTheme, setTheme } from "./store.js";
 import { getLang, setLang, t } from "./i18n.js";
 import { openDeckPicker } from "./decks-ui.js";
+import { lockScroll, unlockScroll } from "./scroll-lock.js";
 
 const overlay = document.getElementById("menuOverlay");
 const panel = document.getElementById("menuPanel");
@@ -105,15 +106,16 @@ export function initSettings(options) {
 }
 
 export function open() {
+  const wasOpen = isOpen();
   render();
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+  if (!wasOpen) lockScroll();
 }
 
 export function close() {
   if (!isOpen()) return;
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
+  unlockScroll();
 }

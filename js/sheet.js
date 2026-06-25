@@ -5,6 +5,7 @@
 import { buildCard, SUITS, cardMark, cardName, deckCardName } from "./deck.js";
 import { writeHash, currentView } from "./router.js";
 import { pick, pickList, t } from "./i18n.js";
+import { lockScroll, unlockScroll } from "./scroll-lock.js";
 
 const overlay = document.getElementById("overlay");
 const sheet = document.getElementById("sheet");
@@ -108,6 +109,14 @@ function render(c) {
 
   sheet.querySelector('[data-nav="prev"]').addEventListener("click", () => step(-1));
   sheet.querySelector('[data-nav="next"]').addEventListener("click", () => step(1));
+
+  // El #sheet no se recrea (solo su innerHTML), así que conserva el scrollTop del
+  // contenido anterior. Reiniciar al tope en cada render (nueva carta, prev/next o
+  // cambio de idioma) evita quedar "atascado" desplazado más allá del contenido nuevo.
+  // El reset síncrono no basta: el navegador restaura el scroll del botón pulsado
+  // (prev/next) tras el reflow, así que se reafirma en el siguiente frame.
+  sheet.scrollTop = 0;
+  requestAnimationFrame(() => { sheet.scrollTop = 0; });
 }
 
 function step(dir) {
@@ -131,11 +140,14 @@ export function openSheet(arcanaId) {
     const h = decodeURIComponent(location.hash.slice(1));
     returnHash = h && !/^arcano\//.test(h) ? h : currentView();
   }
+  const wasOpen = isOpen();
   currentId = arcanaId;
   render(c);
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+  // Solo bloquea en la transición cerrado→abierto; prev/next llaman openSheet con
+  // el sheet ya abierto y no deben incrementar el contador de bloqueo.
+  if (!wasOpen) lockScroll();
   document.addEventListener("keydown", onKey);
   writeHash("arcano/" + arcanaId);
 }
@@ -151,7 +163,7 @@ export function closeSheet() {
   if (!isOpen()) return;
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
+  unlockScroll();
   document.removeEventListener("keydown", onKey);
   currentId = null;
   writeHash(returnHash || "glosario/arcanos");

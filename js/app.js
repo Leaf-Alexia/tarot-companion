@@ -195,7 +195,11 @@ function renderGrid() {
       ${c.yokai_kanji ? `<div class="kanji">${esc(c.yokai_kanji)}</div>` : ""}
       <div class="nm">${esc(name)}</div>
       ${sub ? `<div class="nm-sub">${esc(sub)}</div>` : ""}`;
-    btn.addEventListener("click", () => openSheet(pure.id));
+    // Reafirma la lista de navegación del grid al abrir: otras vistas (tiradas,
+    // numerología) comparten el mismo contexto del sheet y pueden haberla
+    // sobrescrito (p. ej. initTiradas la deja vacía al re-render por cambio de
+    // idioma). Sin esto, prev/next quedan deshabilitados tras cambiar de idioma.
+    btn.addEventListener("click", () => { setContext({ listIds: ids }); openSheet(pure.id); });
     frag.appendChild(btn);
   }
   grid.appendChild(frag);

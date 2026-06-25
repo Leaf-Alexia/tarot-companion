@@ -339,9 +339,10 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 
 ## Estado del proyecto
 
-**Última actualización:** 2026-06-24
+**Última actualización:** 2026-06-25
 **Fase actual:** Fase 1 — MVP
-**Paso actual del roadmap:** Pasos 1–9 + i18n + rediseño visual v2 + **contenido 100% bilingüe en las 3 capas**. Pura (`energy_es`/`shadow_es`, 78×2), matiz RWS (`deck_nuance_es`, 78) y **Yōkai bilingüe total** (`deck_story_es` + `deck_resumen`/`deck_sombra` EN+ES, 78) → ES muestra español propio y EN inglés propio, sin fallback cruzado. Las **78 imágenes RWS B&N** presentes y renombradas a `<arcana_id>.jpg`. Siguiente: prueba visual + commit, luego SW (10) y Lighthouse (11).
+**Nombre oficial:** **Velara** (antes "Tarot Companion"). Logo: wordmark "V" (sol/luna + horizonte sobre fondo ciruela). Renombrado en index.html (title/brand/apple-title), manifest (name/short_name), strings (`menu.aboutText` ES+EN) y sw.js (comentario + `CACHE_VERSION="velara-v1"`). Los mockups y `CLAUDE.md` aún dicen "Tarot Companion" (el mockup es ley visual, no de naming).
+**Paso actual del roadmap:** Pasos 1–9 + i18n + rediseño visual v2 + **contenido 100% bilingüe en las 3 capas** + SW (10). **Íconos PNG reales presentes** (`icons/icon-192/512.png` + `icon-store-512.png`), manifest alineado a la paleta del mockup (`theme_color`/`background_color = #1C1430`). Siguiente: Lighthouse (11), luego Bubblewrap/APK (12).
 
 > Nota: `CLAUDE.md` no está trackeado en git; reconstruido el 2026-06-18 desde contexto. El trabajo de i18n se había perdido en un reset y se **rehízo** el mismo día (ver log). ⚠️ Recordatorio: commitear pronto para no volver a perder cambios sin trackear.
 
@@ -358,8 +359,8 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 
 #### Estructura base
 - [x] `index.html` — shell + header con engrane + overlays (sheet, picker, menú) + script anti-flash de tema/idioma
-- [~] `manifest.json` — externo creado; íconos PNG reales pendientes
-- [ ] `icons/icon-192.png` y `icons/icon-512.png` — archivos PNG reales
+- [x] `manifest.json` — externo; `name`/`short_name`="Velara", `theme_color`/`background_color`="#1C1430" (paleta del mockup), íconos 192/512 presentes
+- [x] `icons/icon-192.png` y `icons/icon-512.png` — PNG reales (192×192, 512×512) aportados por la autora; + `icon-store-512.png` para la ficha de Play Store. Logo wordmark "V" (Velara) sobre fondo ciruela. La autora los subió a `assets/icons/`; movidos a `icons/` (donde apuntan manifest/sw/index.html)
 - [ ] `.well-known/assetlinks.json` — placeholder hasta tener package name de Play Store
 
 #### CSS
@@ -397,13 +398,28 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 - [x] Traducción del **contenido de carta** completa en las **3 capas**: pura (`energy_es`+`shadow_es`, 78), RWS (`deck_nuance_es`, 78) y **Yōkai bilingüe total** (`deck_story_es` + `deck_resumen`/`deck_sombra` EN+ES, 78). En modo ES toda la app muestra español propio; en modo EN, inglés propio (sin fallback cruzado)
 
 #### PWA / Play Store
-- [ ] SW mejorado con caché completa
-- [ ] Lighthouse Performance ≥ 80 + checklist PWA
+- [x] SW mejorado con caché completa — `sw.js` reescrito (`CACHE_VERSION="tarot-companion-v1"`): precaché de la shell (44 entradas: HTML/CSS/JS/JSON/16 woff2/íconos) **tolerante** (`cache.add` por asset con catch → íconos ausentes no rompen install); network-first para código/datos, cache-first para imágenes/fuentes; navegación offline cae a `index.html`; `skipWaiting`+`clients.claim`. **Registrado en `index.html`** (faltaba; antes solo en `yokai-tarot.html`). Falta prueba offline en DevTools del lado de la usuaria
+- [ ] Lighthouse Performance ≥ 80 + checklist PWA (íconos PNG ya presentes → instalabilidad desbloqueada; falta correr la auditoría)
 - [ ] APK con Bubblewrap + `assetlinks.json` + ficha de Play Store
 
 ---
 
 ### Log de sesiones
+
+#### Sesión 2026-06-25 — Rebrand a Velara + íconos + fix bug de idioma/navegación
+- **Completado:**
+  - **Íconos PNG reales:** la autora aportó `icon-192/512.png` + `icon-store-512.png` (verificados: PNG, dimensiones exactas). Estaban en `assets/icons/`; movidos a `icons/` (raíz) donde apuntan manifest/sw/index.html; `assets/icons/` (duplicado) eliminado. `manifest.json` alineado a la paleta del mockup (`theme_color`/`background_color` `#0d0b10`→`#1C1430`).
+  - **Rebrand a "Velara"** (nombre oficial, antes "Tarot Companion"): index.html (`<title>`, `.brand` → wordmark único "Velara", apple-title), manifest (`name`/`short_name`), `strings.js` (`menu.aboutText` ES+EN), `sw.js` (comentario + `CACHE_VERSION` → `velara-v1`). El `.brand span` de dos tonos se reemplazó por palabra única.
+  - **Bug resuelto — "tras cambiar idioma no se puede navegar/scroll entre cartas":** causa raíz = `applyLanguage()` re-ejecuta `initTiradas()` → `paintEmpty()` → `renderTorii([nulls])`, que llama `setContext({listIds: [].filter(Boolean)})` = **lista vacía**, pisando el contexto compartido del sheet. Tras eso, abrir una carta del grid daba `indexOf=-1` → **prev/next deshabilitados**. Fix: el handler de carta del grid ahora hace `setContext({listIds: ids})` antes de `openSheet` (igual que daily/discover/numerología), reafirmando su lista de navegación al abrir. Arregla también el bug latente "visitar Tiradas y volver a Arcanos rompía prev/next".
+  - **Robustez de scroll (de paso):** (1) bloqueo de scroll centralizado con contador de referencias (`js/scroll-lock.js`) usado por sheet/settings/decks-ui — evita que cerrar un overlay desbloquee el fondo si otro sigue abierto (overlays solapables). (2) `render()` del sheet reinicia `scrollTop=0` (síncrono + rAF) y `.sheet` lleva `overflow-anchor:none` → al navegar prev/next o re-render por idioma no queda atascado desplazado.
+  - **Verificado con Chrome headless (puppeteer-core, viewport móvil + touch CDP real):** 12/12 checks: prev/next funciona antes y **después** de cambiar idioma (The Fool→The Magician), scroll reinicia a 0, body se desbloquea solo cuando se cierran todos los overlays, sin fugas del contador, grid scrollea, sin errores de página. Íconos 200, manifest/título/brand = Velara.
+- **Decisiones:** (1) brand = palabra única "Velara" (el split de dos tonos no aplica a un nombre de una palabra). (2) Fix del bug en el punto de apertura (grid setContext) en vez de reordenar `applyLanguage`, por consistencia con las demás superficies y porque cubre el bug latente. (3) `CACHE_VERSION` → `velara-v1` por el rebrand.
+- **Pendiente / ojo:** la **eliminación de `yokai-tarot.html`** (app de referencia) está en el working tree pero **no la hice yo y NO se incluyó en este commit** — confirmar con la autora si fue intencional. Mockups y prosa de `CLAUDE.md` siguen diciendo "Tarot Companion" (el mockup es ley **visual**, no de naming). Siguiente: Lighthouse (11) + prueba offline en DevTools, luego Bubblewrap/APK (12).
+
+#### Sesión 2026-06-24 — Service Worker (paso 10) + registro en index.html
+- **Completado:** Contenido aprobado por la autora (commit `V3`/`3ffd52f`) → se levanta la constraint que difería el SW. `sw.js` reescrito desde el stub heredado: `CACHE_VERSION="tarot-companion-v1"`, precaché de shell (44 entradas), estrategias network-first (código/datos) y cache-first (imágenes/fuentes), fallback de navegación a `index.html`, `skipWaiting`+`clients.claim`. Precaché **tolerante** (un `cache.add` por asset con `.catch` → los íconos PNG aún ausentes no abortan el install). **Añadido el registro del SW en `index.html`** (no existía; solo estaba en la app de referencia `yokai-tarot.html`). Verificado: `node --check sw.js` OK; 42/44 assets del precaché existen en disco (faltan solo `icons/icon-192/512.png`, que aporta la autora).
+- **Decisiones:** (1) Precaché tolerante por-asset en vez de `cache.addAll` (que falla en bloque) → robusto ante íconos faltantes y futuros cambios. (2) Ruta de registro relativa `sw.js` → funciona en subcarpeta de GitHub Pages. (3) Íconos: la autora aporta el arte real (no placeholders).
+- **Pendiente inmediato:** subir `icons/icon-192.png` y `icons/icon-512.png` (PNG reales) → desbloquea instalabilidad para Lighthouse (paso 11). Prueba offline en DevTools (Application > Service Workers > Offline). Luego Bubblewrap/APK (12). Recordatorio: subir `CACHE_VERSION` en cada deploy.
 
 #### Sesión 2026-06-24 — Traducción `_es` de las capas principales + imágenes RWS
 - **Completado:**
