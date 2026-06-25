@@ -4,9 +4,10 @@
 // público (A.E. Waite & Pamela Colman Smith, 1909 / Pictorial Key, 1911). Describe
 // CÓMO el RWS expresa cada carta, no la energía pura (que vive en arcana-pure.json).
 //
-// deck_nuance_es queda vacío: se traducirá tras aprobar el contenido EN.
-// available=true: el sheet ya muestra la capa del mazo aunque las imágenes aún no
-// estén (sheet.js no renderiza la imagen todavía y degrada con gracia).
+// deck_nuance_es: traducción fiel del matiz EN (ES natural, descriptivo). Ambos idiomas
+// se poblan en cada build → el modo ES ya no cae a inglés en la capa de mazo.
+// available=true: el sheet muestra la imagen (assets/decks/rws/<arcana_id>.jpg) o, si
+// falta el archivo, degrada con gracia al placeholder.
 //
 // Convención de imagen: assets/decks/rws/<arcana_id>.jpg
 //
@@ -107,9 +108,106 @@ const NUANCE = {
   "king-of-swords": "He sits frontally on a throne marked with butterflies, holding an upright sword slightly tilted. The RWS renders the King as authority of the intellect — truth and judgment in command.",
 };
 
+// Versión en español del matiz (deck_nuance_es): traducción fiel del EN, describe
+// CÓMO el RWS expresa visualmente cada carta. Texto descriptivo (sin segunda persona),
+// español natural. Idempotente: poblado en cada build.
+const NUANCE_ES = {
+  // ── MAYORES ─────────────────────────────────────────────────────────
+  "the-fool": "Una figura joven con túnica estampada avanza hacia el borde de un acantilado, una rosa blanca en una mano y un hatillo al hombro sobre un bastón, un perrito a sus talones. En el RWS el salto es luminoso y casi ingrávido: los ojos alzados al cielo, el peligro a sus pies dejado para que lo note quien mira.",
+  "the-magician": "Una mano alzada al cielo y otra señalando la tierra, el signo del infinito sobre su cabeza y los cuatro emblemas de los palos sobre su mesa. El RWS lo hace un canal entre mundos, con rosas y lirios floreciendo a su alrededor: la voluntad que atrae el poder hacia abajo y lo asienta en la materia.",
+  "the-high-priestess": "Se sienta entre dos pilares marcados con B y J, una luna creciente a sus pies y un velo de granadas detrás, un pergamino entrevisto en su regazo. El RWS la enmarca como la guardiana de un umbral, que sostiene un saber mostrado solo en parte.",
+  "the-empress": "Una figura coronada de doce estrellas reposa entre trigo maduro junto a un arroyo del bosque, el signo de Venus a su lado. El RWS retrata a la Emperatriz como abundancia exuberante y sentada: comodidad, fertilidad y naturaleza en plena floración.",
+  "the-emperor": "Se sienta en un trono de piedra tallado con cabezas de carnero, armado bajo el manto, un cetro rematado en anj en la mano frente a una montaña árida. El RWS le da al Emperador una solidez dura y fija: autoridad que ha dejado de moverse.",
+  "the-hierophant": "Entre dos pilares alza la mano en bendición sobre dos figuras tonsuradas, una cruz triple en la mano y llaves cruzadas a sus pies. El RWS lo muestra como el guardián de la doctrina sancionada: la sabiduría transmitida a través de una institución.",
+  "the-lovers": "Un hombre y una mujer están bajo un ángel en luz dorada, el árbol de las llamas y el árbol del conocimiento detrás de ellos. El RWS eleva a los Enamorados del mero romance a una unión bendecida y una elección sagrada, vigilada desde lo alto.",
+  "the-chariot": "Un príncipe armado se yergue en un carro con dosel tirado por dos esfinges, una negra y otra blanca, mirando en sentidos opuestos. El RWS muestra el dominio como sostener fuerzas contrarias a raya por pura voluntad, sin riendas.",
+  "strength": "Una mujer serena coronada de flores cierra con suavidad las fauces de un león, el signo del infinito sobre ella. El RWS hace a la Fuerza explícitamente tierna: el poder como persuasión calma en lugar de violencia.",
+  "the-hermit": "Un anciano encapuchado se yergue sobre una cima nevada alzando una linterna que guarda una estrella de seis puntas, sostenido por su bastón. El RWS lo muestra alumbrando el camino a los demás mientras permanece aparte: sabiduría llevada a la soledad.",
+  "the-wheel": "Una gran rueda inscrita con letras y signos alquímicos gira en el cielo, una esfinge en lo alto y las cuatro criaturas fijas leyendo en las esquinas. El RWS sitúa la fortuna contra los cielos: el destino como un mecanismo cósmico mayor que cualquier vida.",
+  "justice": "Una figura coronada se sienta entre pilares sosteniendo una espada erguida en una mano y una balanza equilibrada en la otra. El RWS le da a la Justicia la misma autoridad frontal que al Hierofante: ley imparcial, espada y balanza a la vista de todos.",
+  "the-hanged-one": "Un hombre cuelga sereno por un pie de una cruz en forma de T viva, las manos tras la espalda, las piernas cruzadas en un 4, un halo de luz en torno a su cabeza. El RWS hace de la suspensión algo apacible e iluminado: entrega voluntaria, no castigo.",
+  "death": "Un jinete esquelético con armadura negra sobre un caballo blanco avanza bajo un estandarte de rosa blanca; un rey, un niño y un obispo lo reciben mientras el sol se alza entre dos torres. El RWS muestra a la Muerte como una procesión imparable que nivela todos los rangos, con el alba ya prometida más allá.",
+  "temperance": "Un ángel alado vierte líquido entre dos copas, un pie en tierra y otro en el agua, un sendero bordeado de lirios que lleva a una montaña coronada. El RWS retrata a la Templanza como una alquimia paciente y fluida: el cuidadoso atemperar de los opuestos.",
+  "the-devil": "Una figura cornuda se encarama sobre un hombre y una mujer encadenados sin apretar a su pedestal, una antorcha invertida en la mano. El RWS muestra las cadenas colgando lo bastante flojas como para zafarse: una atadura que, mirada de cerca, es elegida.",
+  "the-tower": "Un rayo arranca la corona de una torre alta sobre un peñasco, las llamas brotan de las ventanas y dos figuras caen de cabeza. El RWS hace el derrumbe súbito y total: una cima falsa abatida por un relámpago desde lo alto.",
+  "the-star": "Una mujer desnuda se arrodilla junto a un estanque vertiendo agua sobre la tierra y sobre el agua desde dos cántaros, bajo una gran estrella y siete más pequeñas. El RWS retrata a la Estrella como renovación serena: esperanza derramada con generosidad bajo un cielo abierto.",
+  "the-moon": "Un sendero corre entre dos torres pasando junto a un perro y un lobo que aúllan a la luna, un cangrejo de río que sale del estanque. El RWS llena a la Luna de incertidumbre: el camino hacia lo desconocido, vigilado por el instinto y el miedo.",
+  "the-sun": "Un niño coronado de girasoles cabalga un caballo blanco frente a un muro de jardín bañado de sol, el gran sol resplandeciendo en lo alto. El RWS hace del Sol una alegría pura e infantil: vitalidad sin nada escondido.",
+  "judgement": "Un ángel hace sonar una trompeta entre las nubes y los muertos se alzan de sus tumbas, los brazos en alto en señal de bienvenida. El RWS muestra el Juicio como un despertar colectivo: una llamada respondida con los brazos abiertos.",
+  "the-world": "Una figura danzante envuelta en una guirnalda ovalada de laurel sostiene dos varas, enmarcada por las cuatro criaturas vivientes en las esquinas. El RWS retrata al Mundo como movimiento completo y armonioso: el viaje cerrado e integrado.",
+
+  // ── COPAS ───────────────────────────────────────────────────────────
+  "ace-of-cups": "Una mano que sale de una nube ofrece un cáliz desbordante, una paloma desciende con una hostia, cinco chorros se vierten en un estanque de lirios. El RWS muestra la emoción como gracia derramada desde lo alto: la copa que rebosa.",
+  "2-of-cups": "Un hombre y una mujer intercambian sus copas bajo una cabeza de león alada y el caduceo. El RWS hace del Dos un voto entre iguales: atracción bendecida y en equilibrio.",
+  "3-of-cups": "Tres mujeres alzan sus copas en círculo en medio de una cosecha. El RWS muestra la celebración compartida: la abundancia brindada entre amigas.",
+  "4-of-cups": "Un joven se sienta bajo un árbol con los brazos cruzados, ignorando una copa que le ofrece una nube mientras otras tres están ante él. El RWS retrata el descontento: el regalo que no se ve porque la mirada se ha vuelto hacia dentro.",
+  "5-of-cups": "Una figura encapuchada llora sobre tres copas derramadas, dos aún en pie tras ella, un puente y una casa al otro lado del río. El RWS centra la pérdida mientras mantiene en silencio el camino a casa a la vista.",
+  "6-of-cups": "Un niño ofrece una copa de flores a otro en un patio soleado. El RWS le da al Seis calidez e inocencia: la bondad recordada del pasado.",
+  "7-of-cups": "Una figura se enfrenta a siete copas en las nubes, cada una con una visión: un rostro, un castillo, joyas, una forma cubierta. El RWS hace del Siete una niebla de elecciones tentadoras, parte tesoro y parte ilusión.",
+  "8-of-cups": "Una figura se aleja bajo una luna menguante, dejando ocho copas apiladas para trepar hacia las montañas. El RWS muestra la partida valiente: dar la espalda a las copas reunidas hacia algo más lejano.",
+  "9-of-cups": "Un hombre satisfecho se sienta con los brazos cruzados ante un mostrador curvo de nueve copas. El RWS hace del Nueve la carta del 'deseo': el contento llevado a la vista, la comodidad ganada.",
+  "10-of-cups": "Una pareja alza los brazos hacia un arcoíris de diez copas mientras dos niños bailan. El RWS retrata el Diez como alegría doméstica realizada: armonía duradera bajo una bendición en el cielo.",
+  "page-of-cups": "Una figura joven con túnica florida contempla un pez que asoma de la copa en su mano. El RWS le da a la Sota una apertura risueña: la intuición y la imaginación que se encuentran con una sorpresa.",
+  "knight-of-cups": "Un caballero tranquilo avanza despacio ofreciendo una copa, alas en su yelmo y en sus talones. El RWS lo hace el emisario romántico: el sentimiento llevado con suavidad al mundo.",
+  "queen-of-cups": "Se sienta a la orilla del agua mirando una copa ornamentada y con tapa, la única copa cerrada del palo. El RWS muestra a la Reina por entero absorta en el sentimiento, sus profundidades guardadas dentro.",
+  "king-of-cups": "Se sienta en un trono que flota sobre un mar turbulento, sosteniendo una copa, firme aunque las aguas se agiten. El RWS hace del Rey el dominio de la emoción: la calma mantenida por encima de las profundidades.",
+
+  // ── OROS (Pentáculos) ───────────────────────────────────────────────
+  "ace-of-coins": "Una mano que sale de una nube sostiene un solo pentáculo dorado sobre un jardín en flor, un arco se abre hacia las montañas. El RWS muestra la oportunidad como un regalo tangible: un umbral hacia la prosperidad.",
+  "2-of-coins": "Un joven baila haciendo malabares con dos pentáculos unidos por una cinta en forma de ocho, barcos que suben y bajan sobre las olas detrás. El RWS hace del Dos un equilibrio juguetón en medio de las mareas cambiantes.",
+  "3-of-coins": "Un escultor trabaja en el arco de una catedral mientras otros dos consultan los planos. El RWS muestra el oficio reconocido: destreza, colaboración y un trabajo tomado en serio.",
+  "4-of-coins": "Una figura sentada aprieta un pentáculo contra el pecho, uno sobre la corona y dos bajo los pies. El RWS hace del Cuatro el sostener con fuerza: la seguridad guardada tan de cerca que nada se mueve.",
+  "5-of-coins": "Dos figuras andrajosas pasan bajo una vidriera iluminada en la nieve. El RWS retrata la penuria y la exclusión, con el calor y la ayuda justo fuera de la vista.",
+  "6-of-coins": "Un mercader pesa monedas en una balanza y da limosna a dos mendigos arrodillados. El RWS muestra la generosidad medida: dar y recibir, con el equilibrio sostenido.",
+  "7-of-coins": "Un labrador se apoya en su azada, contemplando siete pentáculos que maduran en un arbusto. El RWS capta la pausa para evaluar: paciencia con los frutos que crecen despacio.",
+  "8-of-coins": "Un artesano cincela pentáculos uno a uno, su obra terminada expuesta a su lado. El RWS hace del Ocho la labor entregada y repetitiva: la maestría construida pieza por pieza.",
+  "9-of-coins": "Una mujer elegante está en un viñedo amurallado, un halcón encapuchado sobre su mano enguantada. El RWS retrata el Nueve como autosuficiencia refinada: la comodidad disfrutada a solas, en sus propios términos.",
+  "10-of-coins": "Un anciano con dos perros observa a una familia bajo un arco colgado de diez pentáculos. El RWS muestra el legado y el linaje: la riqueza que abarca generaciones.",
+  "page-of-coins": "Un joven estudia un solo pentáculo que sostiene en alto en un campo verde y florido. El RWS le da a la Sota el estudio concentrado: una ambición examinada y lista para crecer.",
+  "knight-of-coins": "Un caballero con armadura se mantiene quieto sobre un pesado caballo negro, sosteniendo un pentáculo ante un campo arado. El RWS lo hace el más estático del palo: deber firme, fiable y sin prisa.",
+  "queen-of-coins": "Se sienta en un cenador florido acunando un pentáculo, un conejo a sus pies. El RWS muestra a la Reina como abundancia nutricia y arraigada: cuidado del cuerpo y de la tierra.",
+  "king-of-coins": "Se sienta entronizado entre vides, un pie sobre la cabeza de un jabalí, un pentáculo descansando en su mano. El RWS retrata al Rey como prosperidad asentada: riqueza plenamente poseída y segura.",
+
+  // ── BASTOS ──────────────────────────────────────────────────────────
+  "ace-of-wands": "Una mano que sale de una nube empuña una vara que brota, hojas cayendo, un castillo sobre una colina lejana. El RWS muestra la fuerza creativa en bruto despertando a la vida: una rama viva, no un palo muerto.",
+  "2-of-wands": "Una figura sostiene un globo y contempla desde la muralla de un castillo la tierra y el mar, una vara fija a su lado. El RWS hace del Dos la mirada de quien planea: el mundo en la mano, el próximo paso sopesado.",
+  "3-of-wands": "Una figura está en lo alto con tres varas, observando los barcos que cruzan la bahía. El RWS muestra la expansión en marcha: la visión enviada al mundo a la espera de su retorno.",
+  "4-of-wands": "Cuatro varas forman un dosel adornado de guirnaldas ante una casona, dos figuras alzando flores en bienvenida. El RWS retrata el Cuatro como celebración y regreso a casa: un umbral de alegría.",
+  "5-of-wands": "Cinco jóvenes blanden varas en una refriega dispersa y casi juguetona. El RWS hace del Cinco una fricción animada: competencia y bullicio más que verdadero combate.",
+  "6-of-wands": "Un jinete coronado de laurel lleva una vara enguirnaldada entre una multitud a pie. El RWS muestra la victoria pública: reconocimiento y aclamación.",
+  "7-of-wands": "Una figura en terreno elevado defiende su posición contra seis varas que se alzan desde abajo. El RWS capta el sostener el terreno: mantener la ventaja bajo el desafío.",
+  "8-of-wands": "Ocho varas vuelan juntas en paralelo por el cielo abierto sobre un paisaje verde. El RWS hace del Ocho puro movimiento: avance veloz y noticias en vuelo.",
+  "9-of-wands": "Una figura vendada empuña una vara con recelo, otras ocho de pie como una cerca tras ella. El RWS muestra al guardián herido pero vigilante: resiliencia preparada para un último empujón.",
+  "10-of-wands": "Un hombre se dobla bajo el peso de las diez varas reunidas en sus brazos, un pueblo más adelante. El RWS retrata el Diez como carga: responsabilidad llevada, casi en exceso, camino a casa.",
+  "page-of-wands": "Un joven con túnica estampada de salamandras alza la vista a la vara que sostiene, desierto y pirámides detrás. El RWS le da a la Sota una curiosidad ansiosa: una chispa lista para explorar.",
+  "knight-of-wands": "Un caballero sobre un caballo encabritado carga hacia adelante, la vara en alto, salamandras en su atuendo. El RWS hace del Caballero una aventura audaz e inquieta: la pasión en pleno movimiento.",
+  "queen-of-wands": "Se sienta de frente con un girasol y una vara, un gato negro a sus pies. El RWS muestra a la Reina como confianza cálida y magnética: una vitalidad que atrae a los demás.",
+  "king-of-wands": "Se sienta en un trono adornado con leones y salamandras, sosteniendo una vara florida, un lagarto a sus pies. El RWS retrata al Rey como mando visionario: el fuego dirigido con autoridad.",
+
+  // ── ESPADAS ─────────────────────────────────────────────────────────
+  "ace-of-swords": "Una mano que sale de una nube alza una espada erguida coronada por una guirnalda, montañas abajo. El RWS muestra la claridad mental como una hoja decisiva: la verdad alzada en triunfo.",
+  "2-of-swords": "Una mujer con los ojos vendados se sienta junto al mar sosteniendo dos espadas cruzadas en equilibrio, una luna creciente arriba. El RWS hace del Dos un punto muerto tenso: una elección aplazada tras los ojos cerrados.",
+  "3-of-swords": "Tres espadas atraviesan un solo corazón rojo contra un cielo tormentoso y lluvioso. El RWS le da al desamor su imagen más cruda: la pena mostrada con claridad, sin disfraz.",
+  "4-of-swords": "Un caballero yace en reposo sobre una tumba, las manos en oración, tres espadas arriba y una debajo. El RWS muestra el Cuatro como descanso necesario: recuperación en la quietud, no muerte.",
+  "5-of-swords": "Una figura con una sonrisa burlona recoge espadas mientras otras dos se alejan vencidas bajo un cielo desgarrado. El RWS hace del Cinco una victoria hueca: ganar a costa del vínculo.",
+  "6-of-swords": "Un barquero impulsa con la pértiga una barca que lleva a una figura encapuchada y un niño, seis espadas clavadas en el casco, hacia una orilla más calma. El RWS retrata el Seis como transición: alejarse de las aguas revueltas hacia la paz.",
+  "7-of-swords": "Una figura se escabulle de un campamento cargando cinco espadas, dejando dos atrás, mirando hacia atrás. El RWS muestra el sigilo y la estrategia: actuar a solas, quizá no del todo limpiamente.",
+  "8-of-swords": "Una mujer atada y con los ojos vendados está entre ocho espadas clavadas a su alrededor, el camino abierto a sus pies. El RWS hace del Ocho una trampa fabricada por una misma: ataduras más flojas de lo que se sienten.",
+  "9-of-swords": "Una figura se incorpora en la cama en la oscuridad, el rostro entre las manos, nueve espadas montadas en la pared. El RWS le da a la angustia su imagen: el tormento de la noche en vela.",
+  "10-of-swords": "Una figura yace boca abajo con diez espadas en la espalda, el alba rompiendo en el horizonte. El RWS muestra tocar fondo: el final doloroso, con la primera luz ya de regreso.",
+  "page-of-swords": "Un joven se yergue en un terreno azotado por el viento sosteniendo una espada en alto, alerta y vigilante. El RWS le da a la Sota una vigilancia inquieta: una mente rápida lista para la verdad y el conflicto.",
+  "knight-of-swords": "Un caballero carga de frente contra el viento, la espada en alto, su caballo a pleno galope. El RWS hace del Caballero puro empuje hacia adelante: ideas y ambición lanzándose por delante.",
+  "queen-of-swords": "Se sienta erguida sosteniendo una espada, una mano extendida, su trono tallado con un querubín alado, nubes detrás. El RWS muestra a la Reina como percepción clara y franca: sabiduría forjada por la experiencia.",
+  "king-of-swords": "Se sienta de frente en un trono marcado con mariposas, sosteniendo una espada erguida ligeramente inclinada. El RWS retrata al Rey como autoridad del intelecto: verdad y juicio al mando.",
+};
+
 const missing = arcana.filter((c) => !NUANCE[c.id]).map((c) => c.id);
+const missingEs = arcana.filter((c) => !NUANCE_ES[c.id]).map((c) => c.id);
 if (missing.length) {
-  throw new Error(`Faltan matices para: ${missing.join(", ")}`);
+  throw new Error(`Faltan matices EN para: ${missing.join(", ")}`);
+}
+if (missingEs.length) {
+  throw new Error(`Faltan matices ES para: ${missingEs.join(", ")}`);
 }
 
 const deck = {
@@ -126,7 +224,7 @@ const deck = {
     arcana_id: c.id,
     image: `assets/decks/rws/${c.id}.jpg`,
     deck_nuance: NUANCE[c.id],
-    deck_nuance_es: "",
+    deck_nuance_es: NUANCE_ES[c.id],
   })),
 };
 

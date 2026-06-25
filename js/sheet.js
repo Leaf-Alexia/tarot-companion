@@ -51,10 +51,12 @@ function deckLayerHTML(c) {
   const head = c.yokai_kanji
     ? `<div class="deck-yokai"><span class="kanji">${esc(c.yokai_kanji)}</span></div>`
     : "";
+  // Yōkai y RWS exponen distintos campos; pick() elige idioma (base = EN, *_es = ES).
+  // Para el Yōkai: deck_resumen/deck_sombra ahora tienen base EN + *_es; deck_story EN + deck_story_es.
   const body = [
-    field(t("sheet.deckNuance"), pick(c, "deck_nuance") || c.deck_resumen),
-    field(t("sheet.deckStory"), c.deck_story, "en"),
-    field(t("sheet.deckShadow"), c.deck_sombra, "italic"),
+    field(t("sheet.deckNuance"), pick(c, "deck_nuance") || pick(c, "deck_resumen")),
+    field(t("sheet.deckStory"), pick(c, "deck_story"), "en"),
+    field(t("sheet.deckShadow"), pick(c, "deck_sombra"), "italic"),
   ].join("");
   const art = cardArtHTML(c);
   if (!head && !body && !art) return "";

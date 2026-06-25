@@ -339,9 +339,9 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 
 ## Estado del proyecto
 
-**Última actualización:** 2026-06-22
+**Última actualización:** 2026-06-24
 **Fase actual:** Fase 1 — MVP
-**Paso actual del roadmap:** Pasos 1–9 + i18n + **rediseño visual v2 "ciruela ahumada / velo lavanda"** (mockups de `testing mockups/`). IA reestructurada a **3 destinos** con barra inferior: Inicio (hub) · Glosario (Arcanos+Números) · Tiradas (Cómo leer+Tiradas). Tipografías Spectral+Mulish auto-hospedadas (offline). Inicio = hub explorador (saludo por hora + fase lunar offline + carta del día revelar-y-fijar + "descubre un arcano" + accesos). Siguiente: traducir contenido `_es`, imágenes RWS, SW (10), Lighthouse (11).
+**Paso actual del roadmap:** Pasos 1–9 + i18n + rediseño visual v2 + **contenido 100% bilingüe en las 3 capas**. Pura (`energy_es`/`shadow_es`, 78×2), matiz RWS (`deck_nuance_es`, 78) y **Yōkai bilingüe total** (`deck_story_es` + `deck_resumen`/`deck_sombra` EN+ES, 78) → ES muestra español propio y EN inglés propio, sin fallback cruzado. Las **78 imágenes RWS B&N** presentes y renombradas a `<arcana_id>.jpg`. Siguiente: prueba visual + commit, luego SW (10) y Lighthouse (11).
 
 > Nota: `CLAUDE.md` no está trackeado en git; reconstruido el 2026-06-18 desde contexto. El trabajo de i18n se había perdido en un reset y se **rehízo** el mismo día (ver log). ⚠️ Recordatorio: commitear pronto para no volver a perder cambios sin trackear.
 
@@ -350,11 +350,11 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 ### Checklist Fase 1
 
 #### Datos
-- [~] `data/arcana-pure.json` — 78 arcanos: campos universales + `energy`/`shadow` **EN completos en los 78** (scripts `author-majors-en.mjs` / `author-minors-en.mjs`); falta todo `_es`
-- [x] `data/decks/yokai.json` — matiz del Yōkai (story EN, kanji, nombre del ser, resumen/sombra ES) + créditos. Falta `deck_story_es` para modo ES puro
-- [~] `data/decks/rws.json` — 78 cartas con `deck_nuance` EN (`scripts/build-rws.mjs`), `available:true`; falta `deck_nuance_es`
+- [x] `data/arcana-pure.json` — 78 arcanos: campos universales + `energy`/`shadow` **EN+ES completos en los 78** (scripts `author-majors-en/es.mjs` / `author-minors-en/es.mjs`)
+- [x] `data/decks/yokai.json` — matiz del Yōkai **bilingüe completo (78)**: `deck_story`+`deck_story_es`, `deck_resumen`+`deck_resumen_es`, `deck_sombra`+`deck_sombra_es` (script `author-yokai-bilingual.mjs`, idempotente; convención `pick`: base=EN, `_es`=ES). El ES original se movió a `_es` y se añadieron las versiones EN + traducción de la historia. `sheet.js` ahora usa `pick()` en las 3 líneas de la capa Yōkai
+- [x] `data/decks/rws.json` — 78 cartas con `deck_nuance` **EN+ES completos** (`scripts/build-rws.mjs` con `NUANCE`/`NUANCE_ES`), `available:true`
 - [x] `data/decks/index.json` — registro de mazos (yokai + rws, ambos available); el selector se arma desde aquí → añadir mazo = soltar JSON + entrada en el índice
-- [ ] `assets/decks/rws/` — 78 imágenes B&N originales (convención `<arcana_id>.jpg`); la app ya muestra placeholder "Imagen próximamente" hasta que existan
+- [x] `assets/decks/rws/` — **78 imágenes B&N originales presentes** (convención `<arcana_id>.jpg`); renombradas desde la nomenclatura corta de la autora (`m00`–`m21`, `c/p/s/w 01`–`14`). `_FILENAMES.txt` documenta el mapeo. El sheet las renderiza y degrada a placeholder solo si falta el archivo
 
 #### Estructura base
 - [x] `index.html` — shell + header con engrane + overlays (sheet, picker, menú) + script anti-flash de tema/idioma
@@ -394,7 +394,7 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 #### Idioma (i18n)
 - [x] Toggle ES/EN persistente que cambia **TODA la app** (chrome vía `t()` + contenido vía `pick`)
 - [x] Identidad de carta en un solo idioma; 2ª línea = nombre del ser del mazo (Yōkai → `yokai_name`) o vacío (RWS/pura)
-- [ ] Traducción del **contenido de carta** al español: `energy_es`, `shadow_es` (78), `deck_nuance_es` (78 RWS), `deck_story_es` (Yōkai) — diferido. En modo ES el significado cae a inglés hasta esta pasada
+- [x] Traducción del **contenido de carta** completa en las **3 capas**: pura (`energy_es`+`shadow_es`, 78), RWS (`deck_nuance_es`, 78) y **Yōkai bilingüe total** (`deck_story_es` + `deck_resumen`/`deck_sombra` EN+ES, 78). En modo ES toda la app muestra español propio; en modo EN, inglés propio (sin fallback cruzado)
 
 #### PWA / Play Store
 - [ ] SW mejorado con caché completa
@@ -404,6 +404,17 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 ---
 
 ### Log de sesiones
+
+#### Sesión 2026-06-24 — Traducción `_es` de las capas principales + imágenes RWS
+- **Completado:**
+  - **Capa pura ES (78×2):** nuevos scripts idempotentes `scripts/author-majors-es.mjs` (22) y `scripts/author-minors-es.mjs` (56) que pueblan `energy_es`/`shadow_es`. Traducción original y fiel del EN, en español natural y **género-neutro** (igual criterio que el contenido yōkai existente: sin adjetivos marcados en género al dirigirse a la lectora). Verificado: 78/78 con `energy_es`+`shadow_es` no vacíos.
+  - **Matiz RWS ES (78):** `scripts/build-rws.mjs` ampliado con diccionario `NUANCE_ES` + chequeo de faltantes; `deck_nuance_es` ahora se puebla en cada build. Regenerado `data/decks/rws.json` → 78/78 con `deck_nuance_es`.
+  - **Imágenes RWS (78):** la autora subió las 78 con nomenclatura corta (`m00`–`m21` mayores por número; `c/p/s/w` + `01`–`14` para Copas/Oros[p=pentacles]/Bastos/Espadas, ace=01…page=11/knight=12/queen=13/king=14). **Renombradas** a la convención del proyecto `<arcana_id>.jpg` vía PowerShell (mapeo verificado con dry-run: 78 pares, 0 faltantes, 0 colisiones; `_FILENAMES.txt` de la autora confirma orden destino). `sheet.js` ya renderiza `<img>` y degrada a placeholder solo en 404 → ahora se ven. `rws.json` apunta correctamente; 0 imágenes faltantes en disco.
+  - **Verificado:** `pick()` en modo ES devuelve español en las capas pura y RWS; cobertura EN+ES completa en ambas (78).
+- **Decisiones:** (1) **Renombrar archivos** en vez de mapear en código → mantiene la convención documentada `<arcana_id>.jpg`, no toca `rws.json`/`build-rws.mjs`/CLAUDE.md y deja filenames autodocumentados. (2) Español **género-neutro** para coincidir con el tono del contenido ES preexistente (yōkai). (3) Traducción autorada como contenido original fundamentado en Waite, no traducción automática (calidad para app publicada, segmento hispanohablante).
+- **Yōkai bilingüe total (decisión de la autora: paridad ES+EN):** `scripts/author-yokai-bilingual.mjs` (idempotente) lleva las 78 cartas a paridad respetando la convención de `pick` (base=EN, `_es`=ES): mueve el ES preexistente a `deck_resumen_es`/`deck_sombra_es`, añade `deck_resumen`/`deck_sombra` en EN, y `deck_story_es` (traducción de la historia; `deck_story` EN se conserva). Ajuste en `sheet.js`: las 3 líneas de la capa de mazo pasan a `pick(c,"deck_resumen")` / `pick(c,"deck_story")` / `pick(c,"deck_sombra")`. Verificado: 78/78 con los 6 campos; idempotente (2ª corrida no corrompe); `pick()` da EN puro / ES puro. **Las 3 capas (pura + RWS + Yōkai) son 100% bilingües.**
+- **Pendiente inmediato:** prueba visual + commit manual; después SW (10) y Lighthouse (11).
+- **Problemas:** el sandbox de PowerShell bloqueó un `-replace '\.jpg$'` (lo interpretó como ruta de borrado); se reescribió el mapeo sin regex. `Grep` lanzó `uv_spawn` intermitente en Windows; se usó `Read` directo como alternativa.
 
 #### Sesión 2026-06-22 — Rediseño visual v2 + IA de 3 destinos (mockups)
 - **Completado:** Implementado el rediseño de `testing mockups/` (8 pantallas oscuro/claro).
