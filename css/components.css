@@ -67,17 +67,34 @@
 .card .nm-sub { color: var(--muted); font-size: 12px; }
 
 /* ---- Detail sheet (contenido interno) ---- */
-.sheet-top { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: start; position: relative; padding-left: 12px; }
+.sheet-top { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: start; position: relative; padding-left: 12px; padding-right: 40px; }
 .sheet-top .accentbar { position: absolute; left: 0; top: 4px; bottom: 4px; width: 3px; background: var(--accent); border-radius: 2px; }
+/* Fija el título a la izquierda (col1, ancha) y el glifo a la derecha (col2);
+   sin esto el auto-placement del grid invierte las columnas y el título choca
+   con los botones ♥/✕. El padding-right reserva el hueco de esos botones. */
+.sheet-top .heads { grid-column: 1; grid-row: 1; }
+.sheet-top .mark { grid-column: 2; }
 .sheet-top .num { color: var(--accent); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
 .sheet-top h2 { margin: 4px 0 2px; font-size: 26px; }
 .sheet-top .es-name { color: var(--muted); }
-.sheet-top .mark { grid-row: 1 / span 2; font-family: var(--serif); font-size: 30px; color: var(--accent); align-self: center; }
+/* margin-top deja libre la esquina superior derecha para los botones ♥ y ✕ */
+.sheet-top .mark { grid-row: 1 / span 2; font-family: var(--serif); font-size: 30px; color: var(--accent); align-self: start; margin-top: 38px; }
 .sheet .close {
   position: absolute; top: -4px; right: -4px; background: none; border: 0;
   color: var(--muted); font-size: 20px; cursor: pointer; padding: 6px; line-height: 1;
 }
 .sheet .close:hover { color: var(--cream); }
+/* Favorito (♥): botón absoluto a la izquierda del cierre */
+.sheet .fav {
+  position: absolute; top: -2px; right: 26px; background: none; border: 0;
+  color: var(--muted); cursor: pointer; padding: 6px; line-height: 0;
+  transition: color .15s, transform .08s;
+}
+.sheet .fav svg { fill: none; stroke: currentColor; stroke-width: 1.7px; }
+.sheet .fav:hover { color: var(--vermilion); }
+.sheet .fav:active { transform: scale(.88); }
+.sheet .fav.on { color: var(--vermilion); }
+.sheet .fav.on svg { fill: currentColor; stroke: currentColor; }
 
 .sheet-body { margin-top: 18px; display: flex; flex-direction: column; gap: 18px; }
 .field .flabel { color: var(--muted-2); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
@@ -103,6 +120,28 @@
 }
 .sheet-nav button:hover:not(:disabled) { border-color: var(--accent); }
 .sheet-nav button:disabled { opacity: .35; cursor: default; }
+
+/* Botón Copiar (nombre + energía pura + pincelada del mazo) */
+.copybtn {
+  align-self: flex-start; font: inherit; font-size: 13px; color: var(--vermilion);
+  background: transparent; border: 1px solid color-mix(in srgb, var(--vermilion) 55%, transparent);
+  border-radius: var(--radius-sm); padding: 9px 16px; cursor: pointer; transition: .15s;
+}
+.copybtn:hover { background: var(--vermilion); color: var(--on-accent); border-color: var(--vermilion); }
+
+/* Nota personal por carta */
+.note-field textarea.note {
+  width: 100%; box-sizing: border-box; resize: vertical; min-height: 64px;
+  font: inherit; font-size: 14px; line-height: 1.6; color: var(--cream);
+  background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.note-field textarea.note::placeholder { color: var(--muted-2); }
+.note-field textarea.note:focus { outline: none; border-color: var(--accent); }
+
+/* Filtro ♥ Favoritas + estado vacío del grid */
+.chip-fav.active { color: var(--on-accent); background: var(--vermilion); border-color: var(--vermilion); }
+.grid-empty { grid-column: 1 / -1; color: var(--muted); font-size: 14px; text-align: center; padding: 30px 16px; line-height: 1.6; }
 
 /* ====================================================================
    Encabezados de sección compartidos (Tiradas · Numerología · Cómo usar)

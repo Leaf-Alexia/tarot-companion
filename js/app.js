@@ -6,10 +6,10 @@ import {
 } from "./deck.js";
 import {
   getActiveDeckId, setActiveDeckId, getDailyId, getTheme,
-  isDailyRevealed, setDailyRevealed,
+  isDailyRevealed, setDailyRevealed, getFavs,
 } from "./store.js";
 import { initRouter, onArcano, onSheetClose, onSub } from "./router.js";
-import { openSheet, closeSheet, setContext, refresh as refreshSheet } from "./sheet.js";
+import { openSheet, closeSheet, setContext, refresh as refreshSheet, onFavChange } from "./sheet.js";
 import { initTiradas, setSpreadDeck } from "./spreads.js";
 import { initNumerologia } from "./numerology.js";
 import { initUso } from "./uso.js";
@@ -152,8 +152,9 @@ function renderArcanosShell() {
       </div>
       <div class="chips" id="chips">
         ${FILTERS.map((f) =>
-          `<button class="chip ${f.g === "all" ? "active" : ""}" data-g="${f.g}">${esc(t("filter." + f.g))}</button>`
+          `<button class="chip ${f.g === state.group ? "active" : ""}" data-g="${f.g}">${esc(t("filter." + f.g))}</button>`
         ).join("")}
+        <button class="chip chip-fav ${state.group === "fav" ? "active" : ""}" data-g="fav">${esc(t("filter.fav"))}</button>
       </div>
     </div>
     <div class="count" id="count"></div>
@@ -177,11 +178,20 @@ function renderArcanosShell() {
 function renderGrid() {
   const grid = document.getElementById("grid");
   const count = document.getElementById("count");
-  const list = filterPure({ group: state.group, query: state.query });
+  // "fav" es un filtro transversal (no un grupo de carta): se filtra por ids favoritos.
+  const favFilter = state.group === "fav";
+  const base = filterPure({ group: favFilter ? "all" : state.group, query: state.query });
+  const favSet = favFilter ? new Set(getFavs()) : null;
+  const list = favFilter ? base.filter((c) => favSet.has(c.id)) : base;
   const ids = list.map((c) => c.id);
   setContext({ listIds: ids }); // para prev/next del sheet
 
   grid.innerHTML = "";
+  if (favFilter && list.length === 0) {
+    grid.innerHTML = `<p class="grid-empty">${esc(t("arcanos.noFavs"))}</p>`;
+    count.textContent = `0 ${t("arcanos.many")}`;
+    return;
+  }
   const frag = document.createDocumentFragment();
   for (const pure of list) {
     const c = buildCard(pure.id, state.deckData);
@@ -327,6 +337,9 @@ async function init() {
   applyTheme(getTheme());
   // Al cambiar idioma, re-renderiza todo el chrome y las vistas.
   onLangChange(() => applyLanguage());
+  // Al marcar/desmarcar un favorito desde el sheet, refresca el grid si el
+  // filtro ♥ está activo (una carta desmarcada debe desaparecer de la lista).
+  onFavChange(() => { if (state.group === "fav" && document.getElementById("grid")) renderGrid(); });
 
   setChromeLabels();
   initSegTabs();

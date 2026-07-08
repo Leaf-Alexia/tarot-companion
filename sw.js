@@ -8,7 +8,7 @@
 
    IMPORTANTE: subir CACHE_VERSION en cada deploy para invalidar el caché viejo. */
 
-const CACHE_VERSION = "velara-v1";
+const CACHE_VERSION = "velara-v2";
 
 // Shell mínima a precachear. El precaché es TOLERANTE (ver install): un asset que
 // falte —p. ej. los íconos PNG hasta que se suban— no aborta la instalación.

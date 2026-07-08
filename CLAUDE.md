@@ -339,8 +339,9 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 
 ## Estado del proyecto
 
-**Última actualización:** 2026-06-25
-**Fase actual:** Fase 1 — MVP
+**Última actualización:** 2026-07-07
+**Fase actual:** Fase 1 — MVP (reenfocada a **uso personal**)
+**⚠️ Cambio de rumbo (2026-07-07):** la autora deja **en standby** la publicación en Google Play (Bubblewrap, Lighthouse, assetlinks, seguimiento de usuarios) por el esfuerzo que implica. Velara pasa a ser una **guía personal de tarot**, offline, en su teléfono y compu. La planeación de deploy NO se borra — queda pausada (pasos 11–12 siguen documentados, sin prioridad). Decisiones del giro: se mantiene el selector de mazo (Yōkai/RWS); se mantienen los placeholders "Próximamente/Tienda" tal cual (puerta abierta a más mazos); se añadieron features personales (favoritos + notas) y se recuperó el botón Copiar.
 **Nombre oficial:** **Velara** (antes "Tarot Companion"). Logo: wordmark "V" (sol/luna + horizonte sobre fondo ciruela). Renombrado en index.html (title/brand/apple-title), manifest (name/short_name), strings (`menu.aboutText` ES+EN) y sw.js (comentario + `CACHE_VERSION="velara-v1"`). Los mockups y `CLAUDE.md` aún dicen "Tarot Companion" (el mockup es ley visual, no de naming).
 **Paso actual del roadmap:** Pasos 1–9 + i18n + rediseño visual v2 + **contenido 100% bilingüe en las 3 capas** + SW (10). **Íconos PNG reales presentes** (`icons/icon-192/512.png` + `icon-store-512.png`), manifest alineado a la paleta del mockup (`theme_color`/`background_color = #1C1430`). Siguiente: Lighthouse (11), luego Bubblewrap/APK (12).
 
@@ -405,6 +406,16 @@ Seguir este orden — cada paso tiene dependencias del anterior:
 ---
 
 ### Log de sesiones
+
+#### Sesión 2026-07-07 — Reenfoque a uso personal: Copiar + local + símbolo + favoritos/notas
+- **Contexto:** la autora reorienta el proyecto a **uso personal** (deploy a Play Store en standby; ver nota de "Cambio de rumbo" arriba). Cuatro frentes acordados + cierre.
+- **Frente 1 — Botón "Copiar" (recuperado):** el rebuild modular no había trasladado el botón de la app vieja. Re-añadido en el detail sheet (`js/sheet.js`). **Decisión de la autora:** copia solo **nombre + energía pura + pincelada del mazo activo** (`deck_nuance`/`deck_resumen`), **sin** sombra/invertida ni palabras clave. Bilingüe (usa `pick()`/`t()`); feedback "✓ Copiado" 1.6 s. Claves i18n nuevas `sheet.copy/copied/copyFail`.
+- **Frente 4 — Favoritos + notas (nuevo, personal):** `js/store.js` extendido con `getFavs/isFav/toggleFav` (clave `tc-fav`) y `getNote/setNote` (clave `tc-notes`, por `arcana_id`), todo en `try/catch`. En el sheet: botón ♥ en `.sheet-top` (toggle, `aria-pressed`) y `<textarea>` "Mi nota" que persiste en cada tecleo. Filtro **♥ Favoritas** en los chips de Arcanos (`app.js` `renderGrid`, filtro transversal por ids + estado vacío `arcanos.noFavs`). `sheet.js` expone `onFavChange()` para que el grid se refresque en vivo al desmarcar con el filtro activo. Guardia en `onKey`: con foco en textarea, las flechas mueven el cursor (no navegan cartas).
+- **Frente 3 — Símbolo Velara en el header:** el imagotipo (`branding/velara-imagotipo-transparent.svg`) se **inline** en `index.html` (símbolo oro+lavanda fijo; wordmark → `fill="currentColor"` para adaptarse al tema). `.brand` colorea con `--cream` (crema en oscuro, tinta en claro). CSS en `layout.css` (`.brand-logo{height:30px;width:90px}` — `width:auto` daba 0 en SVG inline). Trazados del símbolo restaurados a fidelidad completa tras un intento de simplificación. Íconos PNG y paleta de la app se **conservan** (no se re-hexea; los SVG de marca usan hexes ligeramente distintos: ciruela #2C1D28 / oro #C6A352 / lavanda #7E7DC2 vs. app #1C1430 / #E0C079 / #C8AEE8 — anotado por si algún día se unifica).
+- **Frente 2 — Correr/instalar en local (compu + teléfono):** nuevo `iniciar-velara.bat` (sirve en `http://localhost:8137` con `py`/`python`/`npx serve` y abre el navegador) y `LEER-como-usar.md` (guía llana: lanzador de escritorio + "Instalar app", e instalación PWA en el teléfono vía GitHub Pages silencioso). La app requiere origen HTTP (módulos ES + fetch de JSON + SW no corren en `file://`); rutas relativas → funciona en localhost y en subcarpeta de Pages.
+- **SW:** `CACHE_VERSION` `velara-v1` → `velara-v2` por los cambios. El logo va inline en `index.html` (precacheado con la shell), no requiere entrada nueva.
+- **Verificado (Chrome, servidor local, ES+EN, claro+oscuro):** copiar arma exactamente nombre+energía(+pincelada del RWS con mazo activo) y nada más; favorito y nota persisten tras recargar; filtro ♥ muestra solo favoritas y su estado vacío; desmarcar con filtro activo actualiza el grid en vivo; con foco en la nota las flechas no navegan; el imagotipo renderiza 90×30 y el wordmark invierte color por tema; header sin solapes (título izq., ♥/✕ arriba-der., glifo debajo); paridad de claves 84/84; `node --check` OK en todo; sin errores de consola.
+- **Pendiente / ojo:** (1) subir el trabajo a GitHub y activar Pages para el teléfono (URL limpia sin la carpeta "APP Tarot" con espacio). (2) La eliminación de `yokai-tarot.html` y las viejas `testing mockups/` (movidas a `branding/`) sigue en el working tree; se consolida en el commit de esta sesión. (3) Deploy a Play Store: en standby.
 
 #### Sesión 2026-06-25 — Rebrand a Velara + íconos + fix bug de idioma/navegación
 - **Completado:**

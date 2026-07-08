@@ -46,6 +46,7 @@ export const UI = {
     "arcanos.one": "arcano",
     "arcanos.many": "arcanos",
     "arcanos.loadError": "No se pudieron cargar los datos. Reintenta con conexión.",
+    "arcanos.noFavs": "Aún no marcas cartas favoritas. Abre una carta y toca el ♥.",
 
     // Filtros (chips)
     "filter.all": "Todos",
@@ -54,6 +55,7 @@ export const UI = {
     "filter.coins": "Oros",
     "filter.wands": "Bastos",
     "filter.swords": "Espadas",
+    "filter.fav": "♥ Favoritas",
 
     // Palos (etiqueta larga)
     "suit.major": "Arcano Mayor",
@@ -74,6 +76,13 @@ export const UI = {
     "sheet.next": "Siguiente →",
     "sheet.close": "Cerrar",
     "sheet.imageSoon": "Imagen próximamente",
+    "sheet.copy": "Copiar",
+    "sheet.copied": "✓ Copiado",
+    "sheet.copyFail": "No se pudo copiar",
+    "sheet.fav": "Favorita",
+    "sheet.favOn": "Quitar de favoritas",
+    "sheet.note": "Mi nota",
+    "sheet.notePlaceholder": "Escribe aquí lo que esta carta te dice…",
 
     // Mazo "energía pura" (pseudo-mazo)
     "deck.pure": "Energía pura",
@@ -145,6 +154,7 @@ export const UI = {
     "arcanos.one": "arcanum",
     "arcanos.many": "arcana",
     "arcanos.loadError": "Couldn't load the data. Try again with a connection.",
+    "arcanos.noFavs": "You haven't marked any favorites yet. Open a card and tap the ♥.",
 
     // Filters (chips)
     "filter.all": "All",
@@ -153,6 +163,7 @@ export const UI = {
     "filter.coins": "Coins",
     "filter.wands": "Wands",
     "filter.swords": "Swords",
+    "filter.fav": "♥ Favorites",
 
     // Suits (long label)
     "suit.major": "Major Arcanum",
@@ -173,6 +184,13 @@ export const UI = {
     "sheet.next": "Next →",
     "sheet.close": "Close",
     "sheet.imageSoon": "Image coming soon",
+    "sheet.copy": "Copy",
+    "sheet.copied": "✓ Copied",
+    "sheet.copyFail": "Couldn't copy",
+    "sheet.fav": "Favorite",
+    "sheet.favOn": "Remove from favorites",
+    "sheet.note": "My note",
+    "sheet.notePlaceholder": "Write what this card says to you…",
 
     // "Pure energy" pseudo-deck
     "deck.pure": "Pure energy",

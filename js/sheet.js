@@ -6,6 +6,7 @@ import { buildCard, SUITS, cardMark, cardName, deckCardName } from "./deck.js";
 import { writeHash, currentView } from "./router.js";
 import { pick, pickList, t } from "./i18n.js";
 import { lockScroll, unlockScroll } from "./scroll-lock.js";
+import { isFav, toggleFav, getNote, setNote } from "./store.js";
 
 const overlay = document.getElementById("overlay");
 const sheet = document.getElementById("sheet");
@@ -13,6 +14,12 @@ const sheet = document.getElementById("sheet");
 let ctx = { deckData: null, listIds: [] };
 let currentId = null;
 let returnHash = "glosario/arcanos"; // a dónde volver al cerrar (la vista de origen)
+
+// La vista Arcanos se suscribe para re-renderizar cuando cambian los favoritos
+// (útil si el filtro ♥ está activo mientras se abre una carta).
+let favListener = null;
+export function onFavChange(fn) { favListener = fn; }
+function notifyFav() { if (favListener) favListener(); }
 
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -73,6 +80,9 @@ function render(c) {
   const kw = pickList(c, "keywords");
   const idx = ctx.listIds.indexOf(c.id);
   const hasPrev = idx > 0, hasNext = idx >= 0 && idx < ctx.listIds.length - 1;
+  const fav = isFav(c.id);
+  const note = getNote(c.id);
+  const favLbl = t(fav ? "sheet.favOn" : "sheet.fav");
 
   sheet.className = "sheet " + suit.groupClass;
   sheet.innerHTML = `
@@ -84,6 +94,9 @@ function render(c) {
         ${sub2 ? `<div class="es-name">${esc(sub2)}</div>` : ""}
       </div>
       <div class="mark">${esc(cardMark(c))}</div>
+      <button class="fav${fav ? " on" : ""}" data-fav aria-pressed="${fav}" aria-label="${esc(favLbl)}" title="${esc(favLbl)}">
+        <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true"><path d="M12 20.7s-7.3-4.5-9.7-9C.9 8.9 2.2 5.6 5.4 5.6c1.9 0 3.1 1.1 3.7 2.1h1.8c.6-1 1.8-2.1 3.7-2.1 3.2 0 4.5 3.3 3.1 6.1-2.4 4.5-9.7 9-9.7 9z"/></svg>
+      </button>
       <button class="close" aria-label="${esc(t("sheet.close"))}" data-close>✕</button>
     </div>
     <div class="sheet-body">
@@ -94,6 +107,11 @@ function render(c) {
       ${field(t("sheet.energy"), pick(c, "energy"))}
       ${field(t("sheet.shadow"), pick(c, "shadow"), "italic")}
       ${deckLayerHTML(c)}
+      <button class="copybtn" data-copy>${esc(t("sheet.copy"))}</button>
+      <div class="field note-field">
+        <div class="flabel">${esc(t("sheet.note"))}</div>
+        <textarea class="note" data-note rows="3" aria-label="${esc(t("sheet.note"))}" placeholder="${esc(t("sheet.notePlaceholder"))}">${esc(note)}</textarea>
+      </div>
     </div>
     <div class="sheet-nav">
       <button data-nav="prev" ${hasPrev ? "" : "disabled"}>${esc(t("sheet.prev"))}</button>
@@ -109,6 +127,38 @@ function render(c) {
 
   sheet.querySelector('[data-nav="prev"]').addEventListener("click", () => step(-1));
   sheet.querySelector('[data-nav="next"]').addEventListener("click", () => step(1));
+
+  // Copiar: nombre + energía pura + pincelada del mazo activo. Sin sombra ni palabras
+  // clave (decisión de la autora). Usa valores crudos de pick(), no el HTML escapado.
+  const copyBtn = sheet.querySelector("[data-copy]");
+  copyBtn.addEventListener("click", () => {
+    const lines = [cardName(c), `${t("sheet.energy")}: ${pick(c, "energy")}`];
+    if (c.layer === "deck") {
+      const deckName = (ctx.deckData && ctx.deckData.name) || "";
+      const pincelada = pick(c, "deck_nuance") || pick(c, "deck_resumen");
+      if (pincelada) lines.push(deckName ? `${deckName}: ${pincelada}` : pincelada);
+    }
+    navigator.clipboard?.writeText(lines.join("\n")).then(() => {
+      copyBtn.textContent = t("sheet.copied");
+      setTimeout(() => { copyBtn.textContent = t("sheet.copy"); }, 1600);
+    }).catch(() => { copyBtn.textContent = t("sheet.copyFail"); });
+  });
+
+  // Favorito (♥): alterna y refleja el estado en el botón. Persiste por arcana_id.
+  const favBtn = sheet.querySelector("[data-fav]");
+  favBtn.addEventListener("click", () => {
+    const now = toggleFav(c.id);
+    favBtn.classList.toggle("on", now);
+    favBtn.setAttribute("aria-pressed", String(now));
+    const lbl = t(now ? "sheet.favOn" : "sheet.fav");
+    favBtn.setAttribute("aria-label", lbl);
+    favBtn.setAttribute("title", lbl);
+    notifyFav(); // avisa a la vista Arcanos por si el filtro ♥ está activo
+  });
+
+  // Nota personal: se guarda por arcana_id en cada tecleo (localStorage, offline).
+  const noteEl = sheet.querySelector("[data-note]");
+  noteEl.addEventListener("input", () => setNote(c.id, noteEl.value));
 
   // El #sheet no se recrea (solo su innerHTML), así que conserva el scrollTop del
   // contenido anterior. Reiniciar al tope en cada render (nueva carta, prev/next o
@@ -127,8 +177,11 @@ function step(dir) {
 
 function onKey(e) {
   if (!isOpen()) return;
-  if (e.key === "Escape") closeSheet();
-  else if (e.key === "ArrowLeft") step(-1);
+  if (e.key === "Escape") return closeSheet();
+  // Mientras se escribe una nota, las flechas mueven el cursor, no navegan cartas.
+  const tag = (e.target.tagName || "").toLowerCase();
+  if (tag === "textarea" || tag === "input") return;
+  if (e.key === "ArrowLeft") step(-1);
   else if (e.key === "ArrowRight") step(1);
 }
 

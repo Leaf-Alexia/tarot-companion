@@ -6,6 +6,8 @@ const K_DAILY = "tc-daily";
 const K_DAILY_SEEN = "tc-daily-seen";
 const K_LANG = "tc-lang";
 const K_THEME = "tc-theme";
+const K_FAV = "tc-fav";     // favoritos: array de arcana_id
+const K_NOTES = "tc-notes"; // notas: mapa arcana_id -> texto
 
 const todayStr = () => new Date().toLocaleDateString("sv"); // YYYY-MM-DD local
 
@@ -56,4 +58,42 @@ export function isDailyRevealed() {
 }
 export function setDailyRevealed() {
   try { localStorage.setItem(K_DAILY_SEEN, todayStr()); } catch { /* sin persistencia */ }
+}
+
+/* ── Favoritos (por arcana_id, capa pura → persisten con cualquier mazo) ── */
+export function getFavs() {
+  try {
+    const arr = JSON.parse(localStorage.getItem(K_FAV) || "[]");
+    return Array.isArray(arr) ? arr : [];
+  } catch { return []; }
+}
+export function isFav(id) {
+  return getFavs().includes(id);
+}
+/* Alterna el favorito y devuelve el nuevo estado (true = ahora es favorita). */
+export function toggleFav(id) {
+  const favs = getFavs();
+  const i = favs.indexOf(id);
+  if (i >= 0) favs.splice(i, 1);
+  else favs.push(id);
+  try { localStorage.setItem(K_FAV, JSON.stringify(favs)); } catch { /* sin persistencia */ }
+  return i < 0;
+}
+
+/* ── Notas personales (por arcana_id) ── */
+function readNotes() {
+  try {
+    const obj = JSON.parse(localStorage.getItem(K_NOTES) || "{}");
+    return obj && typeof obj === "object" ? obj : {};
+  } catch { return {}; }
+}
+export function getNote(id) {
+  return readNotes()[id] || "";
+}
+export function setNote(id, text) {
+  const notes = readNotes();
+  const t = (text || "").trim();
+  if (t) notes[id] = t;
+  else delete notes[id]; // nota vacía → no ocupa espacio
+  try { localStorage.setItem(K_NOTES, JSON.stringify(notes)); } catch { /* sin persistencia */ }
 }
