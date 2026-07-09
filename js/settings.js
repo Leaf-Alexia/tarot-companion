@@ -2,7 +2,7 @@
    Secciones modulares: Mazo activo, Idioma, Tema, Tienda (placeholder) y Acerca de.
    Idioma vía i18n; tema vía store + data-theme; mazos reusa el deck picker. */
 
-import { getTheme, setTheme } from "./store.js";
+import { getTheme, setTheme, getPalette, setPalette } from "./store.js";
 import { getLang, setLang, t } from "./i18n.js";
 import { openDeckPicker } from "./decks-ui.js";
 import { lockScroll, unlockScroll } from "./scroll-lock.js";
@@ -15,14 +15,35 @@ let cfg = { getActiveDeckName: () => "Energía pura" };
 const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-const META_COLOR = { dark: "#1C1430", light: "#F3F0F5" };
+/* Color de la barra del navegador según paleta × tema (4 combinaciones). */
+const META_COLOR = {
+  plum:   { dark: "#1C1430", light: "#F3F0F5" },
+  cereza: { dark: "#1a1018", light: "#F4ECE2" },
+};
+
+/* Actualiza <meta theme-color> leyendo la paleta y el tema activos del documento. */
+function updateMetaColor() {
+  const palette = document.documentElement.dataset.palette || "plum";
+  const theme = document.documentElement.dataset.theme || "dark";
+  const set = META_COLOR[palette] || META_COLOR.plum;
+  const m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.content = set[theme] || set.dark;
+}
 
 /* Aplica el tema al documento (data-theme + meta theme-color) y lo persiste. */
 export function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  const m = document.querySelector('meta[name="theme-color"]');
-  if (m) m.content = META_COLOR[theme] || META_COLOR.dark;
+  updateMetaColor();
   setTheme(theme);
+}
+
+/* Aplica la paleta al documento (data-palette + meta theme-color) y la persiste.
+   "plum" es el default: se limpia el atributo para que rijan los tokens base. */
+export function applyPalette(palette) {
+  if (palette && palette !== "plum") document.documentElement.dataset.palette = palette;
+  else delete document.documentElement.dataset.palette;
+  updateMetaColor();
+  setPalette(palette);
 }
 
 function isOpen() { return overlay.classList.contains("open"); }
@@ -37,6 +58,7 @@ function seg(name, current, opts) {
 
 function render() {
   const theme = getTheme();
+  const palette = getPalette();
   const lang = getLang();
   panel.innerHTML = `
     <div class="menu-head">
@@ -61,6 +83,11 @@ function render() {
     <section class="menu-sec">
       <div class="menu-label">${esc(t("menu.theme"))}</div>
       ${seg("theme", theme, [{ val: "dark", label: t("menu.dark") }, { val: "light", label: t("menu.light") }])}
+    </section>
+
+    <section class="menu-sec">
+      <div class="menu-label">${esc(t("menu.palette"))}</div>
+      ${seg("palette", palette, [{ val: "plum", label: t("menu.palettePlum") }, { val: "cereza", label: t("menu.paletteCereza") }])}
     </section>
 
     <section class="menu-sec">
@@ -92,6 +119,12 @@ function render() {
     const b = e.target.closest("[data-val]");
     if (!b) return;
     applyTheme(b.dataset.val);
+    render();
+  });
+  panel.querySelector('[data-seg="palette"]').addEventListener("click", (e) => {
+    const b = e.target.closest("[data-val]");
+    if (!b) return;
+    applyPalette(b.dataset.val);
     render();
   });
 }

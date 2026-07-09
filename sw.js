@@ -1,4 +1,4 @@
-/* Service Worker · Velara
+/* Service Worker · Tarot Companion
    Mantiene la app funcional sin conexión (propuesta de valor central).
    Estrategias por tipo de asset:
      HTML / JS / CSS / JSON  → network-first (datos frescos; cae a caché offline)
@@ -8,7 +8,7 @@
 
    IMPORTANTE: subir CACHE_VERSION en cada deploy para invalidar el caché viejo. */
 
-const CACHE_VERSION = "velara-v2";
+const CACHE_VERSION = "tarot-companion-v4";
 
 // Shell mínima a precachear. El precaché es TOLERANTE (ver install): un asset que
 // falte —p. ej. los íconos PNG hasta que se suban— no aborta la instalación.
@@ -19,6 +19,7 @@ const SHELL = [
   // CSS (orden de carga real)
   "css/fonts.css",
   "css/tokens.css",
+  "css/themes/cereza.css",
   "css/layout.css",
   "css/components.css",
   "css/themes/base.css",

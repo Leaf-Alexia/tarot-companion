@@ -1,0 +1,58 @@
+/* cereza.css — paleta alterna "Cereza" (la del yōkai-tarot: ciruela-café cálido +
+   acento cereza + oro). Es un EJE INDEPENDIENTE del tema claro/oscuro: se activa con
+   :root[data-palette="cereza"] (lo pone applyPalette en settings.js) y se combina con
+   :root[data-theme="light"]. Solo SOBREESCRIBE variables — no renombra ni toca los
+   bloques "plum" de tokens.css, así la paleta actual queda intacta cuando no está activa.
+   Mismo patrón de eje que css/themes/rws.css (data-deck). */
+
+/* ── Cereza · oscuro (base del yōkai-tarot) ── */
+:root[data-palette="cereza"] {
+  --ink:         #1a1018;  /* fondo base cálido (ciruela-café) */
+  --ink-2:       #241620;  /* superficies / cards */
+  --ink-3:       #2e1b27;  /* superficies elevadas / sheets */
+  --surface:     #2b1b28;  /* hojas / modales */
+  --cream:       #f0e2d8;  /* texto principal */
+  --muted:       #b89aa6;
+  --muted-2:     #8c7280;
+  --line:        rgba(214,184,115,.16);  /* líneas con tinte oro */
+  --line-strong: rgba(214,184,115,.30);
+  --gold:        #d6b873;
+  --vermilion:   #ce4e75;  /* acento secundario = cereza (firma de la paleta) */
+  --vermilion-2: #ff7d92;
+  --earth:       #c8a86a;
+  --on-accent:   #1a1018;  /* texto legible sobre oro */
+  --halo: radial-gradient(125% 46% at 50% -4%, rgba(214,184,115,.16), transparent 60%);
+}
+
+/* Acentos por grupo — cereza oscuro (paleta cálida sabor yōkai) */
+:root[data-palette="cereza"] .group-major  { --accent: #ce4e75; }  /* cereza */
+:root[data-palette="cereza"] .group-cups   { --accent: #7fa0c8; }  /* agua */
+:root[data-palette="cereza"] .group-coins  { --accent: #d6b873; }  /* oro */
+:root[data-palette="cereza"] .group-wands  { --accent: #e0805a; }  /* terracota/fuego */
+:root[data-palette="cereza"] .group-swords { --accent: #86b6b4; }  /* aire/salvia */
+
+/* ── Cereza · claro (variante pergamino cálido; contraste reforzado) ── */
+:root[data-palette="cereza"][data-theme="light"] {
+  --ink:         #F4ECE2;  /* fondo pergamino cálido */
+  --ink-2:       #FFFFFF;  /* cards en blanco puro */
+  --ink-3:       #FBF3EA;
+  --surface:     #FDF8F2;
+  --cream:       #2E1B27;  /* texto principal (ciruela-café oscuro) */
+  --muted:       #8C7280;
+  --muted-2:     #A99385;
+  --line:        rgba(178,62,98,.16);
+  --line-strong: rgba(178,62,98,.30);
+  --gold:        #A87A34;
+  --vermilion:   #B23E62;  /* cereza oscurecida para contraste sobre claro */
+  --vermilion-2: #9A3560;
+  --earth:       #8A6A3E;
+  --on-accent:   #ffffff;
+  --halo: radial-gradient(125% 46% at 50% -4%, rgba(178,62,98,.10), transparent 60%);
+}
+
+/* Acentos por grupo — cereza claro (versiones oscuras para contraste) */
+:root[data-palette="cereza"][data-theme="light"] .group-major  { --accent: #B23E62; }
+:root[data-palette="cereza"][data-theme="light"] .group-cups   { --accent: #2F7C92; }
+:root[data-palette="cereza"][data-theme="light"] .group-coins  { --accent: #A87A34; }
+:root[data-palette="cereza"][data-theme="light"] .group-wands  { --accent: #B5642F; }
+:root[data-palette="cereza"][data-theme="light"] .group-swords { --accent: #4F7C78; }

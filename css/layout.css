@@ -23,16 +23,16 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  color: var(--cream); /* el wordmark del imagotipo hereda esto vía currentColor */
+  color: var(--cream);
+  text-decoration: none;
 }
-/* Imagotipo Velara: alto fijo en el header; el ancho se ajusta por aspecto (904:300).
-   El símbolo (oro+lavanda) es fijo; el wordmark toma el color del enlace por tema. */
+/* Solo el símbolo (sol/luna oro+lavanda): recuadro cuadrado y fijo en el header. */
 .brand-logo {
-  height: 30px;
-  width: 90px; /* aspecto 904:300 ≈ 3:1; width:auto da 0 en SVG inline sin width intrínseco */
+  height: 28px;
+  width: 28px;
   display: block;
+  flex: 0 0 auto;
 }
-.brand span { color: var(--vermilion); }
 
 /* ---- Botón de configuración (engrane) ---- */
 .menu-btn {

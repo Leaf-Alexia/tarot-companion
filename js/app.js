@@ -5,7 +5,7 @@ import {
   loadPure, loadDeck, loadDeckIndex, getPure, buildCard, cardMark, cardName, deckCardName, filterPure, SUITS, FILTERS,
 } from "./deck.js";
 import {
-  getActiveDeckId, setActiveDeckId, getDailyId, getTheme,
+  getActiveDeckId, setActiveDeckId, getDailyId, getTheme, getPalette,
   isDailyRevealed, setDailyRevealed, getFavs,
 } from "./store.js";
 import { initRouter, onArcano, onSheetClose, onSub } from "./router.js";
@@ -14,7 +14,7 @@ import { initTiradas, setSpreadDeck } from "./spreads.js";
 import { initNumerologia } from "./numerology.js";
 import { initUso } from "./uso.js";
 import { initDeckPicker, openDeckPicker } from "./decks-ui.js";
-import { initSettings, open as openSettings, applyTheme } from "./settings.js";
+import { initSettings, open as openSettings, applyTheme, applyPalette } from "./settings.js";
 import { onLangChange, t, pick, pickList, getLang } from "./i18n.js";
 import { moonPhase } from "./moon.js";
 
@@ -333,8 +333,10 @@ async function init() {
     onMore: () => openSettings(),
   });
   initSettings({ getActiveDeckName: () => deckLabel(state.deckId) });
-  // Tema: el script anti-flash ya aplicó data-theme; sincroniza meta/persistencia.
+  // Tema y paleta: el script anti-flash ya aplicó data-theme/data-palette;
+  // esto sincroniza meta theme-color + persistencia.
   applyTheme(getTheme());
+  applyPalette(getPalette());
   // Al cambiar idioma, re-renderiza todo el chrome y las vistas.
   onLangChange(() => applyLanguage());
   // Al marcar/desmarcar un favorito desde el sheet, refresca el grid si el

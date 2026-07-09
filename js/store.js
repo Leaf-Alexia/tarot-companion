@@ -6,6 +6,7 @@ const K_DAILY = "tc-daily";
 const K_DAILY_SEEN = "tc-daily-seen";
 const K_LANG = "tc-lang";
 const K_THEME = "tc-theme";
+const K_PALETTE = "tc-palette"; // paleta de color (plum | cereza), ortogonal al tema
 const K_FAV = "tc-fav";     // favoritos: array de arcana_id
 const K_NOTES = "tc-notes"; // notas: mapa arcana_id -> texto
 
@@ -36,6 +37,15 @@ export function getTheme() {
 }
 export function setTheme(theme) {
   try { localStorage.setItem(K_THEME, theme); } catch { /* sin persistencia */ }
+}
+
+/* Paleta de color (plum | cereza). Default: plum (la actual, ciruela ahumada/lavanda).
+   Es independiente del tema claro/oscuro → 4 combinaciones posibles. */
+export function getPalette() {
+  try { return localStorage.getItem(K_PALETTE) || "plum"; } catch { return "plum"; }
+}
+export function setPalette(palette) {
+  try { localStorage.setItem(K_PALETTE, palette); } catch { /* sin persistencia */ }
 }
 
 /* Carta del día: misma carta durante todo el día natural. Se persiste el id. */
