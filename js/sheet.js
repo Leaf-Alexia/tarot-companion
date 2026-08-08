@@ -13,7 +13,7 @@ const sheet = document.getElementById("sheet");
 
 let ctx = { deckData: null, listIds: [] };
 let currentId = null;
-let returnHash = "glosario/arcanos"; // a dónde volver al cerrar (la vista de origen)
+let returnHash = "tarot/arcanos"; // a dónde volver al cerrar (la vista de origen)
 
 // La vista Arcanos se suscribe para re-renderizar cuando cambian los favoritos
 // (útil si el filtro ♥ está activo mientras se abre una carta).
@@ -219,7 +219,7 @@ export function closeSheet() {
   unlockScroll();
   document.removeEventListener("keydown", onKey);
   currentId = null;
-  writeHash(returnHash || "glosario/arcanos");
+  writeHash(returnHash || "tarot/arcanos");
 }
 
 // Cerrar al tocar el scrim

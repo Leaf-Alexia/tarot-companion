@@ -1,4 +1,4 @@
-/* app.js — punto de entrada. Carga datos, arma Inicio (hub) + Glosario·Arcanos
+/* app.js — punto de entrada. Carga datos, arma Inicio (hub) + Tarot·Arcanos
    y conecta router + sheet + sub-pestañas segmentadas. */
 
 import {
@@ -13,6 +13,7 @@ import { openSheet, closeSheet, setContext, refresh as refreshSheet, onFavChange
 import { initTiradas, setSpreadDeck } from "./spreads.js";
 import { initNumerologia } from "./numerology.js";
 import { initUso } from "./uso.js";
+import { initSimbolos } from "./simbolos.js";
 import { initDeckPicker, openDeckPicker } from "./decks-ui.js";
 import { initSettings, open as openSettings, applyTheme, applyPalette } from "./settings.js";
 import { onLangChange, t, pick, pickList, getLang } from "./i18n.js";
@@ -31,7 +32,8 @@ const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /* Sub-vistas dentro de cada destino segmentado. */
-const SUBS = { glosario: ["arcanos", "numerologia"], tiradas: ["uso", "spreads"] };
+const SUBS = { tarot: ["arcanos", "spreads"], glosario: ["uso", "simbolos", "numerologia"] };
+const SEG_IDS = { tarot: "segTarot", glosario: "segGlosario" };
 
 /* ---------- Inicio · hub explorador ---------- */
 function greeting() {
@@ -108,15 +110,15 @@ function renderInicio() {
       </button>
 
       <div class="home-grid">
-        <button class="home-tile" data-go="glosario/arcanos">
+        <button class="home-tile" data-go="tarot/arcanos">
+          <span class="ht-top"><span class="diamond"></span><span class="ht-arrow">→</span></span>
+          <span class="ht-title">${esc(t("home.tarotCard"))}</span>
+          <span class="ht-sub">${esc(t("home.tarotSub"))}</span>
+        </button>
+        <button class="home-tile" data-go="glosario/uso">
           <span class="ht-top"><span class="diamond"></span><span class="ht-arrow">→</span></span>
           <span class="ht-title">${esc(t("home.glosarioCard"))}</span>
           <span class="ht-sub">${esc(t("home.glosarioSub"))}</span>
-        </button>
-        <button class="home-tile" data-go="tiradas/spreads">
-          <span class="ht-top"><span class="diamond"></span><span class="ht-arrow">→</span></span>
-          <span class="ht-title">${esc(t("home.tiradasCard"))}</span>
-          <span class="ht-sub">${esc(t("home.tiradasSub"))}</span>
         </button>
       </div>
     </div>`;
@@ -240,14 +242,14 @@ async function setDeck(deckId) {
   renderDaily(); // la carta del día puede mostrar el ser del mazo activo
 }
 
-/* ---------- Sub-pestañas segmentadas (Glosario, Tiradas) ---------- */
+/* ---------- Sub-pestañas segmentadas (Tarot, Glosario) ---------- */
 function showSub(view, sub) {
   const list = SUBS[view];
   if (!list || !list.includes(sub)) return;
   list.forEach((s) =>
     document.getElementById("view-" + s).classList.toggle("active", s === sub)
   );
-  const segId = view === "glosario" ? "segGlosario" : "segTiradas";
+  const segId = SEG_IDS[view];
   document.querySelectorAll("#" + segId + " button").forEach((b) => {
     const on = b.dataset.sub === sub;
     b.classList.toggle("active", on);
@@ -256,7 +258,7 @@ function showSub(view, sub) {
 }
 
 function initSegTabs() {
-  [["segGlosario", "glosario"], ["segTiradas", "tiradas"]].forEach(([id, view]) => {
+  Object.entries(SEG_IDS).map(([view, id]) => [id, view]).forEach(([id, view]) => {
     document.getElementById(id).addEventListener("click", (e) => {
       const b = e.target.closest("button[data-sub]");
       if (b) location.hash = view + "/" + b.dataset.sub;
@@ -299,6 +301,7 @@ function applyLanguage() {
   renderInicio();
   refreshArcanos();
   initUso();
+  initSimbolos();
   initTiradas();
   initNumerologia();
   refreshSheet();
@@ -348,6 +351,7 @@ async function init() {
   renderInicio();
   renderArcanosShell();
   initUso();
+  initSimbolos();
   initTiradas();
   initNumerologia();
 
@@ -358,8 +362,8 @@ async function init() {
 
   renderGrid();
 
-  // deep link a carta: asegura Glosario · Arcanos antes de abrir el sheet
-  onArcano((id) => { showSub("glosario", "arcanos"); openSheet(id); });
+  // deep link a carta: asegura Tarot · Arcanos antes de abrir el sheet
+  onArcano((id) => { showSub("tarot", "arcanos"); openSheet(id); });
   onSheetClose(() => closeSheet());
   onSub((view, sub) => showSub(view, sub));
   initRouter();

@@ -54,26 +54,28 @@
 </header>
 
 <!-- Shell mínima: contenedores vacíos que los módulos JS poblarán.
-     IA de 3 destinos: Inicio · Glosario (Arcanos+Números) · Tiradas (Cómo leer+Tiradas). -->
+     IA de 3 destinos: Inicio · Tarot (Arcanos+Tiradas) · Glosario (Cómo leer+Símbolos+Números). -->
 <main class="wrap">
   <section class="view active" id="view-inicio" aria-label="Inicio"></section>
 
-  <section class="view" id="view-glosario" aria-label="Glosario">
-    <div class="seg-tabs" id="segGlosario" role="tablist" aria-label="Glosario">
+  <section class="view" id="view-tarot" aria-label="Tarot">
+    <div class="seg-tabs" id="segTarot" role="tablist" aria-label="Tarot">
       <button data-sub="arcanos" class="active" role="tab">Arcanos</button>
-      <button data-sub="numerologia" role="tab">Números</button>
-    </div>
-    <div class="subview active" id="view-arcanos" role="tabpanel" aria-label="Arcanos"></div>
-    <div class="subview" id="view-numerologia" role="tabpanel" aria-label="Numerología"></div>
-  </section>
-
-  <section class="view" id="view-tiradas" aria-label="Tiradas">
-    <div class="seg-tabs" id="segTiradas" role="tablist" aria-label="Tiradas">
-      <button data-sub="uso" class="active" role="tab">Cómo leer</button>
       <button data-sub="spreads" role="tab">Tiradas</button>
     </div>
-    <div class="subview active" id="view-uso" role="tabpanel" aria-label="Cómo leer"></div>
+    <div class="subview active" id="view-arcanos" role="tabpanel" aria-label="Arcanos"></div>
     <div class="subview" id="view-spreads" role="tabpanel" aria-label="Tiradas"></div>
+  </section>
+
+  <section class="view" id="view-glosario" aria-label="Glosario">
+    <div class="seg-tabs" id="segGlosario" role="tablist" aria-label="Glosario">
+      <button data-sub="uso" class="active" role="tab">Cómo leer</button>
+      <button data-sub="simbolos" role="tab">Símbolos</button>
+      <button data-sub="numerologia" role="tab">Números</button>
+    </div>
+    <div class="subview active" id="view-uso" role="tabpanel" aria-label="Cómo leer"></div>
+    <div class="subview" id="view-simbolos" role="tabpanel" aria-label="Símbolos"></div>
+    <div class="subview" id="view-numerologia" role="tabpanel" aria-label="Numerología"></div>
   </section>
 </main>
 
@@ -82,11 +84,11 @@
   <button data-view="inicio" class="active" aria-current="page">
     <span class="bn-ico" aria-hidden="true"></span><span class="bn-lbl">Inicio</span>
   </button>
+  <button data-view="tarot">
+    <span class="bn-ico" aria-hidden="true"></span><span class="bn-lbl">Tarot</span>
+  </button>
   <button data-view="glosario">
     <span class="bn-ico" aria-hidden="true"></span><span class="bn-lbl">Glosario</span>
-  </button>
-  <button data-view="tiradas">
-    <span class="bn-ico" aria-hidden="true"></span><span class="bn-lbl">Tiradas</span>
   </button>
 </nav>
 

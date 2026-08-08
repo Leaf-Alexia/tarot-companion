@@ -1,8 +1,8 @@
 /* router.js — navegación por hash + barra inferior (3 destinos).
-   Vistas: #inicio #glosario #tiradas
-   Enlace directo a carta: #arcano/the-fool (abre Glosario · Arcanos + el sheet). */
+   Vistas: #inicio #tarot #glosario
+   Enlace directo a carta: #arcano/the-fool (abre Tarot · Arcanos + el sheet). */
 
-export const VIEWS = ["inicio", "glosario", "tiradas"];
+export const VIEWS = ["inicio", "tarot", "glosario"];
 
 let arcanoHandler = null;   // (id) => void, lo registra sheet/app
 let closeSheet = null;      // () => void
@@ -42,12 +42,12 @@ function route() {
   const h = decodeURIComponent(location.hash.slice(1));
   const m = h.match(/^arcano\/(.+)$/);
   if (m && arcanoHandler) {
-    if (currentView() !== "glosario") go("glosario");
+    if (currentView() !== "tarot") go("tarot");
     arcanoHandler(m[1]); // el handler activa la sub-vista Arcanos y abre el sheet
     return;
   }
   if (closeSheet) closeSheet();
-  // Soporta "vista/subvista" (p. ej. glosario/numerologia, tiradas/spreads).
+  // Soporta "vista/subvista" (p. ej. glosario/numerologia, tarot/spreads).
   const [view, sub] = h.split("/");
   go(VIEWS.includes(view) ? view : "inicio");
   if (sub && subHandler) subHandler(view, sub);

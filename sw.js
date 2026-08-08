@@ -8,7 +8,7 @@
 
    IMPORTANTE: subir CACHE_VERSION en cada deploy para invalidar el caché viejo. */
 
-const CACHE_VERSION = "tarot-companion-v4";
+const CACHE_VERSION = "tarot-companion-v6";
 
 // Shell mínima a precachear. El precaché es TOLERANTE (ver install): un asset que
 // falte —p. ej. los íconos PNG hasta que se suban— no aborta la instalación.
@@ -30,11 +30,13 @@ const SHELL = [
   "js/store.js",
   "js/deck.js",
   "js/sheet.js",
+  "js/scroll-lock.js",
   "js/decks-ui.js",
   "js/settings.js",
   "js/spreads.js",
   "js/numerology.js",
   "js/uso.js",
+  "js/simbolos.js",
   "js/moon.js",
   "js/i18n.js",
   "js/strings.js",

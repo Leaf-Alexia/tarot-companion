@@ -6,14 +6,15 @@ export const UI = {
   es: {
     // Navegación inferior (3 destinos)
     "tab.inicio": "Inicio",
+    "tab.tarot": "Tarot",
     "tab.glosario": "Glosario",
-    "tab.tiradas": "Tiradas",
 
     // Sub-pestañas segmentadas
     "seg.arcanos": "Arcanos",
-    "seg.numerologia": "Números",
-    "seg.uso": "Cómo leer",
     "seg.spreads": "Tiradas",
+    "seg.uso": "Cómo leer",
+    "seg.simbolos": "Símbolos",
+    "seg.numerologia": "Números",
 
     // Inicio · hub explorador
     "home.greet.morning": "Buenos días",
@@ -27,10 +28,10 @@ export const UI = {
     "home.dailyOpen": "Abrir lectura completa",
     "home.discover": "Descubre un arcano",
     "home.discoverSub": "Uno al azar, solo para aprender",
+    "home.tarotCard": "Tarot",
+    "home.tarotSub": "Los 78 arcanos y las tiradas",
     "home.glosarioCard": "Glosario",
-    "home.glosarioSub": "Los 78 arcanos y los números",
-    "home.tiradasCard": "Tiradas",
-    "home.tiradasSub": "Cómo leer y las tiradas",
+    "home.glosarioSub": "Cómo leer, símbolos y números",
 
     // Inicio / cover (legado; aún usado por algunas claves)
     "cover.kicker": "Guía y acompañante de lectura",
@@ -117,14 +118,15 @@ export const UI = {
   en: {
     // Bottom navigation (3 destinations)
     "tab.inicio": "Home",
+    "tab.tarot": "Tarot",
     "tab.glosario": "Glossary",
-    "tab.tiradas": "Spreads",
 
     // Segmented sub-tabs
     "seg.arcanos": "Arcana",
-    "seg.numerologia": "Numbers",
-    "seg.uso": "How to read",
     "seg.spreads": "Spreads",
+    "seg.uso": "How to read",
+    "seg.simbolos": "Symbols",
+    "seg.numerologia": "Numbers",
 
     // Home · explorer hub
     "home.greet.morning": "Good morning",
@@ -138,10 +140,10 @@ export const UI = {
     "home.dailyOpen": "Open full reading",
     "home.discover": "Discover an arcanum",
     "home.discoverSub": "A random one, just to learn",
+    "home.tarotCard": "Tarot",
+    "home.tarotSub": "The 78 arcana and the spreads",
     "home.glosarioCard": "Glossary",
-    "home.glosarioSub": "The 78 arcana and the numbers",
-    "home.tiradasCard": "Spreads",
-    "home.tiradasSub": "How to read and the spreads",
+    "home.glosarioSub": "How to read, symbols, and numbers",
 
     // Home / cover (legacy; still used by some keys)
     "cover.kicker": "A guide and reading companion",

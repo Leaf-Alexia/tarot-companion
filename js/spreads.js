@@ -1,6 +1,9 @@
-/* spreads.js — vista Tiradas (bilingüe). Cuatro tiradas:
+/* spreads.js — vista Tiradas (bilingüe). Tiradas base:
    1) Carta del día (1)  2) Tres cartas (3, clave intercambiable)
-   3) Conoce tu mazo (4, posiciones fijas)  4) Spread Torii (6, tres capas).
+   3) Conoce tu mazo (4, posiciones fijas)  4) Spread Torii (6, tres capas)
+   + tiradas simples del registro SIMPLE_SPREADS (posiciones fijas; añadir una
+   tirada nueva = añadir una entrada ahí). Varias son adaptaciones con redacción
+   propia, inspiradas en "The Library of Questions" de Lida Pavlova.
    Cada carta extraída abre el detail sheet (sheet.js) con el mazo activo.
    No requiere red: el sorteo es local sobre la capa pura ya cargada. */
 
@@ -64,10 +67,151 @@ const TORII_LAYERS = {
   ],
 };
 
+/* Tiradas simples: posiciones fijas, un botón, sin lógica especial.
+   `story` (opcional) es una entrada narrativa que se lee antes de extraer. */
+const SIMPLE_SPREADS = [
+  {
+    key: "sensacion", n: 5,
+    es: {
+      h: "Esa sensación", tag: "· 5 cartas",
+      p: "Para ponerle nombre a esa sensación extraña que te acompaña y no sabes bien de dónde viene.",
+      btn: "Extraer cinco cartas",
+      roles: [
+        { role: "Qué siento",          hint: "La emoción, nombrada por el arcano." },
+        { role: "Cómo se siente",      hint: "Su textura: cómo se mueve dentro de ti." },
+        { role: "Con quién o con qué", hint: "Hacia dónde apunta esta sensación." },
+        { role: "De dónde viene",      hint: "Su raíz: qué la despertó." },
+        { role: "Para qué llegó",      hint: "Lo que viene a mostrarte o a pedirte." },
+      ],
+    },
+    en: {
+      h: "That feeling", tag: "· 5 cards",
+      p: "To put a name to that strange feeling that follows you around and you can't quite place.",
+      btn: "Draw five cards",
+      roles: [
+        { role: "What I feel",        hint: "The emotion, named by the arcanum." },
+        { role: "How it feels",       hint: "Its texture: how it moves inside you." },
+        { role: "With whom or what",  hint: "Where this feeling is pointing." },
+        { role: "Where it comes from", hint: "Its root: what woke it." },
+        { role: "What it came for",   hint: "What it wants to show you or ask of you." },
+      ],
+    },
+  },
+  {
+    key: "piel", n: 5,
+    es: {
+      h: "Cambio de piel", tag: "· 5 cartas",
+      p: "Para cuando notas que algo en ti ya no es como era. Un retrato del cambio, con cariño por quien fuiste y por quien estás siendo.",
+      btn: "Extraer cinco cartas",
+      roles: [
+        { role: "Quién eras",              hint: "La versión de ti que quedó atrás." },
+        { role: "Por qué ya no eres ella", hint: "Qué disolvió esa forma de ser." },
+        { role: "Quién estás siendo",      hint: "Lo que está emergiendo ahora." },
+        { role: "Lo que brilla en ti",     hint: "Qué admirar de esta nueva versión." },
+        { role: "Cómo acompañarte",        hint: "El cuidado que este cambio te pide." },
+      ],
+    },
+    en: {
+      h: "Shedding skin", tag: "· 5 cards",
+      p: "For when you notice something in you is no longer as it was. A portrait of the change, with tenderness for who you were and who you are becoming.",
+      btn: "Draw five cards",
+      roles: [
+        { role: "Who you were",           hint: "The version of you left behind." },
+        { role: "Why you are no longer her", hint: "What dissolved that way of being." },
+        { role: "Who you are becoming",   hint: "What is emerging now." },
+        { role: "What shines in you",     hint: "What to admire in this new version." },
+        { role: "How to hold yourself",   hint: "The care this change asks of you." },
+      ],
+    },
+  },
+  {
+    key: "bosque", n: 5,
+    es: {
+      h: "El anciano del bosque", tag: "· 5 cartas",
+      p: "Una tirada narrativa para la introspección profunda. Léela como un pequeño cuento en el que tú entras.",
+      story: "Caminas hacia lo profundo de un bosque antiguo. Al caer la tarde, un anciano encapuchado aparece en tu sendero y, apoyado en su bastón, te saluda.",
+      btn: "Entrar al bosque",
+      roles: [
+        { role: "Tu saludo",       hint: "Cómo le respondes tú." },
+        { role: "Tu pregunta",     hint: "Qué le preguntas." },
+        { role: "Su respuesta",    hint: "Lo que el anciano contesta." },
+        { role: "El encuentro",    hint: "Por qué el bosque quiso reunirlos." },
+        { role: "El cambio",       hint: "Sales del bosque distinta: ¿qué cambió en ti?" },
+      ],
+    },
+    en: {
+      h: "The elder of the forest", tag: "· 5 cards",
+      p: "A narrative spread for deep introspection. Read it like a little tale you step into.",
+      story: "You walk into the depths of an ancient forest. As evening falls, a hooded elder appears on your path and, leaning on his staff, greets you.",
+      btn: "Enter the forest",
+      roles: [
+        { role: "Your greeting",  hint: "How you answer him." },
+        { role: "Your question",  hint: "What you ask him about." },
+        { role: "His answer",     hint: "What the elder replies." },
+        { role: "The meeting",    hint: "Why the forest wanted you two to meet." },
+        { role: "The change",     hint: "You leave the forest different: what changed in you?" },
+      ],
+    },
+  },
+  {
+    key: "aventura", n: 4,
+    es: {
+      h: "Aventura", tag: "· 4 cartas",
+      p: "Una tirada lúdica: mira un objetivo como si fuera una gesta. Baraja — nos vamos de aventura.",
+      btn: "Partir a la aventura",
+      roles: [
+        { role: "Tu arma",      hint: "Lo que te va a ayudar." },
+        { role: "Tu aliado",    hint: "Quién o qué te acompaña." },
+        { role: "Tu adversario", hint: "Contra qué o quién luchas." },
+        { role: "El desenlace", hint: "Lo que puede pasar." },
+      ],
+    },
+    en: {
+      h: "Adventure", tag: "· 4 cards",
+      p: "A playful spread: look at a goal as if it were a quest. Shuffle up — we're going on an adventure.",
+      btn: "Set off on the adventure",
+      roles: [
+        { role: "Your weapon",   hint: "What will help you." },
+        { role: "Your ally",     hint: "Who or what goes with you." },
+        { role: "Your adversary", hint: "What or whom you are fighting." },
+        { role: "The outcome",   hint: "What may come to pass." },
+      ],
+    },
+  },
+  {
+    key: "umbral", n: 5,
+    es: {
+      h: "El umbral del mes", tag: "· 5 cartas",
+      p: "Para tirar al comenzar cada mes: un inventario de lo que traes y de lo que este ciclo quiere de ti.",
+      btn: "Abrir el mes",
+      roles: [
+        { role: "El clima del mes",     hint: "La energía que abre este ciclo." },
+        { role: "Lo que traes de sobra", hint: "Tu abundancia: de qué llegas llena y puedes compartir." },
+        { role: "Lo que escasea",       hint: "Qué se está agotando y pide reponerse." },
+        { role: "Dónde ponerlo",        hint: "A quién o a qué dedicar lo que tienes." },
+        { role: "El regalo del mes",    hint: "Lo que este ciclo quiere dejarte al irse." },
+      ],
+    },
+    en: {
+      h: "The month's threshold", tag: "· 5 cards",
+      p: "To draw at the start of each month: an inventory of what you carry in and what this cycle wants from you.",
+      btn: "Open the month",
+      roles: [
+        { role: "The month's weather",  hint: "The energy that opens this cycle." },
+        { role: "What you carry in plenty", hint: "Your abundance: what you arrive full of and can share." },
+        { role: "What is running low",  hint: "What is nearly used up and asks to be replenished." },
+        { role: "Where to place it",    hint: "Whom or what to devote what you have to." },
+        { role: "The month's gift",     hint: "What this cycle wants to leave you when it goes." },
+      ],
+    },
+  },
+];
+
 const TXT = {
   es: {
     eyebrow: "Para tu lectura", title: "Tiradas",
-    lead: "Cuatro caminos para consultar los arcanos. Elige según la pregunta y la profundidad que busques. Cada carta extraída abre su lectura completa.",
+    lead: "Distintos caminos para consultar los arcanos. Elige según la pregunta y la profundidad que busques. Cada carta extraída abre su lectura completa.",
+    credit: "Algunas tiradas son adaptaciones con redacción propia, inspiradas en el libro «The Library of Questions» de Lida Pavlova.",
     diaH: "Carta del día", diaTag: "· 1 carta",
     diaP: "Un solo arcano para invocar un destello de inspiración que te acompañe durante el día. Es la misma carta hasta que cambie la fecha.",
     diaBtn: "✦ Revelar la carta del día", today: "Hoy",
@@ -77,14 +221,15 @@ const TXT = {
     mazoH: "Conoce tu mazo", mazoTag: "· 4 cartas",
     mazoP: "Construye el vínculo entre tú y el mazo: cuatro posiciones que describen su personalidad, lo que enseña y cómo quiere ser leído.",
     mazoBtnBase: "Conocer el mazo", mazoBtnNamed: (n) => `Conocer el ${n}`,
-    mazoNeeded: 'Elige un mazo con el botón de mazo en <a href="#glosario/arcanos">Glosario</a> para esta tirada.',
+    mazoNeeded: 'Elige un mazo con el botón de mazo en <a href="#tarot/arcanos">Arcanos</a> para esta tirada.',
     toriiH: "Spread Torii", toriiTag: "· 6 cartas · 鳥居",
     toriiP: "Con forma de torii, la puerta ceremonial sintoísta. Extrae seis cartas y léelas de <b>abajo hacia arriba</b>: no avances de capa hasta asentar la anterior.",
     toriiBtn: "Extraer seis cartas", positions: "Posiciones", open: "Abrir",
   },
   en: {
     eyebrow: "For your reading", title: "Spreads",
-    lead: "Four paths to consult the arcana. Choose by the question and the depth you seek. Each card drawn opens its full reading.",
+    lead: "Different paths to consult the arcana. Choose by the question and the depth you seek. Each card drawn opens its full reading.",
+    credit: "Some spreads are adaptations in our own words, inspired by the book “The Library of Questions” by Lida Pavlova.",
     diaH: "Card of the day", diaTag: "· 1 card",
     diaP: "A single arcanum to summon a flash of inspiration to carry through your day. It stays the same card until the date changes.",
     diaBtn: "✦ Reveal the card of the day", today: "Today",
@@ -94,7 +239,7 @@ const TXT = {
     mazoH: "Know your deck", mazoTag: "· 4 cards",
     mazoP: "Build the bond between you and the deck: four positions that describe its personality, what it teaches, and how it wants to be read.",
     mazoBtnBase: "Know your deck", mazoBtnNamed: (n) => `Get to know ${n}`,
-    mazoNeeded: 'Choose a deck with the deck button in <a href="#glosario/arcanos">Glossary</a> for this spread.',
+    mazoNeeded: 'Choose a deck with the deck button in <a href="#tarot/arcanos">Arcana</a> for this spread.',
     toriiH: "Torii spread", toriiTag: "· 6 cards · 鳥居",
     toriiP: "Shaped like a torii, the Shinto ceremonial gate. Draw six cards and read them <b>from the bottom up</b>: don't move up a layer until the one below has settled.",
     toriiBtn: "Draw six cards", positions: "Positions", open: "Open",
@@ -108,6 +253,10 @@ let activeDeck = { id: null, name: null };
 // Clave y cartas de la tirada de tres (las cartas se conservan al cambiar de clave).
 let threeKey = 0;
 let threeIds = [null, null, null];
+// Cartas extraídas de las tiradas simples (se conservan al re-render por idioma).
+const simpleIds = Object.fromEntries(
+  SIMPLE_SPREADS.map((s) => [s.key, Array(s.n).fill(null)])
+);
 
 /* Sorteo local sin repetir dentro de la misma tirada. */
 function drawN(n) {
@@ -191,7 +340,19 @@ function viewHTML() {
           <button class="draw" data-draw="torii">${esc(x.toriiBtn)}</button>
         </section>
 
+        ${SIMPLE_SPREADS.map((s) => {
+          const c = s[L()] || s.es;
+          return `<section class="panel" data-spread="${s.key}">
+            <h3>${esc(c.h)} <span class="tag">${esc(c.tag)}</span></h3>
+            <p>${esc(c.p)}</p>
+            ${c.story ? `<p class="spread-story">${esc(c.story)}</p>` : ""}
+            <div class="slots n${s.n}" id="slots-${s.key}"></div>
+            <button class="draw" data-draw="${s.key}">${esc(c.btn)}</button>
+          </section>`;
+        }).join("")}
+
       </div>
+      <p class="muted-note spread-credit">${esc(x.credit)}</p>
     </div>`;
 }
 
@@ -208,13 +369,25 @@ function renderThreeSlots() {
   fillSlots(document.getElementById("tresSlots"), keys[threeKey].roles, null, threeIds);
 }
 
-/* Estado inicial de cada tirada: posiciones vacías. */
+/* Pinta una tirada simple con sus cartas actuales (o vacía). */
+function renderSimple(spread) {
+  const c = spread[L()] || spread.es;
+  fillSlots(
+    document.getElementById("slots-" + spread.key),
+    c.roles.map((r) => r.role),
+    c.roles.map((r) => r.hint),
+    simpleIds[spread.key]
+  );
+}
+
+/* Estado inicial de cada tirada: posiciones vacías (las simples conservan lo extraído). */
 function paintEmpty() {
   const pos = DECK_POS[L()] || DECK_POS.es;
   fillSlots(document.getElementById("diaSlots"), [tx().today], null, [null]);
   renderThreeSlots();
   fillSlots(document.getElementById("mazoSlots"), pos.map((p) => p.role), pos.map((p) => p.hint), [null, null, null, null]);
   renderTorii([null, null, null, null, null, null]);
+  SIMPLE_SPREADS.forEach(renderSimple);
 }
 
 /* El torii se dibuja por capas (base abajo). */
@@ -296,7 +469,13 @@ function onTiradasClick(e) {
   }
   const b = e.target.closest("[data-draw]");
   if (!b || b.disabled) return;
-  ({ dia: drawDia, tres: drawTres, mazo: drawMazo, torii: drawTorii })[b.dataset.draw]?.();
+  const fixed = { dia: drawDia, tres: drawTres, mazo: drawMazo, torii: drawTorii }[b.dataset.draw];
+  if (fixed) { fixed(); return; }
+  const spread = SIMPLE_SPREADS.find((s) => s.key === b.dataset.draw);
+  if (spread) {
+    simpleIds[spread.key] = drawN(spread.n);
+    renderSimple(spread);
+  }
 }
 
 /* ---------- API pública ---------- */
